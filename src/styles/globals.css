@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .ellipsis {
+    @apply overflow-ellipsis truncate whitespace-nowrap;
+  }
+}
+
+@layer base {
+  :root {
+    --colors-primary-50: 255, 255, 255;
+    --colors-primary-100: 255, 255, 255;
+    --colors-primary-200: 224, 226, 255;
+    --colors-primary-300: 184, 186, 255;
+    --colors-primary-400: 143, 147, 255;
+    --colors-primary-500: 102, 108, 255;
+    --colors-primary-600: 46, 54, 255;
+    --colors-primary-700: 0, 10, 245;
+    --colors-primary-800: 0, 7, 189;
+    --colors-primary-900: 0, 5, 133;
+    --colors-primary-950: 0, 4, 105;
+
+    --colors-secondary-50: 255, 255, 255;
+    --colors-secondary-100: 255, 255, 255;
+    --colors-secondary-200: 255, 224, 226;
+    --colors-secondary-300: 255, 184, 188;
+    --colors-secondary-400: 255, 143, 149;
+    --colors-secondary-500: 255, 102, 111;
+    --colors-secondary-600: 255, 46, 58;
+    --colors-secondary-700: 245, 0, 14;
+    --colors-secondary-800: 189, 0, 11;
+    --colors-secondary-900: 133, 0, 8;
+    --colors-secondary-950: 105, 0, 6;
+
+    --colors-tertiary-50: 230, 204, 255;
+    --colors-tertiary-100: 220, 183, 255;
+    --colors-tertiary-200: 201, 142, 255;
+    --colors-tertiary-300: 181, 102, 255;
+    --colors-tertiary-400: 162, 61, 255;
+    --colors-tertiary-500: 142, 20, 255;
+    --colors-tertiary-600: 114, 0, 219;
+    --colors-tertiary-700: 85, 0, 163;
+    --colors-tertiary-800: 55, 0, 107;
+    --colors-tertiary-900: 26, 0, 51;
+    --colors-tertiary-950: 12, 0, 23;
+
+    --colors-quaternary-50: 255, 247, 229;
+    --colors-quaternary-100: 255, 225, 163;
+    --colors-quaternary-200: 255, 212, 122;
+    --colors-quaternary-300: 255, 199, 82;
+    --colors-quaternary-400: 236, 179, 35;
+    --colors-quaternary-500: 255, 173, 0;
+    --colors-quaternary-600: 199, 135, 0;
+    --colors-quaternary-700: 143, 97, 0;
+    --colors-quaternary-800: 87, 59, 0;
+    --colors-quaternary-900: 31, 21, 0;
+    --colors-quaternary-950: 3, 2, 0;
+
+    --colors-quinary-50: 233, 223, 217;
+    --colors-quinary-100: 226, 211, 204;
+    --colors-quinary-200: 211, 189, 178;
+    --colors-quinary-300: 197, 167, 152;
+    --colors-quinary-400: 182, 145, 125;
+    --colors-quinary-500: 167, 123, 99;
+    --colors-quinary-600: 144, 103, 81;
+    --colors-quinary-700: 118, 85, 67;
+    --colors-quinary-800: 92, 66, 52;
+    --colors-quinary-900: 56, 40, 32;
+    --colors-quinary-950: 38, 27, 22;
+
+    --colors-senary-50: 197, 237, 187;
+    --colors-senary-100: 183, 233, 171;
+    --colors-senary-200: 155, 225, 138;
+    --colors-senary-300: 127, 217, 106;
+    --colors-senary-400: 110, 224, 81;
+    --colors-senary-500: 84, 189, 58;
+    --colors-senary-600: 64, 159, 41;
+    --colors-senary-700: 46, 114, 29;
+    --colors-senary-800: 28, 70, 18;
+    --colors-senary-900: 10, 25, 6;
+    --colors-senary-950: 1, 3, 1;
+
+    --colors-success-50: 148, 255, 204;
+    --colors-success-100: 127, 255, 194;
+    --colors-success-200: 86, 255, 174;
+    --colors-success-300: 46, 255, 155;
+    --colors-success-400: 5, 255, 135;
+    --colors-success-500: 0, 219, 114;
+    --colors-success-600: 0, 163, 85;
+    --colors-success-700: 0, 107, 56;
+    --colors-success-800: 0, 51, 26;
+    --colors-success-900: 0, 0, 0;
+
+    --colors-error-50: 250, 164, 162;
+    --colors-error-100: 249, 145, 143;
+    --colors-error-200: 247, 107, 104;
+    --colors-error-300: 245, 70, 65;
+    --colors-error-400: 243, 32, 26;
+    --colors-error-500: 218, 16, 11;
+    --colors-error-600: 165, 12, 8;
+    --colors-error-700: 111, 8, 6;
+    --colors-error-800: 58, 4, 3;
+    --colors-error-900: 4, 0, 0;
+
+    --colors-info-50: 146, 215, 253;
+    --colors-info-100: 126, 208, 253;
+    --colors-info-200: 86, 193, 252;
+    --colors-info-300: 46, 179, 251;
+    --colors-info-400: 6, 164, 250;
+    --colors-info-500: 4, 138, 211;
+    --colors-info-600: 3, 102, 156;
+    --colors-info-700: 2, 66, 101;
+    --colors-info-800: 1, 30, 46;
+    --colors-info-900: 0, 0, 0;
+
+    --colors-warning-50: 254, 252, 247;
+    --colors-warning-100: 254, 249, 239;
+    --colors-warning-200: 251, 241, 215;
+    --colors-warning-300: 249, 233, 191;
+    --colors-warning-400: 245, 216, 142;
+    --colors-warning-500: 240, 199, 94;
+    --colors-warning-600: 216, 179, 85;
+    --colors-warning-700: 180, 149, 71;
+    --colors-warning-800: 144, 119, 56;
+    --colors-warning-900: 118, 98, 46;
+
+    --colors-gray-50: 255, 255, 255;
+    --colors-gray-100: 245, 248, 250;
+    --colors-gray-200: 195, 196, 215;
+    --colors-gray-300: 181, 181, 195;
+    --colors-gray-400: 167, 168, 187;
+    --colors-gray-500: 161, 165, 183;
+    --colors-gray-600: 96, 101, 130;
+    --colors-gray-700: 63, 66, 84;
+    --colors-gray-800: 24, 28, 50;
+    --colors-gray-900: 0, 0, 0;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    @apply font-primary text-gray-300 text-md font-normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-gray-800;
+  }
+
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+  h4 {
+    @apply text-h4;
+  }
+  h5 {
+    @apply text-h5;
+  }
+  h6 {
+    @apply text-h6;
+  }
+
+  /*? Scrollbar */
+
+  /* Works on Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.primary.400') theme(colors.gray.50);
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: theme(colors.gray.50);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: theme(colors.primary.400);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme(colors.primary.300);
+  }
+}
