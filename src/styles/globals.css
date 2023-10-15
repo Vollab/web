@@ -10,77 +10,41 @@
 
 @layer base {
   :root {
-    --colors-primary-50: 255, 255, 255;
-    --colors-primary-100: 255, 255, 255;
-    --colors-primary-200: 224, 226, 255;
-    --colors-primary-300: 184, 186, 255;
-    --colors-primary-400: 143, 147, 255;
-    --colors-primary-500: 102, 108, 255;
-    --colors-primary-600: 46, 54, 255;
-    --colors-primary-700: 0, 10, 245;
-    --colors-primary-800: 0, 7, 189;
-    --colors-primary-900: 0, 5, 133;
-    --colors-primary-950: 0, 4, 105;
+    --colors-primary-50: 184, 227, 255;
+    --colors-primary-100: 163, 219, 255;
+    --colors-primary-200: 122, 202, 255;
+    --colors-primary-300: 82, 186, 255;
+    --colors-primary-400: 41, 170, 255;
+    --colors-primary-500: 0, 154, 255;
+    --colors-primary-600: 0, 120, 199;
+    --colors-primary-700: 0, 86, 143;
+    --colors-primary-800: 0, 52, 87;
+    --colors-primary-900: 0, 18, 31;
+    --colors-primary-950: 0, 2, 3;
 
     --colors-secondary-50: 255, 255, 255;
     --colors-secondary-100: 255, 255, 255;
-    --colors-secondary-200: 255, 224, 226;
-    --colors-secondary-300: 255, 184, 188;
-    --colors-secondary-400: 255, 143, 149;
-    --colors-secondary-500: 255, 102, 111;
-    --colors-secondary-600: 255, 46, 58;
-    --colors-secondary-700: 245, 0, 14;
-    --colors-secondary-800: 189, 0, 11;
-    --colors-secondary-900: 133, 0, 8;
-    --colors-secondary-950: 105, 0, 6;
+    --colors-secondary-200: 237, 223, 255;
+    --colors-secondary-300: 215, 183, 255;
+    --colors-secondary-400: 192, 142, 255;
+    --colors-secondary-500: 169, 101, 255;
+    --colors-secondary-600: 138, 45, 255;
+    --colors-secondary-700: 108, 0, 244;
+    --colors-secondary-800: 83, 0, 188;
+    --colors-secondary-900: 58, 0, 132;
+    --colors-secondary-950: 46, 0, 104;
 
-    --colors-tertiary-50: 230, 204, 255;
-    --colors-tertiary-100: 220, 183, 255;
-    --colors-tertiary-200: 201, 142, 255;
-    --colors-tertiary-300: 181, 102, 255;
-    --colors-tertiary-400: 162, 61, 255;
-    --colors-tertiary-500: 142, 20, 255;
-    --colors-tertiary-600: 114, 0, 219;
-    --colors-tertiary-700: 85, 0, 163;
-    --colors-tertiary-800: 55, 0, 107;
-    --colors-tertiary-900: 26, 0, 51;
-    --colors-tertiary-950: 12, 0, 23;
-
-    --colors-quaternary-50: 255, 247, 229;
-    --colors-quaternary-100: 255, 225, 163;
-    --colors-quaternary-200: 255, 212, 122;
-    --colors-quaternary-300: 255, 199, 82;
-    --colors-quaternary-400: 236, 179, 35;
-    --colors-quaternary-500: 255, 173, 0;
-    --colors-quaternary-600: 199, 135, 0;
-    --colors-quaternary-700: 143, 97, 0;
-    --colors-quaternary-800: 87, 59, 0;
-    --colors-quaternary-900: 31, 21, 0;
-    --colors-quaternary-950: 3, 2, 0;
-
-    --colors-quinary-50: 233, 223, 217;
-    --colors-quinary-100: 226, 211, 204;
-    --colors-quinary-200: 211, 189, 178;
-    --colors-quinary-300: 197, 167, 152;
-    --colors-quinary-400: 182, 145, 125;
-    --colors-quinary-500: 167, 123, 99;
-    --colors-quinary-600: 144, 103, 81;
-    --colors-quinary-700: 118, 85, 67;
-    --colors-quinary-800: 92, 66, 52;
-    --colors-quinary-900: 56, 40, 32;
-    --colors-quinary-950: 38, 27, 22;
-
-    --colors-senary-50: 197, 237, 187;
-    --colors-senary-100: 183, 233, 171;
-    --colors-senary-200: 155, 225, 138;
-    --colors-senary-300: 127, 217, 106;
-    --colors-senary-400: 110, 224, 81;
-    --colors-senary-500: 84, 189, 58;
-    --colors-senary-600: 64, 159, 41;
-    --colors-senary-700: 46, 114, 29;
-    --colors-senary-800: 28, 70, 18;
-    --colors-senary-900: 10, 25, 6;
-    --colors-senary-950: 1, 3, 1;
+    --colors-tertiary-50: 255, 234, 222;
+    --colors-tertiary-100: 255, 221, 201;
+    --colors-tertiary-200: 255, 194, 160;
+    --colors-tertiary-300: 255, 168, 120;
+    --colors-tertiary-400: 255, 142, 79;
+    --colors-tertiary-500: 255, 116, 38;
+    --colors-tertiary-600: 237, 85, 0;
+    --colors-tertiary-700: 181, 65, 0;
+    --colors-tertiary-800: 125, 45, 0;
+    --colors-tertiary-900: 69, 25, 0;
+    --colors-tertiary-950: 41, 15, 0;
 
     --colors-success-50: 148, 255, 204;
     --colors-success-100: 127, 255, 194;

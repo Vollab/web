@@ -3,3 +3,4 @@
 export * from './Danger';
 export * from './Hide';
 export * from './Show';
+export * from './Triangle';
