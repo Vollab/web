@@ -10,8 +10,11 @@ export const Form = () => {
       <Field type='text' placeholder='Senha' />
 
       <footer className='flex items-center justify-between'>
-        <Button variant='primary'>Entrar</Button>
-        <Button variant='gray'>Cadastrar</Button>
+        <Button color='primary' variant='secondary'>
+          Entrar
+        </Button>
+
+        <Button color='primary'>Cadastrar</Button>
       </footer>
     </form>
   )

@@ -1,5 +1,5 @@
 {
-  "name": "instintos-web",
+  "name": "web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -55,5 +55,9 @@
     "webpack": "^5.89.0",
     "yarn-upgrade-all": "^0.7.2"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@3.5.1",
+  "main": "next.config.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
