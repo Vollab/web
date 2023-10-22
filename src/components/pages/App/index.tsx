@@ -1,5 +1,5 @@
-export const App = () => (
-  <main className='flex items-center justify-center bg-black h-screen flex flex-col'>
-    App
-  </main>
-)
+import { Splash } from 'src/components/shared/templates/Splash'
+
+export const App = () => {
+  return <Splash />
+}

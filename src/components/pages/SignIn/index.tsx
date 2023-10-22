@@ -1,3 +1,9 @@
-import { Splash } from '../Splash'
+import { Form } from './Form'
 
-export const SignIn = () => <Splash />
+import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
+
+export const SignIn = () => (
+  <AuthLayout>
+    <Form />
+  </AuthLayout>
+)

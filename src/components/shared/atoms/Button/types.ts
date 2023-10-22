@@ -1,7 +1,6 @@
-import { colors } from 'src/styles/custom/colors'
-
 import { TButtonProps } from 'src/types/react.types'
+import { TColors } from 'src/types/styles.types'
 
 export interface IButtonProps extends TButtonProps {
-  color?: keyof typeof colors
+  variant?: TColors
 }

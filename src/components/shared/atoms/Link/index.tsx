@@ -1,5 +1,3 @@
-'use client'
-
 import { ILinkProps } from './types'
 
 import OriginalLink from 'next/link'
