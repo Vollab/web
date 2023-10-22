@@ -11,12 +11,15 @@ export const useField = ({
   type,
   error,
   className,
-  icon: iconProp
+  icon: iconProp,
+  color: colorProp
 }: IUseFieldParams) => {
   const [isFocused, setIsFocused] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
-  const isFocusedColor = isFocused ? colors.primary[500] : colors.primary[400]
+  const isFocusedColor = isFocused
+    ? colors[colorProp][500]
+    : colors[colorProp][400]
   const color = error ? colors.error[500] : isFocusedColor
 
   const styles = { input: { color } }

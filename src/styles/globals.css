@@ -106,10 +106,8 @@
     font-size: 62.5%;
   }
 
-  *,
-  button,
-  input {
-    @apply font-primary text-gray-300 text-md font-normal;
+  * {
+    @apply font-primary text-gray-700 text-md font-normal;
   }
 
   h1,

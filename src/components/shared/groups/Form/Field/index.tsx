@@ -9,11 +9,15 @@ import { useField } from './useField'
 import { forwardRef } from 'react'
 
 export const Field = forwardRef<any, IFieldProps>(
-  ({ type, icon: iconProp, error, className, tw, ...props }, ref) => {
+  (
+    { type, icon: iconProp, error, className, color = 'primary', tw, ...props },
+    ref
+  ) => {
     const { useProps, styles } = useField({
       tw,
       type,
       error,
+      color,
       className,
       icon: iconProp
     })

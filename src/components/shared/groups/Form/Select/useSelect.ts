@@ -7,11 +7,7 @@ import { ClassNamesConfig } from 'react-select'
 export const useSelect = () => {
   const styles: ISelectProps['styles'] = {
     control: base => ({
-      ...base,
-      borderWidth: 0,
-      outlineWidth: 2,
-      outlineOffset: 2,
-      outlineStyle: 'solid'
+      ...base
     }),
     option: (base, { isSelected }) => ({
       ...base,
@@ -30,17 +26,17 @@ export const useSelect = () => {
     },
 
     control: () => {
-      const tw = 'font-normal text-xs shadow-none rounded-lg'
+      const tw = 'font-normal text-xs shadow-none border'
       return tw
     },
 
     singleValue: () => {
-      const tw = 'py-2 text-smToMd_320x768 font-medium'
+      const tw = 'py-2 font-medium text-md'
       return tw
     },
 
     placeholder: () => {
-      const tw = 'py-2 text-smToMd_320x768'
+      const tw = 'py-2 text-md text-gray-100'
       return tw
     },
 
