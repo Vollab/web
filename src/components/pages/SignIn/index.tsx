@@ -4,7 +4,7 @@ import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
 
 export const SignIn = () => {
   return (
-    <AuthLayout>
+    <AuthLayout title='Construa seu portfólio ajudando pessoas'>
       <Form />
     </AuthLayout>
   )

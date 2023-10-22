@@ -19,13 +19,20 @@ export const Field = forwardRef<any, IFieldProps>(
     })
 
     return (
-      <div {...useProps.field}>
-        <LeftIcon {...useProps.leftIcon} />
+      <label {...useProps.field}>
+        <>
+          <LeftIcon {...useProps.leftIcon} />
 
-        <input ref={ref} {...useProps.input} style={styles.input} {...props} />
+          <input
+            ref={ref}
+            {...useProps.input}
+            style={styles.input}
+            {...props}
+          />
 
-        <PasswordEye {...useProps.passwordEye} />
-      </div>
+          <PasswordEye {...useProps.passwordEye} />
+        </>
+      </label>
     )
   }
 )

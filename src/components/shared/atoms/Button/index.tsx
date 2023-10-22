@@ -12,25 +12,24 @@ export const Button = ({
   ...props
 }: IButtonProps) => {
   const sharedTw =
-    'shadow-md font-medium rounded-3xl px-6 py-3 hover:contrast-125 transition-all duration-300'
+    'border-2 shadow-sm font-medium rounded-3xl px-6 py-3 transition-all duration-300 hover:contrast-125'
 
   const variantsTw: Record<'primary' | 'secondary', any> = {
     primary: {
-      info: 'bg-info-500 text-gray-50',
-      error: 'bg-error-500 text-gray-50',
-      senary: 'bg-senary-500 text-gray-50',
-      warning: 'bg-warning-500 text-gray-50',
-      primary: 'bg-primary-500 text-gray-50',
-      quinary: 'bg-quinary-500 text-gray-50',
-      success: 'bg-success-500 text-gray-50',
-      tertiary: 'bg-tertiary-500 text-gray-50',
-      secondary: 'bg-secondary-500 text-gray-50',
-      quaternary: 'bg-quaternary-500 text-gray-50',
-      gray: 'bg-gray-100 text-gray-300 hover:bg-gray-300 hover:text-gray-50'
+      info: 'bg-info-500 text-gray-50 border-info-500',
+      error: 'bg-error-500 text-gray-50 border-error-500',
+      senary: 'bg-senary-500 text-gray-50 border-senary-500',
+      warning: 'bg-warning-500 text-gray-50 border-warning-500',
+      primary: 'bg-primary-500 text-gray-50 border-primary-500',
+      quinary: 'bg-quinary-500 text-gray-50 border-quinary-500',
+      success: 'bg-success-500 text-gray-50 border-success-500',
+      tertiary: 'bg-tertiary-500 text-gray-50 border-tertiary-500',
+      secondary: 'bg-secondary-500 text-gray-50 border-secondary-500',
+      quaternary: 'bg-quaternary-500 text-gray-50 border-quaternary-500',
+      gray: 'bg-gray-100 text-gray-300 hover:bg-gray-300 hover:text-gray-50 border-gray-500'
     },
     secondary: {
       primary: 'border-2 border-primary-500 text-primary-500',
-
       info: 'border-2 border-info-500 text-info-500',
       error: 'border-2 border-error-500 text-error-500',
       senary: 'border-2 border-senary-500 text-senary-500',

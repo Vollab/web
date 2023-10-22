@@ -12,6 +12,7 @@ export type TSetState<State> = Dispatch<SetStateAction<State>>
 export type TFormProps = FormHTMLAttributes<HTMLFormElement>
 export type TInputProps = InputHTMLAttributes<HTMLInputElement>
 export type TDivProps = HTMLAttributes<HTMLDivElement>
+export type TLabelProps = HTMLAttributes<HTMLLabelElement>
 export type TButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 export type TAnchorProps = ButtonHTMLAttributes<HTMLAnchorElement>
 export type TTimer = string | number | NodeJS.Timeout | undefined

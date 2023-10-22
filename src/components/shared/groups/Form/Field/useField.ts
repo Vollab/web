@@ -21,14 +21,16 @@ export const useField = ({
 
   const styles = { input: { color } }
 
+  const fieldDefaultTw =
+    'shadow-sm relative flex items-center justify-center bg-gray-50 rounded-3xl px-2 border'
+
+  const inputDefaultTw = `min-w-0 flex-1 px-2 py-3 bg-transparent outline-none placeholder:text-gray-300`
+
   const tws = {
-    input: twMerge(
-      `min-w-0 flex-1 px-2 py-3 bg-transparent outline-none placeholder:text-gray-300`,
-      tw?.input
-    ),
+    input: twMerge(inputDefaultTw, tw?.input),
 
     field: twMerge(
-      'relative flex items-center justify-center bg-gray-50 rounded-3xl px-2 border',
+      fieldDefaultTw,
       error ? 'border-error-400' : 'border-gray-200',
       className
     )

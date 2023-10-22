@@ -6,15 +6,18 @@ import { Field } from 'src/components/shared/groups/Form'
 export const Form = () => {
   return (
     <form className='p-4 space-y-4'>
-      <Field type='text' placeholder='E-mail' />
-      <Field type='text' placeholder='Senha' />
+      <Field placeholder='E-mail' />
 
-      <footer className='flex items-center justify-between'>
-        <Button color='primary' variant='secondary'>
+      <Field placeholder='Senha' type='password' />
+
+      <footer className='flex items-center justify-between flex-col space-y-4'>
+        <Button color='primary' variant='secondary' className='w-full'>
           Entrar
         </Button>
 
-        <Button color='primary'>Cadastrar</Button>
+        <Button color='primary' className='w-full'>
+          Cadastrar
+        </Button>
       </footer>
     </form>
   )

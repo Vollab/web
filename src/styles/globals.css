@@ -106,7 +106,9 @@
     font-size: 62.5%;
   }
 
-  body {
+  *,
+  button,
+  input {
     @apply font-primary text-gray-300 text-md font-normal;
   }
 

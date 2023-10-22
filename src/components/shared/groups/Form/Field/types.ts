@@ -3,7 +3,7 @@ import { IPasswordEyeProps } from './PasswordEye/types'
 
 import { ReactNode } from 'react'
 
-import { TButtonProps, TDivProps, TInputProps } from 'src/types/react.types'
+import { TButtonProps, TInputProps, TLabelProps } from 'src/types/react.types'
 
 export interface IFieldProps extends Omit<TInputProps, 'tw'> {
   error?: any
@@ -21,7 +21,7 @@ export interface IUseFieldParams {
 }
 
 export interface IProps {
-  field: TDivProps
+  field: TLabelProps
   input: TInputProps
   leftIcon: ILeftIconProps
   passwordEye: IPasswordEyeProps
