@@ -22,6 +22,7 @@ export const Step3 = () => {
     >
       <form className='space-y-4 pt-6'>
         <Select
+          color='secondary'
           placeholder='Cidade'
           options={[
             { label: 'Programador', value: 'developer' },
@@ -30,6 +31,7 @@ export const Step3 = () => {
         />
 
         <Select
+          color='secondary'
           placeholder='Estado'
           options={[
             { label: 'Programador', value: 'developer' },
@@ -37,7 +39,7 @@ export const Step3 = () => {
           ]}
         />
 
-        <Button color='secondary' className='w-full' onClick={onSubmit}>
+        <Button color='secondary' onClick={onSubmit} className='w-full'>
           Próximo passo
         </Button>
       </form>

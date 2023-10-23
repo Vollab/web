@@ -3,6 +3,7 @@
 export * from './AddPhoto';
 export * from './Arrow';
 export * from './Avatar';
+export * from './Close';
 export * from './Danger';
 export * from './Hide';
 export * from './Person';

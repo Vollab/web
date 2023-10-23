@@ -20,6 +20,7 @@ export const useField = ({
   const isFocusedColor = isFocused
     ? colors[colorProp][500]
     : colors[colorProp][400]
+
   const color = error ? colors.error[500] : isFocusedColor
 
   const styles = { input: { color } }

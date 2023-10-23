@@ -11,6 +11,14 @@ export const useModal = ({ ref, onBgClickProp }: any) => {
   const portalRef = useRef<Element | null>(null)
   const [modal, setModal] = useState({ open: false })
 
+  const onBackgroundClick = () => {
+    setModal({ open: false })
+  }
+
+  const triggerModal = ({ open }: { open: boolean }) => {
+    setModal({ open })
+  }
+
   const onKeyDown = useCallback(
     ({ key }: KeyboardEvent) => {
       if (key === 'Escape')
@@ -18,6 +26,8 @@ export const useModal = ({ ref, onBgClickProp }: any) => {
     },
     [onBgClickProp]
   )
+
+  useImperativeHandle(ref, () => ({ triggerModal }))
 
   useEffect(() => {
     setMounted(portalRef ? true : false)
@@ -34,16 +44,6 @@ export const useModal = ({ ref, onBgClickProp }: any) => {
       removeEventListener('keydown', onKeyDown)
     }
   }, [onKeyDown])
-
-  const onBackgroundClick = () => {
-    setModal({ open: false })
-  }
-
-  const triggerModal = ({ open }: { open: boolean }) => {
-    setModal({ open })
-  }
-
-  useImperativeHandle(ref, () => ({ triggerModal }))
 
   return { onBackgroundClick, modal, portalRef, mounted }
 }

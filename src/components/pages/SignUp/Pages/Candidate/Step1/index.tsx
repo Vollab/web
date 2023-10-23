@@ -22,14 +22,15 @@ export const Step1 = () => {
     >
       <form className='space-y-4 pt-6'>
         <Field
+          color='secondary'
           placeholder='Nome Completo'
           tw={{ input: 'text-secondary-500' }}
         />
-        <Field tw={{ input: 'text-secondary-500' }} placeholder='Email' />
-        <Field tw={{ input: 'text-secondary-500' }} placeholder='Celular' />
-        <Field tw={{ input: 'text-secondary-500' }} placeholder='Senha' />
+        <Field placeholder='Email' color='secondary' />
+        <Field placeholder='Celular' color='secondary' />
+        <Field placeholder='Senha' color='secondary' />
 
-        <Button color='secondary' className='w-full' onClick={onSubmit}>
+        <Button color='secondary' onClick={onSubmit} className='w-full'>
           Próximo passo
         </Button>
       </form>

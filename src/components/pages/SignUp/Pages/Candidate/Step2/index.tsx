@@ -24,6 +24,7 @@ export const Step2 = () => {
       <form className='space-y-4 pt-6'>
         <Select
           isMulti
+          color='secondary'
           placeholder='Área de atuação'
           options={[
             { label: 'Programador', value: 'developer' },
@@ -31,9 +32,9 @@ export const Step2 = () => {
           ]}
         />
 
-        <Textarea placeholder='Biografia' />
+        <Textarea placeholder='Biografia' className='text-secondary-500' />
 
-        <Button color='secondary' className='w-full' onClick={onSubmit}>
+        <Button color='secondary' onClick={onSubmit} className='w-full '>
           Próximo passo
         </Button>
       </form>

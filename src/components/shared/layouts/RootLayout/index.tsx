@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-head-element */
+import { Portals } from './Portals'
 import { useRootLayout } from './useRootLayout'
 
 import { IRootLayoutProps } from 'src/types/next.types'
@@ -17,6 +18,7 @@ const RootLayout = async ({ children }: IRootLayoutProps) => {
       </head>
 
       <body className='light'>
+        <Portals />
         <GlobalProvider>{children}</GlobalProvider>
       </body>
     </html>

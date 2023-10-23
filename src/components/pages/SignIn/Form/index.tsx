@@ -24,13 +24,13 @@ export const Form = () => {
         <Button
           color='primary'
           variant='secondary'
-          className='w-full'
           onClick={onSubmit}
+          className='w-full'
         >
           Entrar
         </Button>
 
-        <Button color='primary' className='w-full' onClick={onSignUpClick}>
+        <Button color='primary' onClick={onSignUpClick} className='w-full'>
           Cadastrar
         </Button>
       </footer>

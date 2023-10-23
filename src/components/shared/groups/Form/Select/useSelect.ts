@@ -1,53 +1,62 @@
-import { ISelectProps } from './types'
+import { ISelectProps, IUseSelectParams } from './types'
 
 import { colors } from 'src/styles/custom/colors'
+import radius from 'src/styles/custom/radius'
+import sizes from 'src/styles/custom/sizes'
 
-import { ClassNamesConfig } from 'react-select'
-
-export const useSelect = () => {
+export const useSelect = ({ color }: IUseSelectParams) => {
   const styles: ISelectProps['styles'] = {
-    control: base => ({
-      ...base
+    singleValue: base => ({ ...base, color: colors[color][500] }),
+
+    valueContainer: base => ({
+      ...base,
+      padding: 0,
+      paddingLeft: sizes[3],
+      paddingRight: sizes[3]
     }),
+
+    control: base => ({
+      ...base,
+      border: 0,
+      boxShadow: 'none',
+      cursor: 'pointer',
+      paddingTop: sizes[2],
+      paddingBottom: sizes[2],
+      backgroundColor: 'transparent'
+    }),
+
     option: (base, { isSelected }) => ({
       ...base,
+      cursor: 'pointer',
       color: isSelected ? colors.gray[50] : undefined,
-      backgroundColor: isSelected ? colors.secondary[500] : undefined
+      backgroundColor: isSelected ? colors.secondary[500] : undefined,
+      ':hover': {
+        color: colors.gray['50'],
+        backgroundColor: colors[color]['500']
+      }
     }),
-    singleValue: base => ({ ...base, color: colors.primary[500] })
+
+    multiValueRemove: base => ({
+      ...base,
+      color: colors[color][500],
+      svg: { fill: colors.gray[50] },
+      ':hover': { backgroundColor: 'transparent' }
+    }),
+
+    multiValue: base => ({
+      ...base,
+      padding: sizes[1],
+      borderRadius: radius.lg,
+      backgroundColor: colors[color][500]
+    }),
+
+    multiValueLabel: base => ({
+      ...base,
+      color: colors.gray[50]
+    }),
+
+    placeholder: base => ({ ...base, color: colors.gray[300] })
   }
 
-  const classNames: ClassNamesConfig = {
-    indicatorSeparator: () => 'hidden',
-
-    valueContainer: () => {
-      const tw = 'ellipsis pr-0 overflow-hidden'
-      return tw
-    },
-
-    control: () => {
-      const tw = 'font-normal text-xs shadow-none border'
-      return tw
-    },
-
-    singleValue: () => {
-      const tw = 'py-2 font-medium text-md'
-      return tw
-    },
-
-    placeholder: () => {
-      const tw = 'py-2 text-md text-gray-100'
-      return tw
-    },
-
-    option: () => {
-      const tw = `
-        text-gray-600 bg-gray-50
-        hover:text-gray-50 hover:bg-primary-500
-      `
-      return tw
-    }
-  }
-
-  return { styles, classNames }
+  return { styles }
 }
