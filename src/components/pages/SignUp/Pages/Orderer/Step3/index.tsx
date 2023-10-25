@@ -14,7 +14,7 @@ import { AddPhoto, Avatar } from 'src/assets/icons'
 
 import { useForm } from 'react-hook-form'
 
-export const Step4 = () => {
+export const Step3 = () => {
   const [avatar, setAvatar] = useState<string>()
   const [limitError, setLimitError] = useState(false)
   const [linkError, setLinkError] = useState<{ message: string }>()
@@ -72,7 +72,8 @@ export const Step4 = () => {
 
   return (
     <FormLayout
-      role='Candidato'
+      color='tertiary'
+      role='Solicitante'
       title='Informações opcionais'
       content='É sempre bom ter uma foto de perfil e alguns links para melhorar o seu perfil!'
     >
@@ -91,11 +92,11 @@ export const Step4 = () => {
                 className='h-28 w-28 rounded-full'
               />
             ) : (
-              <Avatar fill={colors.secondary[500]} className='h-28 w-28' />
+              <Avatar fill={colors.tertiary[500]} className='h-28 w-28' />
             )}
 
             <AddPhoto
-              fill={colors.secondary[500]}
+              fill={colors.tertiary[500]}
               className='overflow-visible w-6 absolute right-0 bottom-0 translate-x-3 translate-y-1'
             />
           </>
@@ -126,7 +127,7 @@ export const Step4 = () => {
           className='grid grid-cols-2 gap-2 w-full'
         >
           <Field
-            color='secondary'
+            color='tertiary'
             placeholder='Link'
             error={linkError}
             onFocus={onLinkFocus}
@@ -138,7 +139,7 @@ export const Step4 = () => {
           />
 
           <Field
-            color='secondary'
+            color='tertiary'
             placeholder='Título'
             error={titleError}
             onFocus={onTitleFocus}
@@ -154,7 +155,7 @@ export const Step4 = () => {
           </Button>
         </form>
 
-        <Button color='secondary' className='w-full' onClick={onNextClick}>
+        <Button color='tertiary' className='w-full' onClick={onNextClick}>
           Próximo passo
         </Button>
       </div>

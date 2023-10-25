@@ -6,10 +6,10 @@ import { Button } from 'src/components/shared/atoms/Button'
 import { Select } from 'src/components/shared/groups/Form'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
-import { CandidateContext } from '..'
+import { OrdererContext } from '..'
 
 export const Step2 = () => {
-  const { setStep } = useContext(CandidateContext)
+  const { setStep } = useContext(OrdererContext)
 
   const onSubmit = () => {
     setStep(3)
@@ -17,24 +17,33 @@ export const Step2 = () => {
 
   return (
     <FormLayout
-      role='Candidato'
-      title='Area de atuação'
-      content='Agora fale um pouco sobre sua área de atuação!'
+      color='tertiary'
+      role='Solicitante'
+      title='Sobre você'
+      content='Escreva um pouco sobre você!'
     >
       <form className='space-y-4 pt-6'>
         <Select
-          isMulti
-          color='secondary'
-          placeholder='Área de atuação'
+          color='tertiary'
+          placeholder='Cidade'
           options={[
             { label: 'Programador', value: 'developer' },
             { label: 'Design', value: 'designer' }
           ]}
         />
 
-        <Textarea placeholder='Biografia' className='text-secondary-500' />
+        <Select
+          color='tertiary'
+          placeholder='Estado'
+          options={[
+            { label: 'Programador', value: 'developer' },
+            { label: 'Design', value: 'designer' }
+          ]}
+        />
 
-        <Button color='secondary' onClick={onSubmit} className='w-full '>
+        <Textarea placeholder='Biografia' className='text-tertiary-500' />
+
+        <Button color='tertiary' onClick={onSubmit} className='w-full'>
           Próximo passo
         </Button>
       </form>

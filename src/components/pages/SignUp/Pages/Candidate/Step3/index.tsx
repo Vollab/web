@@ -17,8 +17,8 @@ export const Step3 = () => {
   return (
     <FormLayout
       role='Candidato'
-      title='Informações pessoais'
-      content='Adicione suas informações pessoais e de contato!'
+      title='Localização'
+      content='Adicione sua localização para facilitarmos suas buscas!'
     >
       <form className='space-y-4 pt-6'>
         <Select

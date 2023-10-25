@@ -2,6 +2,7 @@
 
 import { Candidate } from './Candidate'
 import { Initial } from './Initial'
+import { Orderer } from './Orderer'
 
 import { createContext, useState } from 'react'
 
@@ -19,6 +20,7 @@ export const Pages = () => {
     <SignUpContext.Provider value={{ page, setPage }}>
       {page === 'initial' && <Initial />}
       {page === 'candidate' && <Candidate />}
+      {page === 'orderer' && <Orderer />}
     </SignUpContext.Provider>
   )
 }
