@@ -2,7 +2,7 @@ import { TTextareaProps } from 'src/types/react.types'
 
 import { twMerge } from 'tailwind-merge'
 
-interface ITextareaProps extends TTextareaProps {}
+export interface ITextareaProps extends TTextareaProps {}
 
 export const Textarea = ({ className, ...props }: ITextareaProps) => (
   <textarea

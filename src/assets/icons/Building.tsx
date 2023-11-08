@@ -4,7 +4,7 @@ import { IIconProps } from 'src/types/icons.types'
 
 export const Building = ({ className, fill }: IIconProps) => (
   <SVG className={className} viewBox='0 0 28 28'>
-    <g clip-path='url(#clip0_34_135)'>
+    <g clipPath='url(#clip0_34_135)'>
       <path
         d='M24.1111 6.22266H17.8889V7.77821H24.1111V24.1115H17.8889V25.6671H25.6667V7.77821C25.6667 7.36565 25.5028 6.96999 25.2111 6.67827C24.9194 6.38654 24.5237 6.22266 24.1111 6.22266Z'
         fill={fill}

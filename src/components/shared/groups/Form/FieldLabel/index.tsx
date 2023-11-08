@@ -1,29 +1,35 @@
-import { IFieldLabelProps } from './types'
-
 import { Field } from '../Field'
+import { IFieldProps } from '../Field/types'
 
-import { forwardRef } from 'react'
+import { ReactNode } from 'react'
 
 import { twMerge } from 'tailwind-merge'
 
-export const FieldLabel = forwardRef<any, IFieldLabelProps>(
-  ({ title, fieldTw, titleTw, secondTitle, className, ...props }, ref) => (
-    <div className={className}>
-      <div className='flex items-center justify-between'>
-        <span className={twMerge('font-semibold text-gray-700', titleTw)}>
-          {title}
-        </span>
+interface IFieldLabelProps extends IFieldProps {
+  title: string
+  fieldTw?: string
+  titleTw?: string
+  secondTitle?: ReactNode
+  className?: string
+}
 
-        {secondTitle || <></>}
-      </div>
+export const FieldLabel = ({
+  title,
+  fieldTw,
+  titleTw,
+  secondTitle,
+  className,
+  ...props
+}: IFieldLabelProps) => (
+  <div className={className}>
+    <div className='flex items-center justify-between'>
+      <span className={twMerge('font-semibold text-gray-700', titleTw)}>
+        {title}
+      </span>
 
-      <Field
-        className={twMerge('max-h-[56px] mt-2', fieldTw)}
-        {...props}
-        ref={ref}
-      />
+      {secondTitle || <></>}
     </div>
-  )
-)
 
-FieldLabel.displayName = 'FieldLabel'
+    <Field className={twMerge('max-h-[56px] mt-2', fieldTw)} {...props} />
+  </div>
+)

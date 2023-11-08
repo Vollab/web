@@ -115,6 +115,7 @@ export const Step4 = () => {
               <FilterLabel
                 key={index}
                 title={title}
+                color='secondary'
                 onRemoveClick={() => onRemoveLinkClick(title)}
               />
             ))}
