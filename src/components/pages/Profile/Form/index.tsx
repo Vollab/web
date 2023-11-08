@@ -1,57 +1,50 @@
 'use client'
 
-import { colors } from 'src/styles/custom/colors'
+import { useState } from 'react'
 
-import {
-  FieldLabel,
-  SelectLabel,
-  TextareaLabel
-} from 'src/components/shared/groups/Form'
-
-import { Avatar } from 'src/assets/icons'
+import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
+import { Button } from 'src/components/shared/atoms/Button'
+import { Field, File, Label, Select } from 'src/components/shared/groups/Form'
+import { ILink, LinksForm } from 'src/components/shared/molecules/LinksForm'
 
 export const Form = () => {
+  const [links, setLinks] = useState<ILink[]>([])
+
   return (
-    <form className='flex items-center flex-col py-6 px-4 gap-4'>
-      <Avatar fill={colors.primary[500]} className='h-20 w-20 mb-2' />
+    <div className='grid grid-cols-3 py-6 px-4 gap-4'>
+      <File label='avatar' name='avatar' className='mb-2 mx-auto col-span-3'>
+        <AvatarUpload />
+      </File>
 
-      <FieldLabel
-        title='Nome Completo'
-        titleTw='font-medium'
-        fieldTw='rounded-2xl'
-        className='w-full'
-      />
+      <Label className='col-span-3' title='Nome Completo'>
+        <Field as='div' />
+      </Label>
 
-      <FieldLabel
-        title='Email'
-        titleTw='font-medium'
-        fieldTw='rounded-2xl'
-        className='w-full'
-      />
+      <Label className='col-span-3' title='Email'>
+        <Field as='div' />
+      </Label>
 
-      <FieldLabel
-        title='Celular'
-        titleTw='font-medium'
-        fieldTw='rounded-2xl'
-        className='w-full'
-      />
+      <Label className='col-span-3' title='Celular'>
+        <Field as='div' />
+      </Label>
 
-      <SelectLabel
-        options={[]}
-        title='Cidade'
-        titleTw='font-medium'
-        className='w-full'
-      />
+      <Label title='Area de atuação' className='col-span-3'>
+        <Select options={[]} />
+      </Label>
 
-      <SelectLabel
-        options={[]}
-        title='Area de atuação'
-        titleTw='font-medium'
-        selectTw='w-full border'
-        className='w-full'
-      />
+      <Label title='Estado'>
+        <Select placeholder='SP' options={[]} />
+      </Label>
 
-      <TextareaLabel title='Biografia' />
-    </form>
+      <Label title='Cidade' className='col-span-2'>
+        <Select options={[]} />
+      </Label>
+
+      <LinksForm links={links} setLinks={setLinks} className='col-span-3' />
+
+      <Button className='col-span-3' variant='primary' color='primary'>
+        Salvar Alterações
+      </Button>
+    </div>
   )
 }

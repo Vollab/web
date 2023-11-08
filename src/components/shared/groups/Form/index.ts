@@ -1,17 +1,8 @@
 import { DatePicker } from './DatePicker'
 import { Digit } from './Digit'
 import { Field } from './Field'
-import { FieldLabel } from './FieldLabel'
+import { File } from './File'
+import { Label } from './Label'
 import { Select } from './Select'
-import { SelectLabel } from './SelectLabel'
-import { TextareaLabel } from './TextareaLabel'
 
-export {
-  Field,
-  Digit,
-  Select,
-  FieldLabel,
-  DatePicker,
-  SelectLabel,
-  TextareaLabel
-}
+export { Field, Digit, Select, Label, DatePicker, File }

@@ -24,7 +24,7 @@ export const Step1 = () => {
         <Field
           color='secondary'
           placeholder='Nome Completo'
-          tw={{ input: 'text-secondary-500' }}
+          tws={{ input: 'text-secondary-500' }}
         />
         <Field placeholder='Email' color='secondary' />
         <Field placeholder='Celular' color='secondary' />

@@ -20,8 +20,8 @@ export const useSelect = ({ color }: IUseSelectParams) => {
       border: 0,
       boxShadow: 'none',
       cursor: 'pointer',
-      paddingTop: sizes[2],
-      paddingBottom: sizes[2],
+      paddingTop: 6,
+      paddingBottom: 6,
       backgroundColor: 'transparent'
     }),
 

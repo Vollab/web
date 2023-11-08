@@ -8,6 +8,7 @@ import { twMerge } from 'tailwind-merge'
 export const Select = ({
   className,
   color = 'primary',
+  placeholder = 'Selecionar...',
   ...props
 }: ISelectProps) => {
   const { styles } = useSelect({ color })
@@ -16,6 +17,7 @@ export const Select = ({
     <div className={twMerge('border rounded-xl', className)}>
       <OriginalSelect
         styles={styles}
+        placeholder={placeholder}
         noOptionsMessage={() => 'Sem opções'}
         {...props}
       />

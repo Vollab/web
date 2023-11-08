@@ -61,7 +61,7 @@ export const File = ({
               {...props}
             />
 
-            <div className='space-x-4'>
+            <div className='space-x-4 flex'>
               <Button
                 color='success'
                 type='button'
