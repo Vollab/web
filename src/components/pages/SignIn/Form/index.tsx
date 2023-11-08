@@ -8,7 +8,9 @@ import { Field } from 'src/components/shared/groups/Form'
 export const Form = () => {
   const { push } = useRouter()
 
-  const onSubmit = () => {}
+  const onSubmit = () => {
+    push('/demands')
+  }
 
   const onSignUpClick = () => {
     push('/sign-up')
