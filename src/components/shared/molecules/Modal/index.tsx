@@ -20,28 +20,32 @@ export const Modal = forwardRef<IForwardModal, IModalProps>(
     })
 
     if (portalRef.current && mounted && modal.open === true)
-      return createPortal(
+      return (
         <>
-          <section
-            className={`
+          {createPortal(
+            <>
+              <section
+                className={`
               fixed z-50 top-0 left-0 right-0 bottom-0 flex items-center justify-center
               ${className}
             `}
-            style={{
-              backdropFilter: 'blur(4px)',
-              backgroundColor: 'rgba(0,0,0,0.4)'
-            }}
-            {...props}
-          >
-            {children}
+                style={{
+                  backdropFilter: 'blur(4px)',
+                  backgroundColor: 'rgba(0,0,0,0.4)'
+                }}
+                {...props}
+              >
+                {children}
 
-            <Button
-              onClick={onBgClickProp || onBackgroundClick}
-              className='fixed -z-10 w-screen h-screen bg-transparent'
-            />
-          </section>
-        </>,
-        portalRef.current
+                <Button
+                  onClick={onBgClickProp || onBackgroundClick}
+                  className='fixed -z-10 w-screen h-screen bg-transparent'
+                />
+              </section>
+            </>,
+            portalRef.current
+          )}
+        </>
       )
 
     return null
