@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next-pwa').PWAConfig} */
 const withPWA = require('next-pwa')({
   dest: 'public',

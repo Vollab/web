@@ -6,12 +6,10 @@ import { useMutation } from 'src/hooks/useMutation'
 
 import { api } from 'src/services/api'
 
-import { CandidateResponse } from 'common/types/signup/candidate'
-
 export const useCandidateSignup = () => {
   const mutation = useMutation<IUseCandidateSignUpMutation>(
     async request => {
-      const response: CandidateResponse = await api.post({
+      const response = await api.post({
         body: request,
         url: '/signup/candidate'
       })
