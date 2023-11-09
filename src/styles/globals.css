@@ -6,6 +6,14 @@
   .ellipsis {
     @apply overflow-ellipsis truncate whitespace-nowrap;
   }
+
+  .content {
+    @apply px-4 pt-20 pb-14;
+  }
+
+  .contentWithoutHeader {
+    @apply px-4 pb-14;
+  }
 }
 
 @layer base {

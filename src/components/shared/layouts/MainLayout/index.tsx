@@ -14,7 +14,14 @@ import { Projects } from 'src/assets/icons/Projects'
 
 import { IChildrenProps } from 'src/types/react.types'
 
-export const MainLayout = ({ children }: IChildrenProps) => {
+interface IMainLayoutProps extends IChildrenProps {
+  hideHeader?: boolean
+}
+
+export const MainLayout = ({
+  children,
+  hideHeader = false
+}: IMainLayoutProps) => {
   const { push } = useRouter()
 
   const onLogoutClick = () => {
@@ -35,20 +42,22 @@ export const MainLayout = ({ children }: IChildrenProps) => {
 
   return (
     <>
-      <header className='flex p-4 items-center shadow-md fixed top-0 left-0 right-0 bg-gray-50 z-10'>
-        <Button onClick={onProfileClick}>
-          <Avatar fill={colors.primary[500]} className='h-12 w-12' />
-        </Button>
+      {!hideHeader && (
+        <header className='flex p-4 items-center shadow-md fixed top-0 left-0 right-0 bg-gray-50 z-10'>
+          <Button onClick={onProfileClick}>
+            <Avatar fill={colors.primary[500]} className='h-12 w-12' />
+          </Button>
 
-        <div className='flex flex-col ml-4 gap-1'>
-          <span className='font-semibold text-lg'>Olá, Miguel</span>
-          <span className='text-secondary-500 font-medium'>Candidato</span>
-        </div>
+          <div className='flex flex-col ml-4 gap-1'>
+            <span className='font-semibold text-lg'>Olá, Miguel</span>
+            <span className='text-secondary-500 font-medium'>Candidato</span>
+          </div>
 
-        <Button className='ml-auto' onClick={onLogoutClick}>
-          <Logout className='h-5 w-5 stroke-gray-500 hover:stroke-error-500' />
-        </Button>
-      </header>
+          <Button className='ml-auto' onClick={onLogoutClick}>
+            <Logout className='h-5 w-5 stroke-gray-500 hover:stroke-error-500' />
+          </Button>
+        </header>
+      )}
 
       {children}
 
