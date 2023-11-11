@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "d": "clear && yarn dev",
-    "restart": "yarn clear && yarn install && yarn build && yarn start",
-    "clear": "clear && rm -rf node_modules yarn-error.log .next public/sw* public/workbox*",
+    "restart": "npm run clear && npm install && npm run build && npm run start",
+    "clear": "clear && rm -rf .next public/sw* public/workbox*",
     "start": "next start",
     "build": "next build",
     "dev": "next dev",

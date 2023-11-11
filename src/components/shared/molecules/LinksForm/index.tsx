@@ -1,5 +1,5 @@
 import { Button } from '../../atoms/Button'
-import { FilterLabel } from '../../atoms/FilterLabel'
+import { LinkLabel } from '../../atoms/LinkLabel'
 import { Field } from '../../groups/Form'
 
 import { useState } from 'react'
@@ -87,7 +87,7 @@ export const LinksForm = ({
 
         <ul className='flex pt-2 flex-wrap'>
           {links.map(({ title }, index) => (
-            <FilterLabel
+            <LinkLabel
               key={index}
               title={title}
               color={color}

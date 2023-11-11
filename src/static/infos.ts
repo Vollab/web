@@ -3,6 +3,7 @@ import { colors } from 'src/styles/custom/colors'
 import {
   TApplicationStatus,
   TDemandStatus,
+  TRole,
   TVacancyWorkMode
 } from 'src/types/shared.types'
 
@@ -28,4 +29,9 @@ export const applicationStatusInfo: Record<TApplicationStatus, IInfo> = {
   approved: { label: 'Aprovado', color: colors.success[500] },
   pending: { label: 'Pendente', color: colors.warning[500] },
   refused: { label: 'Recusado', color: colors.error[500] }
+}
+
+export const rolesInfo: Record<TRole, IInfo> = {
+  orderer: { label: 'Solicitante', color: colors.tertiary[500] },
+  candidate: { label: 'Candidato', color: colors.secondary[500] }
 }

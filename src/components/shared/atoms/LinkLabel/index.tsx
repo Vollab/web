@@ -9,8 +9,9 @@ import { IClassNameProps, TButtonProps } from 'src/types/react.types'
 
 import { VariantProps, tv } from 'tailwind-variants'
 
-interface IFilterLabelProps extends IClassNameProps {
+interface ILinkLabelProps extends IClassNameProps {
   title: string
+  onClick?: TButtonProps['onClick']
   onRemoveClick?: TButtonProps['onClick']
   color?: VariantProps<typeof liTw>['color']
 }
@@ -21,21 +22,23 @@ const liTw = tv({
   variants: {
     color: {
       primary: 'bg-primary-500',
-      secondary: 'bg-secondary-500',
-      tertiary: 'bg-tertiary-500'
+      tertiary: 'bg-tertiary-500',
+      secondary: 'bg-secondary-500'
     }
   }
 })
 
-export const FilterLabel = ({
+export const LinkLabel = ({
   title,
   color,
+  onClick,
   className,
   onRemoveClick
-}: IFilterLabelProps) => (
+}: ILinkLabelProps) => (
   <li className={liTw({ color, className })}>
-    <span
-      className='text-gray-50 pl-3'
+    <Button
+      onClick={onClick}
+      className='text-gray-50 pl-3 w-full'
       style={{
         paddingTop: onRemoveClick ? undefined : sizes[2],
         paddingRight: onRemoveClick ? undefined : sizes[3],
@@ -43,7 +46,7 @@ export const FilterLabel = ({
       }}
     >
       {title}
-    </span>
+    </Button>
 
     {onRemoveClick && (
       <Button className='pr-3 pl-2 py-2' onClick={onRemoveClick}>
