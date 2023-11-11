@@ -1,7 +1,6 @@
 import { colors } from 'src/styles/custom/colors'
 
-import { Building } from 'src/assets/icons/Building'
-import { Remote } from 'src/assets/icons/Remote'
+import { WorkMode } from 'src/assets/icons/WorkMode'
 
 import { TVacancyWorkMode } from 'src/types/shared.types'
 
@@ -21,12 +20,6 @@ export const ActivityLabel = ({
       {name} {quantity && quantity > 1 ? `(${quantity})` : ''}
     </span>
 
-    {(workMode === 'remote' || workMode == 'hybrid') && (
-      <Remote className='h-4 w-4' fill={colors.gray[50]} />
-    )}
-
-    {(workMode === 'in_person' || workMode == 'hybrid') && (
-      <Building className='h-4 w-4' fill={colors.gray[50]} />
-    )}
+    <WorkMode workMode={workMode} fill={colors.gray[50]} />
   </div>
 )

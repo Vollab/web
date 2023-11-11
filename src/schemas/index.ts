@@ -1,6 +1,7 @@
-import { email } from './email'
-import { name } from './name'
-import { newPassword } from './newPassword'
-import { password } from './password'
+// created from 'create-ts-index'
 
-export { email, name, newPassword, password }
+export * from './avatar'
+export * from './email'
+export * from './name'
+export * from './newPassword'
+export * from './password'

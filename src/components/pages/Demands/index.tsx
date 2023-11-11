@@ -1,4 +1,4 @@
-import { Demand } from './Demand'
+import { Demand } from '../../shared/organisms/Demand'
 
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 

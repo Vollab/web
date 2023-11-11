@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "d": "clear && yarn dev",
-    "create-index": "cti clean src/assets/icons && cti clean src/assets/images && cti create src/assets/icons && cti create src/assets/images",
     "restart": "yarn clear && yarn install && yarn build && yarn start",
     "clear": "clear && rm -rf node_modules yarn-error.log .next public/sw* public/workbox*",
     "start": "next start",
     "build": "next build",
     "dev": "next dev",
-    "git:clean": "git clean -fd"
+    "git:clean": "git clean -fd",
+    "clear-index": "cti clean src/assets/icons && cti clean src/assets/images && cti clean src/schemas",
+    "create-index": "cti create src/assets/icons && cti create src/assets/images && cti create src/schemas",
+    "format-index": "yarn prettier src/assets/icons/index.ts --write && yarn prettier src/assets/images/index.ts --write && yarn prettier src/schemas/index.ts --write",
+    "indexes": "yarn clear-index && yarn create-index && yarn format-index"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",

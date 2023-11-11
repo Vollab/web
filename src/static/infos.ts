@@ -1,28 +1,31 @@
 import { colors } from 'src/styles/custom/colors'
 
-import { TDemandStatus, TVacancyWorkMode } from 'src/types/shared.types'
+import {
+  TApplicationStatus,
+  TDemandStatus,
+  TVacancyWorkMode
+} from 'src/types/shared.types'
 
-export const demandStatusInfo: Record<TDemandStatus, any> = {
-  opened: {
-    label: 'Em aberto',
-    color: colors.success[500]
-  },
-  canceled: {
-    label: 'Cancelada',
-    color: colors.error[500]
-  },
-  completed: {
-    label: 'Concluída',
-    color: colors.success[900]
-  },
-  in_progress: {
-    label: 'Em aberto',
-    color: colors.warning[500]
-  }
+interface IInfo {
+  label: string
+  color: string
 }
 
-export const vacancyWorkModeInfo: Record<TVacancyWorkMode, any> = {
+export const demandStatusInfo: Record<TDemandStatus, IInfo> = {
+  opened: { label: 'Em aberto', color: colors.success[500] },
+  canceled: { label: 'Cancelada', color: colors.error[500] },
+  completed: { label: 'Concluída', color: colors.success[900] },
+  in_progress: { label: 'Em aberto', color: colors.warning[500] }
+}
+
+export const vacancyWorkModeInfo: Record<TVacancyWorkMode, IInfo> = {
   hybrid: { label: 'Hibrido', color: colors.warning[500] },
   remote: { label: 'Remoto', color: colors.success[500] },
   in_person: { label: 'Presencial', color: colors.error[500] }
+}
+
+export const applicationStatusInfo: Record<TApplicationStatus, IInfo> = {
+  approved: { label: 'Aprovado', color: colors.success[500] },
+  pending: { label: 'Pendente', color: colors.warning[500] },
+  refused: { label: 'Recusado', color: colors.error[500] }
 }
