@@ -4,8 +4,10 @@ import { useRouter } from 'next/navigation'
 
 import { LinkLabel } from 'src/components/shared/atoms/LinkLabel'
 
+import { ILink } from 'src/types/shared.types'
+
 interface ILinksProps {
-  links?: { title: string; link: string }[]
+  links?: ILink[]
 }
 
 export const Links = ({ links }: ILinksProps) => {
@@ -17,11 +19,11 @@ export const Links = ({ links }: ILinksProps) => {
 
   return links ? (
     <ul className='flex-col gap-1 flex py-2'>
-      {links?.map(({ title, link }) => (
+      {links?.map(({ label, href }) => (
         <LinkLabel
-          key={title}
-          title={title}
-          onClick={() => onLinkClick(link)}
+          key={label}
+          title={label}
+          onClick={() => onLinkClick(href)}
         />
       ))}
     </ul>

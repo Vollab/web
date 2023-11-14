@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
 import { Button } from 'src/components/shared/atoms/Button'
 import { Field, File, Label, Select } from 'src/components/shared/groups/Form'
+import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 import { ILink, LinksForm } from 'src/components/shared/molecules/LinksForm'
 
 export const Form = () => {
@@ -38,6 +39,10 @@ export const Form = () => {
 
       <Label title='Cidade' className='col-span-2'>
         <Select options={[]} />
+      </Label>
+
+      <Label title='Biografia' className='col-span-3'>
+        <Textarea />
       </Label>
 
       <LinksForm links={links} setLinks={setLinks} className='col-span-3' />

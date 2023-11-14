@@ -17,25 +17,9 @@ import { Avatar, Close } from 'src/assets/icons'
 import { CheckMark } from 'src/assets/icons/CheckMark'
 import { WorkMode } from 'src/assets/icons/WorkMode'
 
-import {
-  TApplicationStatus,
-  TDemandStatus,
-  TVacancyWorkMode
-} from 'src/types/shared.types'
+import { IDemandList } from 'src/types/api/demandsList'
 
-interface IDemandProps {
-  id: string
-  title: string
-  resume: string
-  status: TDemandStatus
-  orderer: { id: string; name: string; avatar?: string }
-  vacancies: {
-    id: string
-    name: string
-    workMode: TVacancyWorkMode
-    status?: TApplicationStatus
-  }[]
-}
+interface IDemandProps extends IDemandList {}
 
 export const Demand = ({
   id,

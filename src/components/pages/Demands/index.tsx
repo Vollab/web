@@ -2,6 +2,8 @@ import { Demand } from '../../shared/organisms/Demand'
 
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
+import { demandsListResponse } from 'src/static/api/demandsList'
+
 export const Demands = () => (
   <MainLayout>
     <main className='content'>
@@ -10,20 +12,9 @@ export const Demands = () => (
       </header>
 
       <ul className='flex flex-col gap-4 pb-6'>
-        {new Array(10).fill('').map((_, index) => (
-          <li key={index}>
-            <Demand
-              id='1'
-              title='Ticpass'
-              status='opened'
-              orderer={{ id: '1', name: 'Gabriel Augusto' }}
-              resume='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, fuga eos. Aliquam temporibus voluptas corrupti perspiciatis, nobis architecto, distinctio asperiores excepturi voluptates quidem sapiente nam saepe blanditiis libero facere et.'
-              vacancies={[
-                { id: '2', name: 'Design', workMode: 'remote' },
-                { id: '3', name: 'CEO', workMode: 'in_person' },
-                { id: '1', name: 'Programador', workMode: 'hybrid' }
-              ]}
-            />
+        {demandsListResponse.map(demand => (
+          <li key={demand.id}>
+            <Demand {...demand} />
           </li>
         ))}
       </ul>

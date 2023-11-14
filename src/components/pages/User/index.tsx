@@ -8,7 +8,7 @@ import { rolesInfo } from 'src/static/infos'
 
 import { Avatar } from 'src/assets/icons'
 
-import { TRole } from 'src/types/shared.types'
+import { ILink, TRole } from 'src/types/shared.types'
 
 interface IUserProps {
   id: string
@@ -21,13 +21,11 @@ interface IUserData {
   phone: string
   email: string
   avatar?: string
+  links?: ILink[]
   location: string
-  links?: { title: string; link: string }[]
 }
 
-export const User = ({ id }: IUserProps) => {
-  console.log(id)
-
+export const User = ({}: IUserProps) => {
   const data: IUserData = {
     role: 'orderer',
     avatar: undefined,
@@ -35,11 +33,11 @@ export const User = ({ id }: IUserProps) => {
     phone: '(11) 9 1447-3529',
     name: 'Miguel Andrade Barreto',
     email: 'miguelandradebarreto2@gmail.com',
+    bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolorem ut provident non nemo nisi distinctio consequuntur optio, pariatur quibusdam nesciunt saepe. Ipsa rerum magnam, sunt aspernatur quaerat commodi consectetur?',
     links: [
-      { title: 'Github', link: 'https://github.com/InSTinToS' },
-      { title: 'Linkedin', link: 'https://github.com/InSTinToS' }
-    ],
-    bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolorem ut provident non nemo nisi distinctio consequuntur optio, pariatur quibusdam nesciunt saepe. Ipsa rerum magnam, sunt aspernatur quaerat commodi consectetur?'
+      { label: 'Github', href: 'https://github.com/InSTinToS' },
+      { label: 'Linkedin', href: 'https://github.com/InSTinToS' }
+    ]
   }
 
   return (

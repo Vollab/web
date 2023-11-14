@@ -8,6 +8,7 @@ import { Button } from 'src/components/shared/atoms/Button'
 import { Image } from 'src/components/shared/atoms/Image'
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
+import { demandResponse } from 'src/static/api/demand'
 import {
   applicationStatusInfo,
   demandStatusInfo,
@@ -18,89 +19,16 @@ import { UseApplication } from 'src/hooks/api/useApplication'
 
 import { Arrow, Avatar } from 'src/assets/icons'
 
-import {
-  TApplicationStatus,
-  TDemandStatus,
-  TVacancyWorkMode
-} from 'src/types/shared.types'
-
 interface IDemandProps {
   id: string
 }
 
-interface IDemandResponse {
-  id: string
-  title: string
-  resume: string
-  description: string
-  status: TDemandStatus
-  orderer: { id: string; name: string; avatar?: string }
-  vacancies: {
-    id: string
-    name: string
-    open: boolean
-    location?: string
-    description: string
-    workMode: TVacancyWorkMode
-    status?: TApplicationStatus
-  }[]
-}
-
-export const Demand = ({ id }: IDemandProps) => {
-  const data: IDemandResponse = {
-    id,
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum porro, minus tenetur alias explicabo voluptas facilis saepe labore praesentium ducimus veritatis eos odit veniam error magnam, doloribus ipsum dicta in!',
-    resume:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum porro, minus tenetur alias explicabo voluptas facilis saepe labore praesentium ducimus veritatis eos odit veniam error magnam, doloribus ipsum dicta in!',
-    status: 'opened',
-    title: 'Ticpass',
-    vacancies: [
-      {
-        id: '2',
-        open: false,
-        name: 'Design',
-        workMode: 'remote',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dolore commodi dolor minima, placeat quibusdam similique aliquam eveniet itaque dolorum porro quisquam. Tenetur nesciunt, natus ullam quam sint magni eius!'
-      },
-      {
-        id: '3',
-        open: true,
-        status: 'approved',
-        name: 'Design',
-        workMode: 'remote',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dolore commodi dolor minima, placeat quibusdam similique aliquam eveniet itaque dolorum porro quisquam. Tenetur nesciunt, natus ullam quam sint magni eius!'
-      },
-      {
-        id: '3',
-        open: true,
-        name: 'CEO',
-        status: 'pending',
-        workMode: 'in_person',
-        location: 'São Paulo, SP',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dolore commodi dolor minima, placeat quibusdam similique aliquam eveniet itaque dolorum porro quisquam. Tenetur nesciunt, natus ullam quam sint magni eius!'
-      },
-      {
-        id: '1',
-        open: true,
-        name: 'Programador',
-        workMode: 'hybrid',
-        location: 'São Paulo, SP',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dolore commodi dolor minima, placeat quibusdam similique aliquam eveniet itaque dolorum porro quisquam. Tenetur nesciunt, natus ullam quam sint magni eius!'
-      }
-    ],
-    orderer: { id: '1', name: 'Gabriel Augusto' }
-  }
-
+export const Demand = ({}: IDemandProps) => {
   const { push, back } = useRouter()
   const { cancelApplication, confirmApplication } = UseApplication()
 
   const onSeeProfileClick = () => {
-    push(`/users/${data.id}`)
+    push(`/users/${demandResponse.id}`)
   }
 
   const onBackClick = () => {
@@ -117,14 +45,14 @@ export const Demand = ({ id }: IDemandProps) => {
 
           <div className='flex flex-col gap-1'>
             <h1 className='font-semibold text-h5 text-tertiary-500 font-primary'>
-              {data.title}
+              {demandResponse.title}
             </h1>
 
             <span
               className='font-medium text-lg'
-              style={{ color: demandStatusInfo[data.status].color }}
+              style={{ color: demandStatusInfo[demandResponse.status].color }}
             >
-              {demandStatusInfo[data.status].label}
+              {demandStatusInfo[demandResponse.status].label}
             </span>
           </div>
 
@@ -132,10 +60,10 @@ export const Demand = ({ id }: IDemandProps) => {
             onClick={onSeeProfileClick}
             className='text-left text-primary-500 text-lg font-medium justify-self-end'
           >
-            {data.orderer.avatar ? (
+            {demandResponse.orderer.avatar ? (
               <Image
                 alt='avatar'
-                src={data.orderer.avatar}
+                src={demandResponse.orderer.avatar}
                 className='h-11 w-11 rounded-full'
               />
             ) : (
@@ -150,20 +78,20 @@ export const Demand = ({ id }: IDemandProps) => {
           <div className='flex flex-col gap-2'>
             <h2 className='text-xl font-medium'>Resumo</h2>
 
-            <p className='text-gray-600'>{data.resume}</p>
+            <p className='text-gray-600'>{demandResponse.resume}</p>
           </div>
 
           <div className='flex flex-col gap-2'>
             <h2 className='text-xl font-medium'>Descrição</h2>
 
-            <p>{data.description}</p>
+            <p>{demandResponse.description}</p>
           </div>
 
           <div>
             <h2 className='text-xl font-medium'>Vagas</h2>
 
             <ul className='flex flex-col gap-4 py-4'>
-              {data.vacancies
+              {demandResponse.vacancies
                 .sort((a, b) => {
                   if (a.open && !b.open) return -1
                   if (!a.open && b.open) return 1
@@ -209,7 +137,7 @@ export const Demand = ({ id }: IDemandProps) => {
                             <>
                               <div className='mt-2 py-3 px-4 flex flex-col gap-1'>
                                 <span className='font-medium text-lg'>
-                                  Candidatado
+                                  CandidemandResponsedo
                                 </span>
 
                                 <span
@@ -248,7 +176,7 @@ export const Demand = ({ id }: IDemandProps) => {
                               color='success'
                               className='mt-2 py-3  rounded-none'
                             >
-                              Candidatar-se
+                              CandidemandResponser-se
                             </Button>
                           )}
                         </article>
