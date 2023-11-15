@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import { colors } from 'src/styles/custom/colors'
 
-import { Button } from 'src/components/shared/atoms/Button'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { Avatar } from 'src/assets/icons'
 import { House } from 'src/assets/icons/House'

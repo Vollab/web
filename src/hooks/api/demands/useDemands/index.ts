@@ -4,9 +4,9 @@ import { DemandsQueryParams } from 'common/types/routes/demands'
 
 import { useQuery } from 'src/hooks/useQuery'
 
-import { api } from 'src/services/api'
+import { getDemands } from 'src/requests/demands/getDemands'
 
 export const useDemands = ({ page }: DemandsQueryParams) =>
   useQuery<IUseDemandsQuery>(['demands', page.toString()], () =>
-    api.get({ url: `/demands?page=${page}` })
+    getDemands({ page })
   )

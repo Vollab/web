@@ -2,7 +2,7 @@ import { FormLayout } from '../../FormLayout'
 
 import { useContext } from 'react'
 
-import { Button } from 'src/components/shared/atoms/Button'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field } from 'src/components/shared/groups/Form'
 
 import { CandidateContext } from '..'

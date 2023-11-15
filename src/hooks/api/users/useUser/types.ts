@@ -1,8 +1,4 @@
-import { UserResponse } from 'common/types/routes/users/id'
-
-interface IUserResponse extends Omit<UserResponse, 'location'> {
-  location: string
-}
+import { IUserResponse } from 'src/requests/users/getUser/types'
 
 export interface IUseUserQuery {
   response: IUserResponse

@@ -1,5 +1,5 @@
-import { Button } from '../../atoms/Button'
 import { LinkLabel } from '../../atoms/LinkLabel'
+import { Button } from '../../groups/Buttons/Button'
 import { Field } from '../../groups/Form'
 
 import { useState } from 'react'

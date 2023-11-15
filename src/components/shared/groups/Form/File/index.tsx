@@ -4,7 +4,7 @@ import { useFile } from './useFile'
 
 import React from 'react'
 
-import { Button } from 'src/components/shared/atoms/Button'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Modal } from 'src/components/shared/molecules/Modal'
 
 import 'cropperjs/dist/cropper.css'

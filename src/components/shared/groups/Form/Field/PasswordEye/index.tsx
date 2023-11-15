@@ -2,7 +2,7 @@
 
 import { IPasswordEyeProps } from './types'
 
-import { Button } from 'src/components/shared/atoms/Button'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { Hide, Show } from 'src/assets/icons'
 

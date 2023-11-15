@@ -1,4 +1,4 @@
-import { Button } from '../../../atoms/Button'
+import { Button } from '../../../groups/Buttons/Button'
 
 import { colors } from 'src/styles/custom/colors'
 

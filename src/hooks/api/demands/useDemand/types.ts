@@ -1,12 +1,4 @@
-import { DemandResponse, Vacancy } from 'common/types/routes/demands/id'
-
-interface IVacancy extends Omit<Vacancy, 'location'> {
-  location: string
-}
-
-interface IDemandResponse extends Omit<DemandResponse, 'vacancies'> {
-  vacancies: IVacancy[]
-}
+import { IDemandResponse } from 'src/requests/demands/getDemand/types'
 
 export interface IUseDemandsQuery {
   response: IDemandResponse

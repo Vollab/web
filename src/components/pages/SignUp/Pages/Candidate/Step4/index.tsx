@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { colors } from 'src/styles/custom/colors'
 
 import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
-import { Button } from 'src/components/shared/atoms/Button'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { File } from 'src/components/shared/groups/Form/File'
 import { ILink, LinksForm } from 'src/components/shared/molecules/LinksForm'
 

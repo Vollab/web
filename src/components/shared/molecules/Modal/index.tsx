@@ -2,7 +2,7 @@
 
 import type { IForwardModal, IModalProps } from './types'
 
-import { Button } from '../../atoms/Button'
+import { Button } from '../../groups/Buttons/Button'
 import { useModal } from './useModal'
 
 import { forwardRef } from 'react'

@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 
-import { Button } from 'src/components/shared/atoms/Button'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field } from 'src/components/shared/groups/Form'
 
 export const Form = () => {

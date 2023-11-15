@@ -1,6 +1,4 @@
-'use client'
-
-import { ActivityLabel } from '../../../pages/Demands/ActivityLabel'
+import { ActivityLabel } from './ActivityLabel'
 
 import { useRouter } from 'next/navigation'
 
@@ -8,8 +6,8 @@ import { DemandsResponse } from 'common/types/routes/demands'
 
 import { colors } from 'src/styles/custom/colors'
 
-import { Button } from 'src/components/shared/atoms/Button'
 import { Image } from 'src/components/shared/atoms/Image'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { applicationStatusInfo, demandStatusInfo } from 'src/static/infos'
 
@@ -32,8 +30,8 @@ export const Demand = ({
   vacancies
 }: IDemandProps) => {
   const { push } = useRouter()
-  const { cancelApplication, confirmApplication } = UseApplication()
   const applications = vacancies.filter(vacancy => vacancy.status)
+  const { cancelApplication, confirmApplication } = UseApplication()
 
   const onSeeProfileClick = () => {
     push(`/users/${orderer.id}`)

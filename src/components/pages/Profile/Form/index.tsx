@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
-import { Button } from 'src/components/shared/atoms/Button'
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field, File, Label, Select } from 'src/components/shared/groups/Form'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 import { ILink, LinksForm } from 'src/components/shared/molecules/LinksForm'
