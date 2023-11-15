@@ -1,9 +1,8 @@
 import { IApiParams, IGetHeadersParams } from './types'
 
+import { get } from './get'
 import { post } from './post'
 import { put } from './put'
-
-import { get } from 'react-hook-form'
 
 export const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
 

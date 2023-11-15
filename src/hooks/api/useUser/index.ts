@@ -20,21 +20,12 @@ export const getToken = () =>
   globalThis.localStorage.getItem('@Ticpass:token') || undefined
 
 export const useUser = () =>
-  useQuery<IUseSignInQuery>(
-    'user',
-    async () => {
-      const token = getToken()
+  useQuery<IUseSignInQuery>('user', async () => {
+    const token = getToken()
 
-      if (!token) return undefined
+    if (!token) return undefined
 
-      const data = await api.get({ token, url: '/user' })
+    const data = await api.get({ token, url: '/user' })
 
-      return data
-    },
-    {
-      retry: false,
-      staleTime: Infinity,
-      refetchOnWindowFocus: false,
-      select: data => ({ ...data, name: data.name.split('(').shift()?.trim() })
-    }
-  )
+    return data
+  })

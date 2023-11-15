@@ -2,12 +2,12 @@
 
 import { useRouter } from 'next/navigation'
 
+import { Link } from 'common/types/routes/shared'
+
 import { LinkLabel } from 'src/components/shared/atoms/LinkLabel'
 
-import { ILink } from 'src/types/shared.types'
-
 interface ILinksProps {
-  links?: ILink[]
+  links?: Link[]
 }
 
 export const Links = ({ links }: ILinksProps) => {

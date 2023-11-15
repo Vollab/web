@@ -17,6 +17,7 @@
     "@expo|react-native",
     "@next|next",
     "^react$",
+    "^common/(.*)$",
     "^public/(.*)$",
     "^src/styles/(.*)$",
     "^src/screens/(.*)$",

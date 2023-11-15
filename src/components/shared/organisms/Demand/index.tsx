@@ -4,6 +4,8 @@ import { ActivityLabel } from '../../../pages/Demands/ActivityLabel'
 
 import { useRouter } from 'next/navigation'
 
+import { DemandsResponse } from 'common/types/routes/demands'
+
 import { colors } from 'src/styles/custom/colors'
 
 import { Button } from 'src/components/shared/atoms/Button'
@@ -17,9 +19,9 @@ import { Avatar, Close } from 'src/assets/icons'
 import { CheckMark } from 'src/assets/icons/CheckMark'
 import { WorkMode } from 'src/assets/icons/WorkMode'
 
-import { IDemandList } from 'src/types/api/demandsList'
+type IDemand = DemandsResponse[number]
 
-interface IDemandProps extends IDemandList {}
+interface IDemandProps extends IDemand {}
 
 export const Demand = ({
   id,
@@ -88,7 +90,7 @@ export const Demand = ({
         {applications.length !== 0 && (
           <ul className='flex flex-col gap-3 mt-2'>
             {applications.map(
-              ({ id, name, workMode, status }) =>
+              ({ id, name, work_mode, status }) =>
                 status && (
                   <li key={id} className='flex items-center'>
                     <Button
@@ -98,7 +100,7 @@ export const Demand = ({
                       <div className='flex gap-2 items-center'>
                         <span>{name}</span>
 
-                        <WorkMode workMode={workMode} />
+                        <WorkMode work_mode={work_mode} />
                       </div>
 
                       <span
@@ -136,9 +138,9 @@ export const Demand = ({
           )}
 
           <ul className='flex mt-3 flex-wrap gap-2'>
-            {vacancies.map(({ id, name, workMode }) => (
+            {vacancies.map(({ id, name, work_mode }) => (
               <li key={id}>
-                <ActivityLabel name={name} workMode={workMode} />
+                <ActivityLabel name={name} work_mode={work_mode} />
               </li>
             ))}
           </ul>

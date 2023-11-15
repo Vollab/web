@@ -18,7 +18,8 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
       "src/*": ["./src/*"],
-      "public/*": ["./public/*"]
+      "public/*": ["./public/*"],
+      "common/*": ["../common/*"]
     }
   },
   "include": [

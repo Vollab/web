@@ -1,7 +1,5 @@
-export interface IUseUserResponse {
-  name: string
-}
+import { UserResponse } from 'common/types/routes/user'
 
 export interface IUseSignInQuery {
-  response: IUseUserResponse
+  response: UserResponse
 }

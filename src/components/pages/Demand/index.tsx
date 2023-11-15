@@ -8,13 +8,13 @@ import { Button } from 'src/components/shared/atoms/Button'
 import { Image } from 'src/components/shared/atoms/Image'
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
-import { demandResponse } from 'src/static/api/demand'
 import {
   applicationStatusInfo,
   demandStatusInfo,
   vacancyWorkModeInfo
 } from 'src/static/infos'
 
+import { useDemand } from 'src/hooks/api/demands/useDemand'
 import { UseApplication } from 'src/hooks/api/useApplication'
 
 import { Arrow, Avatar } from 'src/assets/icons'
@@ -23,17 +23,21 @@ interface IDemandProps {
   id: string
 }
 
-export const Demand = ({}: IDemandProps) => {
+export const Demand = ({ id }: IDemandProps) => {
+  const { data } = useDemand({ id })
   const { push, back } = useRouter()
   const { cancelApplication, confirmApplication } = UseApplication()
 
   const onSeeProfileClick = () => {
-    push(`/users/${demandResponse.id}`)
+    push(`/users/${data?.id}`)
   }
 
   const onBackClick = () => {
     back()
   }
+
+  const statusColor = data ? demandStatusInfo[data.status].color : ''
+  const statusLabel = data ? demandStatusInfo[data.status].label : ''
 
   return (
     <MainLayout hideHeader>
@@ -45,14 +49,14 @@ export const Demand = ({}: IDemandProps) => {
 
           <div className='flex flex-col gap-1'>
             <h1 className='font-semibold text-h5 text-tertiary-500 font-primary'>
-              {demandResponse.title}
+              {data?.title}
             </h1>
 
             <span
               className='font-medium text-lg'
-              style={{ color: demandStatusInfo[demandResponse.status].color }}
+              style={{ color: statusColor }}
             >
-              {demandStatusInfo[demandResponse.status].label}
+              {statusLabel}
             </span>
           </div>
 
@@ -60,10 +64,10 @@ export const Demand = ({}: IDemandProps) => {
             onClick={onSeeProfileClick}
             className='text-left text-primary-500 text-lg font-medium justify-self-end'
           >
-            {demandResponse.orderer.avatar ? (
+            {data?.orderer.avatar ? (
               <Image
                 alt='avatar'
-                src={demandResponse.orderer.avatar}
+                src={data?.orderer.avatar}
                 className='h-11 w-11 rounded-full'
               />
             ) : (
@@ -78,129 +82,121 @@ export const Demand = ({}: IDemandProps) => {
           <div className='flex flex-col gap-2'>
             <h2 className='text-xl font-medium'>Resumo</h2>
 
-            <p className='text-gray-600'>{demandResponse.resume}</p>
+            <p className='text-gray-600'>{data?.resume}</p>
           </div>
 
           <div className='flex flex-col gap-2'>
             <h2 className='text-xl font-medium'>Descrição</h2>
 
-            <p>{demandResponse.description}</p>
+            <p>{data?.description}</p>
           </div>
 
           <div>
             <h2 className='text-xl font-medium'>Vagas</h2>
 
             <ul className='flex flex-col gap-4 py-4'>
-              {demandResponse.vacancies
-                .sort((a, b) => {
-                  if (a.open && !b.open) return -1
-                  if (!a.open && b.open) return 1
-                  return 0
-                })
-                .map(
-                  ({
-                    id,
-                    location,
-                    name,
-                    open,
-                    workMode,
-                    description,
-                    status
-                  }) =>
-                    open ? (
-                      <li key={id}>
-                        <article className='flex flex-col gap-1 rounded-2xl shadow-lg  overflow-hidden'>
-                          <header className='flex items-center justify-between p-4 pb-0'>
-                            <h4 className='text-h6 font-medium text-primary-500'>
-                              {name}
-                            </h4>
+              {data?.vacancies.map(
+                ({
+                  id,
+                  name,
+                  open,
+                  status,
+                  location,
+                  work_mode,
+                  description
+                }) =>
+                  open ? (
+                    <li key={id}>
+                      <article className='flex flex-col gap-1 rounded-2xl shadow-lg  overflow-hidden'>
+                        <header className='flex items-center justify-between p-4 pb-0'>
+                          <h4 className='text-h6 font-medium text-primary-500'>
+                            {name}
+                          </h4>
 
-                            <span
-                              className='font-medium'
-                              style={{
-                                color: vacancyWorkModeInfo[workMode].color
-                              }}
-                            >
-                              {vacancyWorkModeInfo[workMode].label}
-                            </span>
-                          </header>
-
-                          <span className='font-medium text-gray-500 px-4'>
-                            {location}
+                          <span
+                            className='font-medium'
+                            style={{
+                              color: vacancyWorkModeInfo[work_mode].color
+                            }}
+                          >
+                            {vacancyWorkModeInfo[work_mode].label}
                           </span>
+                        </header>
 
-                          <p className='px-4 text-gray-500 mt-1'>
-                            {description}
-                          </p>
+                        <span className='font-medium text-gray-500 px-4'>
+                          {location}
+                        </span>
 
-                          {status ? (
-                            <>
-                              <div className='mt-2 py-3 px-4 flex flex-col gap-1'>
-                                <span className='font-medium text-lg'>
-                                  CandidemandResponsedo
-                                </span>
+                        <p className='px-4 text-gray-500 mt-1'>{description}</p>
 
-                                <span
-                                  style={{
-                                    color: applicationStatusInfo[status].color
-                                  }}
-                                  className='font-medium text-lg'
-                                >
-                                  {applicationStatusInfo[status].label}
-                                </span>
-                              </div>
+                        {status ? (
+                          <>
+                            <div className='mt-2 py-3 px-4 flex flex-col gap-1'>
+                              <span className='font-medium text-lg'>
+                                Candidatado
+                              </span>
 
-                              <div className='w-full flex'>
-                                {status === 'approved' && (
-                                  <Button
-                                    color='success'
-                                    onClick={() => confirmApplication(id)}
-                                    className='py-3  rounded-none flex-1'
-                                  >
-                                    Confirmar
-                                  </Button>
-                                )}
+                              <span
+                                style={{
+                                  color: applicationStatusInfo[status].color
+                                }}
+                                className='font-medium text-lg'
+                              >
+                                {applicationStatusInfo[status].label}
+                              </span>
+                            </div>
 
+                            <div className='w-full flex'>
+                              {status === 'approved' && (
                                 <Button
-                                  color='error'
-                                  onClick={() => cancelApplication(id)}
+                                  color='success'
+                                  onClick={() => confirmApplication(id)}
                                   className='py-3  rounded-none flex-1'
                                 >
-                                  Cancelar{' '}
-                                  {status !== 'approved' && 'Candidatura'}
+                                  Confirmar
                                 </Button>
-                              </div>
-                            </>
-                          ) : (
-                            <Button
-                              color='success'
-                              className='mt-2 py-3  rounded-none'
-                            >
-                              CandidemandResponser-se
-                            </Button>
-                          )}
-                        </article>
-                      </li>
-                    ) : (
-                      <li key={id}>
-                        <article className='flex flex-col rounded-2xl shadow-lg p-4 border border-dashed border-gray-200 bg-gray-100'>
-                          <header className='flex items-center justify-between'>
-                            <h4 className='text-h6 font-medium text-gray-500'>
-                              {name}
-                            </h4>
+                              )}
 
-                            <span className='font-medium text-gray-500'>
-                              {vacancyWorkModeInfo[workMode].label}
-                            </span>
-                          </header>
+                              <Button
+                                color='error'
+                                onClick={() => cancelApplication(id)}
+                                className='py-3  rounded-none flex-1'
+                              >
+                                Cancelar{' '}
+                                {status !== 'approved' && 'Candidatura'}
+                              </Button>
+                            </div>
+                          </>
+                        ) : (
+                          <Button
+                            color='success'
+                            className='mt-2 py-3  rounded-none'
+                          >
+                            Candidatar-se
+                          </Button>
+                        )}
+                      </article>
+                    </li>
+                  ) : (
+                    <li key={id}>
+                      <article className='flex flex-col rounded-2xl shadow-lg p-4 border border-dashed border-gray-200 bg-gray-100'>
+                        <header className='flex items-center justify-between'>
+                          <h4 className='text-h6 font-medium text-gray-500'>
+                            {name}
+                          </h4>
 
-                          <span className='text-gray-500 mt-2 font-bold'>
-                            PREENCHIDA
+                          <span className='font-medium text-gray-500'>
+                            {vacancyWorkModeInfo[work_mode].label}
                           </span>
-                        </article>
-                      </li>
-                    )
-                )}
+                        </header>
+
+                        <span className='text-gray-500 mt-2 font-bold'>
+                          PREENCHIDA
+                        </span>
+                      </article>
+                    </li>
+                  )
+              )}
             </ul>
           </div>
         </div>
