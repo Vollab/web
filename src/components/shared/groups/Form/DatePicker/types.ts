@@ -1,4 +1,4 @@
-import { IChildrenProps } from 'src/types/react.types'
+import { IComponentProps } from 'src/types/react.types'
 
 import { DateValueType } from 'react-tailwindcss-datepicker'
 
@@ -7,7 +7,7 @@ export interface IDatePickerValue {
   startDate: string
 }
 
-export interface IDatePickerProps extends IChildrenProps {
+export interface IDatePickerProps extends IComponentProps {
   name: string
   inputTw?: string
   minDate?: string

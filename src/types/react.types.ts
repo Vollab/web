@@ -27,6 +27,8 @@ export interface IClassNameProps {
   className?: string
 }
 
-export interface IChildrenProps extends IClassNameProps {
+export interface IChildrenProps {
   children?: ReactNode
 }
+
+export interface IComponentProps extends IClassNameProps, IChildrenProps {}

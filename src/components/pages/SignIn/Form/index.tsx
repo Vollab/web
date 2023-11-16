@@ -17,7 +17,7 @@ export const Form = () => {
   }
 
   return (
-    <form className='p-4 space-y-4'>
+    <form className='space-y-4'>
       <Field placeholder='E-mail' />
 
       <Field placeholder='Senha' type='password' />
