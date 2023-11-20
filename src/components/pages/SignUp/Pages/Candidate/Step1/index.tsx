@@ -5,12 +5,21 @@ import { useContext } from 'react'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field } from 'src/components/shared/groups/Form'
 
+import { formatPhone } from 'src/utils/format/phone'
+
 import { CandidateContext } from '..'
+import { joiResolver } from '@hookform/resolvers/joi'
+import Joi from 'joi'
 import { useForm } from 'react-hook-form'
+import { email, name, newPassword, phone } from 'src/schemas'
 
 export const Step1 = () => {
   const { setStep, setCandidateData } = useContext(CandidateContext)
-  const { register, handleSubmit } = useForm({
+
+  const { register, handleSubmit, formState, setValue } = useForm({
+    resolver: joiResolver(
+      Joi.object({ email, name, phone, password: newPassword })
+    ),
     defaultValues: {
       name: '',
       email: '',
@@ -20,7 +29,7 @@ export const Step1 = () => {
   })
 
   const onSubmit = (data: any) => {
-    setCandidateData({ ...data })
+    setCandidateData(data)
     setStep(2)
   }
 
@@ -34,17 +43,34 @@ export const Step1 = () => {
         <Field
           color='secondary'
           placeholder='Nome Completo'
+          error={formState.errors.name}
           tws={{ input: 'text-secondary-500' }}
           {...register('name')}
         />
 
-        <Field placeholder='Email' color='secondary' {...register('email')} />
-
-        <Field placeholder='Celular' color='secondary' {...register('phone')} />
+        <Field
+          color='secondary'
+          placeholder='Email'
+          error={formState.errors.email}
+          {...register('email')}
+        />
 
         <Field
           color='secondary'
+          placeholder='Celular'
+          error={formState.errors.phone}
+          {...register('phone')}
+          maxLength={16}
+          onChange={e => {
+            setValue('phone', formatPhone(e.target.value))
+          }}
+        />
+
+        <Field
+          type='password'
+          color='secondary'
           placeholder='Senha'
+          error={formState.errors.password}
           {...register('password')}
         />
 

@@ -1,15 +1,31 @@
+import { LeftIcon } from '../Field/LeftIcon'
+
+import { forwardRef } from 'react'
+
 import { TTextareaProps } from 'src/types/react.types'
 
 import { twMerge } from 'tailwind-merge'
 
-export interface ITextareaProps extends TTextareaProps {}
+export interface ITextareaProps extends TTextareaProps {
+  error?: { message: string }
+}
 
-export const Textarea = ({ className, ...props }: ITextareaProps) => (
-  <textarea
-    className={twMerge(
-      'resize-none outline-none border w-full rounded-lg px-4 py-3 h-32',
-      className
-    )}
-    {...props}
-  />
+export const Textarea = forwardRef<any, ITextareaProps>(
+  ({ className, error, ...props }, ref) => (
+    <div
+      className={twMerge('border w-full rounded-lg h-32 relative', className)}
+    >
+      <div className='absolute -left-8 top-2'>
+        {error && <LeftIcon error={error} />}
+      </div>
+
+      <textarea
+        ref={ref}
+        {...props}
+        className='resize-none outline-none h-full w-full px-4 py-3 bg-transparent'
+      />
+    </div>
+  )
 )
+
+Textarea.displayName = 'Textarea'
