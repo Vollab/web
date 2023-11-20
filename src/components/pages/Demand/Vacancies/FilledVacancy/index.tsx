@@ -1,10 +1,10 @@
-import { vacancyWorkModeInfo } from 'src/static/infos'
+import { infos } from 'src/static/infos'
 
-import { IVacancy } from 'src/requests/demands/getDemand/types'
+import { Vacancy } from 'types-vollab/dist/routes/demands/id'
 
 export interface IFilledVacancyProps {
-  name: IVacancy['name']
-  work_mode: IVacancy['work_mode']
+  name: Vacancy['name']
+  work_mode: Vacancy['work_mode']
 }
 
 export const FilledVacancy = ({ name, work_mode }: IFilledVacancyProps) => (
@@ -14,7 +14,7 @@ export const FilledVacancy = ({ name, work_mode }: IFilledVacancyProps) => (
         <h4 className='text-h6 font-medium text-gray-500'>{name}</h4>
 
         <span className='font-medium text-gray-500'>
-          {vacancyWorkModeInfo[work_mode].label}
+          {infos.vacancyWorkMode[work_mode].label}
         </span>
       </header>
 

@@ -1,17 +1,29 @@
 import { FormLayout } from '../../FormLayout'
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Select } from 'src/components/shared/groups/Form'
+import { ISelectOption } from 'src/components/shared/groups/Form/Select/types'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
 import { CandidateContext } from '..'
+import { useForm } from 'react-hook-form'
 
 export const Step2 = () => {
-  const { setStep } = useContext(CandidateContext)
+  const { setStep, setCandidateData } = useContext(CandidateContext)
+  const [activityAreas, setActivityAreas] = useState<ISelectOption[]>([])
+  const { register, handleSubmit } = useForm({
+    defaultValues: { biography: '' }
+  })
 
-  const onSubmit = () => {
+  const onSubmit = (data: any) => {
+    setCandidateData(prev => ({
+      ...prev,
+      ...data,
+      activityAreas: activityAreas.map(({ label }) => label)
+    }))
+
     setStep(3)
   }
 
@@ -21,20 +33,27 @@ export const Step2 = () => {
       title='Area de atuação'
       content='Agora fale um pouco sobre sua área de atuação!'
     >
-      <form className='space-y-4 pt-6'>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 pt-6'>
         <Select
           isMulti
           color='secondary'
           placeholder='Área de atuação'
+          onChange={newValue => {
+            setActivityAreas(newValue as ISelectOption[])
+          }}
           options={[
             { label: 'Programador', value: 'developer' },
             { label: 'Design', value: 'designer' }
           ]}
         />
 
-        <Textarea placeholder='Biografia' className='text-secondary-500' />
+        <Textarea
+          placeholder='Biografia'
+          {...register('biography')}
+          className='text-secondary-500'
+        />
 
-        <Button color='secondary' onClick={onSubmit} className='w-full '>
+        <Button color='secondary' type='submit' className='w-full '>
           Próximo passo
         </Button>
       </form>

@@ -4,26 +4,25 @@ import { colors } from 'src/styles/custom/colors'
 
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
-import { rolesInfo } from 'src/static/infos'
+import { infos } from 'src/static/infos'
+import { user } from 'src/static/temp/user'
 
 import { Avatar } from 'src/assets/icons'
-
-import { getUser, selectUser } from 'src/requests/users/getUser'
 
 interface IUserProps {
   id: string
 }
 
-export const User = async ({ id }: IUserProps) => {
-  const data = selectUser(await getUser({ id }))
+export const User = async ({}: IUserProps) => {
+  const data = user
 
-  const roleColor = data ? rolesInfo[data.role].color : ''
-  const roleLabel = data ? rolesInfo[data.role].label : ''
+  const roleColor = data ? infos.roles[data.role].color : ''
+  const roleLabel = data ? infos.roles[data.role].label : ''
 
   return (
     <MainLayout>
       <main className='content'>
-        <header className='flex gap-4 justify-between  items-center'>
+        <header className='flex gap-4 justify-between  items-center mt-4'>
           <div className='flex flex-col gap-1 justify-center  w-full overflow-hidden'>
             <span
               style={{ color: roleColor }}
@@ -33,12 +32,8 @@ export const User = async ({ id }: IUserProps) => {
             </span>
 
             <h1 className='font-semibold text-xl leading-9 text-gray-600 ellipsis'>
-              {data?.full_name}
+              {data?.name}
             </h1>
-
-            <h2 className='font-semibold text-gray-500 ellipsis text-md'>
-              {data?.location}
-            </h2>
           </div>
 
           <div className='h-14 w-14 '>

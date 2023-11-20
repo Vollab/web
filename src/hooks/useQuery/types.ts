@@ -1,4 +1,4 @@
-import { ErrorResponse } from 'common/types/routes/shared'
+import { ErrorResponse } from 'types-vollab/dist/shared/error'
 
 export interface IGQuery {
   response: any

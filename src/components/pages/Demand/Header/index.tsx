@@ -1,20 +1,20 @@
 import { AvatarButton } from 'src/components/shared/groups/Buttons/AvatarButton'
 import { BackButton } from 'src/components/shared/groups/Buttons/BackButton'
 
-import { demandStatusInfo } from 'src/static/infos'
+import { infos } from 'src/static/infos'
 
-import { IDemandResponse } from 'src/requests/demands/getDemand/types'
+import { DemandResponse, Orderer } from 'types-vollab/dist/routes/demands/id'
 
 interface IHeaderProps {
-  id?: IDemandResponse['id']
-  title?: IDemandResponse['title']
-  status?: IDemandResponse['status']
-  avatar?: IDemandResponse['orderer']['avatar']
+  id?: DemandResponse['id']
+  avatar?: Orderer['avatar']
+  title?: DemandResponse['title']
+  status?: DemandResponse['status']
 }
 
 export const Header = ({ status, title, id, avatar }: IHeaderProps) => {
-  const statusColor = status ? demandStatusInfo[status].color : ''
-  const statusLabel = status ? demandStatusInfo[status].label : ''
+  const statusColor = status ? infos.demandStatus[status].color : ''
+  const statusLabel = status ? infos.demandStatus[status].label : ''
 
   return (
     <header className='grid grid-cols-[24px_1fr_1fr] py-4 items-center gap-2 px-4 shadow-md'>

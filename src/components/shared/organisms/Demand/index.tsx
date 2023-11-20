@@ -2,24 +2,26 @@ import { ActivityLabel } from './ActivityLabel'
 
 import { useRouter } from 'next/navigation'
 
-import { DemandsResponse } from 'common/types/routes/demands'
-
 import { colors } from 'src/styles/custom/colors'
 
 import { Image } from 'src/components/shared/atoms/Image'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-import { applicationStatusInfo, demandStatusInfo } from 'src/static/infos'
+import { infos } from 'src/static/infos'
 
-import { UseApplication } from 'src/hooks/api/useApplication'
+import { Avatar } from 'src/assets/icons'
 
-import { Avatar, Close } from 'src/assets/icons'
-import { CheckMark } from 'src/assets/icons/CheckMark'
-import { WorkMode } from 'src/assets/icons/WorkMode'
+import { Demand as IDemand } from 'types-vollab/dist/routes/demands'
 
-type IDemand = DemandsResponse[number]
-
-interface IDemandProps extends IDemand {}
+interface IDemandProps {
+  id: IDemand['id']
+  title: IDemand['title']
+  resume: IDemand['resume']
+  status: IDemand['status']
+  showApplications?: boolean
+  orderer: IDemand['orderer']
+  vacancies: IDemand['vacancies']
+}
 
 export const Demand = ({
   id,
@@ -30,8 +32,6 @@ export const Demand = ({
   vacancies
 }: IDemandProps) => {
   const { push } = useRouter()
-  const applications = vacancies.filter(vacancy => vacancy.status)
-  const { cancelApplication, confirmApplication } = UseApplication()
 
   const onSeeProfileClick = () => {
     push(`/users/${orderer.id}`)
@@ -42,7 +42,7 @@ export const Demand = ({
   }
 
   return (
-    <article className='rounded-2xl shadow-md'>
+    <article className='rounded-2xl shadow-md flex flex-col'>
       <Button onClick={onSeeProfileClick} className='text-left px-4 pt-4'>
         <header className='flex gap-2 items-center'>
           {orderer.avatar ? (
@@ -70,71 +70,16 @@ export const Demand = ({
 
         <span
           className='block mt-1 mb-3 font-medium'
-          style={{ color: demandStatusInfo[status].color }}
+          style={{ color: infos.demandStatus[status].color }}
         >
-          {demandStatusInfo[status].label}
+          {infos.demandStatus[status].label}
         </span>
 
         <p>{resume}</p>
       </Button>
 
       <footer>
-        <Button onClick={onDemandClick} className='text-left px-4'>
-          {applications.length !== 0 && (
-            <h4 className='text-md font-semibold mt-4'>Candidaturas:</h4>
-          )}
-        </Button>
-
-        {applications.length !== 0 && (
-          <ul className='flex flex-col gap-3 mt-2'>
-            {applications.map(
-              ({ id, name, work_mode, status }) =>
-                status && (
-                  <li key={id} className='flex items-center'>
-                    <Button
-                      onClick={onDemandClick}
-                      className='flex gap-2 flex-1 px-4 xs:pr-2'
-                    >
-                      <div className='flex gap-2 items-center'>
-                        <span>{name}</span>
-
-                        <WorkMode work_mode={work_mode} />
-                      </div>
-
-                      <span
-                        className='font-semibold ml-auto'
-                        style={{ color: applicationStatusInfo[status].color }}
-                      >
-                        {applicationStatusInfo[status].label}
-                      </span>
-                    </Button>
-
-                    {status === 'approved' && (
-                      <Button
-                        onClick={() => confirmApplication(id)}
-                        className='hidden xs:block group p-1 bg-gray-50 border border-success-500 hover:bg-success-500 rounded-md mr-2'
-                      >
-                        <CheckMark className='h-3 w-3 fill-success-500 group-hover:fill-gray-50' />
-                      </Button>
-                    )}
-
-                    <Button
-                      onClick={() => cancelApplication(id)}
-                      className='group p-1 hidden xs:block pr-4'
-                    >
-                      <Close className='h-3 w-3 fill-gray-500 group-hover:fill-red-500' />
-                    </Button>
-                  </li>
-                )
-            )}
-          </ul>
-        )}
-
         <Button onClick={onDemandClick} className='text-left px-4 pb-4'>
-          {applications.length !== 0 && (
-            <h4 className='text-md font-semibold mt-4'>Vagas:</h4>
-          )}
-
           <ul className='flex mt-3 flex-wrap gap-2'>
             {vacancies.map(({ id, name, work_mode }) => (
               <li key={id}>

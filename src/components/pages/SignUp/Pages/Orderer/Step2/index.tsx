@@ -3,7 +3,6 @@ import { FormLayout } from '../../FormLayout'
 import { useContext } from 'react'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
-import { Select } from 'src/components/shared/groups/Form'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
 import { OrdererContext } from '..'
@@ -23,7 +22,7 @@ export const Step2 = () => {
       content='Escreva um pouco sobre você!'
     >
       <form className='space-y-4 pt-6'>
-        <Select
+        {/* <Select
           color='tertiary'
           placeholder='Cidade'
           options={[
@@ -39,7 +38,7 @@ export const Step2 = () => {
             { label: 'Programador', value: 'developer' },
             { label: 'Design', value: 'designer' }
           ]}
-        />
+        /> */}
 
         <Textarea placeholder='Biografia' className='text-tertiary-500' />
 

@@ -1,9 +1,9 @@
 import { IChildrenProps } from 'src/types/react.types'
 
-import { IDemandResponse } from 'src/requests/demands/getDemand/types'
+import { DemandResponse } from 'types-vollab/dist/routes/demands/id'
 
 export interface IInfoItemProps extends IChildrenProps {
-  title: IDemandResponse['title']
+  title: DemandResponse['title']
 }
 
 export const InfoItem = ({ title, children }: IInfoItemProps) => (

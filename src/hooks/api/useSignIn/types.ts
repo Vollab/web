@@ -1,6 +1,6 @@
-import { SignInRequest, SignInResponse } from 'common/types/routes/signIn/index'
+import { SignInRequest, SignInResponse } from 'types-vollab/dist/routes/sign-in'
 
 export interface IUseSignInMutation {
-  request: SignInRequest
   response: SignInResponse
+  request: SignInRequest
 }

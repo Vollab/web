@@ -8,7 +8,7 @@ import {
 
 export const useMutation = <GMutation extends IGMutation>(
   mutationFunction: MutationFunction<any, GMutation['request']>,
-  options: UseMutationOptions<
+  options?: UseMutationOptions<
     GMutation['response'],
     IUseMutation['error'],
     GMutation['request']

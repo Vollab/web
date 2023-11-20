@@ -1,13 +1,12 @@
 import { Building } from './Building'
 import { Remote } from './Remote'
 
-import { VacancyWorkMode } from 'common/types/routes/shared'
-
 import { colors } from 'src/styles/custom/colors'
 
 import { IClassNameProps } from 'src/types/react.types'
 
 import { twMerge } from 'tailwind-merge'
+import { VacancyWorkMode } from 'types-vollab/dist/shared/vacancy'
 
 interface IWorkModeProps extends IClassNameProps {
   fill?: string
@@ -22,11 +21,11 @@ export const WorkMode = ({
   fill = colors.primary[500]
 }: IWorkModeProps) => (
   <div className={twMerge('flex gap-1', className)}>
-    {(work_mode === 'remote' || work_mode == 'hybrid') && (
+    {(work_mode === 'REMOTE' || work_mode == 'HYBRID') && (
       <Remote className={twMerge('h-4 w-4', tws?.icons)} fill={fill} />
     )}
 
-    {(work_mode === 'in_person' || work_mode == 'hybrid') && (
+    {(work_mode === 'IN_PERSON' || work_mode == 'HYBRID') && (
       <Building className={twMerge('h-4 w-4', tws?.icons)} fill={fill} />
     )}
   </div>

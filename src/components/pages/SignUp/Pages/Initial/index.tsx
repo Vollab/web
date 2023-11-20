@@ -48,22 +48,22 @@ export const Initial = () => {
         <footer className='flex justify-between items-center px-4'>
           <button
             onClick={onCandidateClick}
-            className='h-28 w-28 bg-secondary-500 rounded-2xl flex flex-col items-center justify-center space-y-4'
+            className='h-24 w-24 bg-secondary-500 rounded-2xl flex flex-col items-center justify-center space-y-4'
           >
             <Person className='h-8 w-8' fill={colors.gray[50]} />
 
-            <span className='text-lg font-semibold text-gray-50 text-center'>
+            <span className='text-md font-semibold text-gray-50 text-center'>
               Candidato
             </span>
           </button>
 
           <button
             onClick={onOrdererClick}
-            className='h-28 w-28 bg-tertiary-500 rounded-2xl flex flex-col items-center justify-center space-y-4'
+            className='h-24 w-24 bg-tertiary-500 rounded-2xl flex flex-col items-center justify-center space-y-4'
           >
             <Person className='h-8 w-8' fill={colors.gray[50]} />
 
-            <span className='text-lg font-semibold text-gray-50 text-center'>
+            <span className='text-md font-semibold text-gray-50 text-center'>
               Solicitante
             </span>
           </button>

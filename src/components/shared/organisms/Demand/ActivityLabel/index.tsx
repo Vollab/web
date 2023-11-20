@@ -1,8 +1,8 @@
-import { VacancyWorkMode } from 'common/types/routes/shared'
-
 import { colors } from 'src/styles/custom/colors'
 
 import { WorkMode } from 'src/assets/icons/WorkMode'
+
+import { VacancyWorkMode } from 'types-vollab/dist/shared/vacancy'
 
 interface IActivityLabelProps {
   name: string

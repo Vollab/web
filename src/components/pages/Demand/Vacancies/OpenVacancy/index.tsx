@@ -3,17 +3,26 @@ import { ConfirmButton } from './ConfirmButton'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-import { applicationStatusInfo, vacancyWorkModeInfo } from 'src/static/infos'
+import { infos } from 'src/static/infos'
 
-import { IVacancy } from 'src/requests/demands/getDemand/types'
+import { Vacancy } from 'types-vollab/dist/routes/demands/id'
 
-export interface IOpenVacancyProps extends Omit<IVacancy, 'open'> {}
+export interface IOpenVacancyProps {
+  id: Vacancy['id']
+  name: Vacancy['name']
+  city: Vacancy['city']
+  state: Vacancy['state']
+  status?: Vacancy['status']
+  work_mode: Vacancy['work_mode']
+  description: Vacancy['description']
+}
 
 export const OpenVacancy = ({
   id,
   name,
+  city,
+  state,
   status,
-  location,
   work_mode,
   description
 }: IOpenVacancyProps) => (
@@ -25,14 +34,16 @@ export const OpenVacancy = ({
         <span
           className='font-medium'
           style={{
-            color: vacancyWorkModeInfo[work_mode].color
+            color: infos.vacancyWorkMode[work_mode].color
           }}
         >
-          {vacancyWorkModeInfo[work_mode].label}
+          {infos.vacancyWorkMode[work_mode].label}
         </span>
       </header>
 
-      <span className='font-medium text-gray-500 px-4'>{location}</span>
+      <span className='font-medium text-gray-500 px-4'>
+        {state}, {city}
+      </span>
 
       <p className='px-4 text-gray-500 mt-1'>{description}</p>
 
@@ -42,14 +53,14 @@ export const OpenVacancy = ({
             <span className='font-medium text-lg'>Candidatado</span>
 
             <span
-              style={{ color: applicationStatusInfo[status].color }}
+              style={{ color: infos.enrollmentStatus[status].color }}
               className='font-medium text-lg'
             >
-              {applicationStatusInfo[status].label}
+              {infos.enrollmentStatus[status].label}
             </span>
           </div>
 
-          <div className='w-full flex'>
+          <div className='w-full flex mt-2'>
             <ConfirmButton id={id} status={status} />
 
             <CancelButton id={id} status={status} />

@@ -28,8 +28,8 @@ export const MainLayout = ({
     push('/sign-in')
   }
 
-  const onProjectsClick = () => {
-    push('/projects')
+  const onMyDemandsClick = () => {
+    push('/my-demands')
   }
 
   const onDemandsClick = () => {
@@ -65,7 +65,7 @@ export const MainLayout = ({
         <ul className='flex items-center justify-center'>
           <li className='flex-1'>
             <Button
-              onClick={onProjectsClick}
+              onClick={onMyDemandsClick}
               className='py-4 w-full flex items-center justify-center'
             >
               <Projects fill={colors.gray[50]} className='h-6 w-6' />

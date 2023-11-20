@@ -1,17 +1,8 @@
 import { IUseSignInMutation } from './types'
 
-import { updateToken } from '../useUser'
-
 import { useMutation } from 'src/hooks/useMutation'
 
-import { api } from 'src/services/api'
+import { signIn } from 'src/requests/sign-in'
 
 export const useSignIn = () =>
-  useMutation<IUseSignInMutation>(
-    request => api.post({ body: request, url: `/sign-in` }),
-    {
-      onSuccess: data => {
-        updateToken(data.token)
-      }
-    }
-  )
+  useMutation<IUseSignInMutation>(body => signIn(body))

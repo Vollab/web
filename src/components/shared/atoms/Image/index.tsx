@@ -15,6 +15,8 @@ export const Image = ({ src, className, ...props }: IImageProps) => {
 
   return (
     <OriginalImage
+      width={500}
+      height={500}
       draggable='false'
       onError={() => setError(true)}
       src={error ? '/image_placeholder.svg' : src || '/image_placeholder.svg'}

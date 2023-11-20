@@ -4,14 +4,14 @@ import { Vacancies } from './Vacancies'
 
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
-import { getDemand, selectDemand } from 'src/requests/demands/getDemand'
+import { getDemand } from 'src/requests/demands/getDemand'
 
 interface IDemandProps {
   id: string
 }
 
 export const Demand = async ({ id }: IDemandProps) => {
-  const data = selectDemand(await getDemand({ id }))
+  const data = await getDemand({ id })
 
   return (
     <MainLayout hideHeader>

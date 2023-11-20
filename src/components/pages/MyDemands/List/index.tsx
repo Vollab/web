@@ -17,6 +17,7 @@ export const List = () => {
               title={title}
               resume={resume}
               status={status}
+              showApplications
               orderer={orderer}
               vacancies={vacancies}
             />

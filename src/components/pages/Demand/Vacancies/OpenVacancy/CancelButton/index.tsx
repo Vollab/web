@@ -4,23 +4,23 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { UseApplication } from 'src/hooks/api/useApplication'
 
-import { IVacancy } from 'src/requests/demands/getDemand/types'
+import { Vacancy } from 'types-vollab/dist/routes/demands/id'
 
 export interface ICancelButtonProps {
-  id: IVacancy['id']
-  status: IVacancy['status']
+  id: Vacancy['id']
+  status: Vacancy['status']
 }
 
 export const CancelButton = ({ id, status }: ICancelButtonProps) => {
   const { cancelApplication } = UseApplication()
 
-  return status === 'approved' ? (
+  return status === 'APPROVED' ? (
     <Button
-      color='success'
+      color='error'
       onClick={() => cancelApplication(id)}
       className='py-3  rounded-none flex-1'
     >
-      Confirmar
+      Cancelar
     </Button>
   ) : (
     <></>

@@ -1,8 +1,3 @@
-import {
-  DemandsQueryParams,
-  DemandsResponse
-} from 'common/types/routes/demands'
+import { DemandsResponse } from 'types-vollab/dist/routes/demands'
 
-export type TGetDemands = (
-  params: DemandsQueryParams
-) => Promise<DemandsResponse>
+export type TGetDemands = () => Promise<DemandsResponse> | DemandsResponse
