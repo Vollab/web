@@ -12,24 +12,35 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm } from 'react-hook-form'
 import { email, name, newPassword, phone } from 'src/schemas'
+import { CandidateSignUpRequest } from 'types-vollab/dist/routes/candidates/sign-up'
+
+interface IStep1 {
+  name: CandidateSignUpRequest['name']
+  email: CandidateSignUpRequest['email']
+  phone: CandidateSignUpRequest['phone']
+  password: CandidateSignUpRequest['password']
+}
+
+const resolver = joiResolver(
+  Joi.object({ email, name, phone, password: newPassword })
+)
 
 export const Step1 = () => {
-  const { setStep, setCandidateData } = useContext(CandidateContext)
+  const { setStep, setCandidateData, candidateData } =
+    useContext(CandidateContext)
 
-  const { register, handleSubmit, formState, setValue } = useForm({
-    resolver: joiResolver(
-      Joi.object({ email, name, phone, password: newPassword })
-    ),
+  const { register, handleSubmit, formState, setValue } = useForm<IStep1>({
+    resolver,
     defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      password: ''
+      name: candidateData?.name,
+      email: candidateData?.email,
+      phone: candidateData?.phone,
+      password: candidateData?.password
     }
   })
 
-  const onSubmit = (data: any) => {
-    setCandidateData(data)
+  const onSubmit = ({ email, name, password, phone }: IStep1) => {
+    setCandidateData(prev => ({ ...prev, email, name, password, phone }))
     setStep(2)
   }
 

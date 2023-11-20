@@ -1,6 +1,6 @@
 import { FormLayout } from '../../FormLayout'
 
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Select } from 'src/components/shared/groups/Form'
@@ -8,47 +8,63 @@ import { LeftIcon } from 'src/components/shared/groups/Form/Field/LeftIcon'
 import { ISelectOption } from 'src/components/shared/groups/Form/Select/types'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
+import { useActivityAreas } from 'src/hooks/api/useActivityAreas'
+
 import { CandidateContext } from '..'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm } from 'react-hook-form'
+import { CandidateSignUpRequest } from 'types-vollab/dist/routes/candidates/sign-up'
+
+interface IStep2 {
+  biography?: CandidateSignUpRequest['biography']
+}
+
+const resolver = joiResolver(
+  Joi.object({
+    biography: Joi.string().required().max(255).min(20).messages({
+      'string.empty': 'Informe sua biografia!',
+      'any.required': 'Informe sua biografia!',
+      'string.min': 'Mínimo de 20 caracteres!',
+      'string.max': 'Limite máximo de caracteres atingido!'
+    })
+  })
+)
 
 export const Step2 = () => {
+  const { data, error } = useActivityAreas()
+
   const [triedToSubmit, setTriedToSubmit] = useState(false)
-  const { setStep, setCandidateData } = useContext(CandidateContext)
-  const [activityAreas, setActivityAreas] = useState<ISelectOption[]>([])
-  const { register, handleSubmit, formState, setValue } = useForm({
-    defaultValues: { biography: '' },
-    reValidateMode: 'onChange',
-    resolver: joiResolver(
-      Joi.object({
-        biography: Joi.string().required().max(255).min(20).messages({
-          'string.empty': 'Informe sua biografia!',
-          'any.required': 'Informe sua biografia!',
-          'string.min': 'Mínimo de 20 caracteres!',
-          'string.max': 'Limite máximo de caracteres atingido!'
-        })
-      })
-    )
+
+  const { setStep, setCandidateData, candidateData } =
+    useContext(CandidateContext)
+
+  const [activityAreas, setActivityAreas] = useState<ISelectOption[]>(
+    candidateData?.activityAreas || []
+  )
+
+  const { register, handleSubmit, formState, setValue } = useForm<IStep2>({
+    resolver,
+    defaultValues: { biography: candidateData?.biography }
   })
 
-  const onSubmit = (data: any) => {
-    if (activityAreas.length === 0) return
+  const onSubmit = ({ biography }: IStep2) => {
+    if (activityAreas.length === 0 || !biography) return
 
-    setCandidateData(prev => ({
-      ...prev,
-      ...data,
-      activityAreas: activityAreas.map(({ label }) => label)
-    }))
+    setCandidateData(prev => ({ ...prev, biography, activityAreas }))
 
     setStep(3)
   }
 
+  useEffect(() => {
+    console.log({ error })
+  }, [error])
+
   return (
     <FormLayout
       role='Candidato'
-      title='Area de atuação'
-      content='Agora fale um pouco sobre sua área de atuação!'
+      title='Sobre você'
+      content='Agora fale um pouco sobre você e selecione suas áreas de atuação!'
     >
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 pt-6'>
         <div className='relative'>
@@ -61,14 +77,17 @@ export const Step2 = () => {
           <Select
             isMulti
             color='secondary'
+            value={activityAreas}
             placeholder='Área de atuação'
             onChange={newValue => {
               setActivityAreas(newValue as ISelectOption[])
             }}
-            options={[
-              { label: 'Programador', value: 'developer' },
-              { label: 'Design', value: 'designer' }
-            ]}
+            options={
+              data?.activity_areas.map(({ id, name }) => ({
+                value: id,
+                label: name
+              })) || []
+            }
           />
         </div>
 
@@ -81,12 +100,12 @@ export const Step2 = () => {
         />
 
         <Button
-          color='secondary'
           type='submit'
-          className='w-full'
+          color='secondary'
           onClick={() => {
             setTriedToSubmit(true)
           }}
+          className='w-full'
         >
           Próximo passo
         </Button>

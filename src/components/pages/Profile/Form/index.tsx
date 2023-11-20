@@ -6,10 +6,12 @@ import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field, File, Label, Select } from 'src/components/shared/groups/Form'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
-import { ILink, LinksForm } from 'src/components/shared/molecules/LinksForm'
+import { LinksForm } from 'src/components/shared/molecules/LinksForm'
+
+import { Link } from 'types-vollab/dist/shared/link'
 
 export const Form = () => {
-  const [links, setLinks] = useState<ILink[]>([])
+  const [links, setLinks] = useState<Link[]>([])
 
   return (
     <div className='grid grid-cols-3 py-6 px-4 gap-4'>

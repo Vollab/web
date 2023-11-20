@@ -18,23 +18,39 @@ import { Link } from 'types-vollab/dist/shared/link'
 interface ICandidateData extends CandidateSignUpRequest {
   links?: Link[]
   avatar?: string
+  activityAreas?: { value: string; label: string }[]
 }
 
-export const CandidateContext = createContext<{
+interface ICandidateContext {
   step: number
   setStep: TSetState<number>
-  candidateData?: ICandidateData
-  setCandidateData: TSetState<ICandidateData | undefined>
-}>({ step: 1, setStep: () => {}, setCandidateData: () => {} })
+  candidateData: ICandidateData
+  setCandidateData: TSetState<ICandidateData>
+}
+
+const initialCandidateData = {
+  name: '',
+  email: '',
+  phone: '',
+  password: '',
+  biography: ''
+}
+
+export const CandidateContext = createContext<ICandidateContext>({
+  step: 1,
+  setStep: () => {},
+  setCandidateData: () => {},
+  candidateData: initialCandidateData
+})
 
 export const Candidate = () => {
   const [step, setStep] = useState(1)
   const { setPage } = useContext(SignUpContext)
-  const [candidateData, setCandidateData] = useState<ICandidateData>()
+  const [candidateData, setCandidateData] =
+    useState<ICandidateData>(initialCandidateData)
 
   const onBackClick = () => {
-    if (step === 1) setPage('initial')
-    else setStep(prev => prev - 1)
+    step === 1 ? setPage('initial') : setStep(prev => prev - 1)
   }
 
   return (
