@@ -6,6 +6,8 @@ import { Orderer } from './Orderer'
 
 import { createContext, useState } from 'react'
 
+import { Toast } from 'src/components/shared/molecules/Toast'
+
 import { TSetState } from 'src/types/react.types'
 
 export const SignUpContext = createContext<{
@@ -21,6 +23,8 @@ export const Pages = () => {
       {page === 'initial' && <Initial />}
       {page === 'candidate' && <Candidate />}
       {page === 'orderer' && <Orderer />}
+
+      <Toast />
     </SignUpContext.Provider>
   )
 }
