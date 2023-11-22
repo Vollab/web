@@ -1,15 +1,16 @@
 import { FormLayout } from '../../FormLayout'
 
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Select } from 'src/components/shared/groups/Form'
 import { LeftIcon } from 'src/components/shared/groups/Form/Field/LeftIcon'
 import { ISelectOption } from 'src/components/shared/groups/Form/Select/types'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
-import { IForwardToast, Toast } from 'src/components/shared/molecules/Toast'
 
 import { useActivityAreas } from 'src/hooks/api/useActivityAreas'
+
+import { generateToasts } from 'src/utils/generateToasts'
 
 import { CandidateContext } from '..'
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -33,11 +34,10 @@ const resolver = joiResolver(
 )
 
 export const Step2 = () => {
-  const toastRef = useRef<IForwardToast>(null)
   const { data, error, isError } = useActivityAreas()
   const [triedToSubmit, setTriedToSubmit] = useState(false)
 
-  const { setStep, setCandidateData, candidateData } =
+  const { setStep, setCandidateData, candidateData, toastRef } =
     useContext(CandidateContext)
 
   const [activityAreas, setActivityAreas] = useState<ISelectOption[]>(
@@ -57,69 +57,59 @@ export const Step2 = () => {
   }
 
   useEffect(() => {
-    isError &&
-      toastRef.current?.triggerToast({
-        variant: 'error',
-        content: error.message
-      })
-  }, [isError, error])
+    isError && toastRef?.current?.triggerToast(generateToasts(error))
+  }, [error, isError, toastRef])
 
   return (
-    <>
-      <FormLayout
-        role='Candidato'
-        title='Sobre você'
-        content='Agora fale um pouco sobre você e selecione suas áreas de atuação!'
-      >
-        <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 pt-6'>
-          <div className='relative'>
-            <div className='absolute -left-8 top-2'>
-              {activityAreas.length === 0 && triedToSubmit && (
-                <LeftIcon
-                  error={{ message: 'Selecione uma area de atuação!' }}
-                />
-              )}
-            </div>
-
-            <Select
-              isMulti
-              color='secondary'
-              value={activityAreas}
-              placeholder='Área de atuação'
-              onChange={newValue => {
-                setActivityAreas(newValue as ISelectOption[])
-              }}
-              options={
-                data?.activity_areas.map(({ id, name }) => ({
-                  value: id,
-                  label: name
-                })) || []
-              }
-            />
+    <FormLayout
+      role='Candidato'
+      title='Sobre você'
+      content='Agora fale um pouco sobre você e selecione suas áreas de atuação!'
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 pt-6'>
+        <div className='relative'>
+          <div className='absolute -left-8 top-2'>
+            {activityAreas.length === 0 && triedToSubmit && (
+              <LeftIcon error={{ message: 'Selecione uma area de atuação!' }} />
+            )}
           </div>
 
-          <Textarea
-            placeholder='Biografia'
-            error={formState.errors.biography as any}
-            ref={register('biography').ref}
-            onChange={e => setValue('biography', e.currentTarget.value)}
-            className='text-secondary-500'
-          />
-
-          <Button
-            type='submit'
+          <Select
+            isMulti
             color='secondary'
-            onClick={() => {
-              setTriedToSubmit(true)
+            value={activityAreas}
+            placeholder='Área de atuação'
+            onChange={newValue => {
+              setActivityAreas(newValue as ISelectOption[])
             }}
-            className='w-full'
-          >
-            Próximo passo
-          </Button>
-        </form>
-      </FormLayout>
+            options={
+              data?.activity_areas.map(({ id, name }) => ({
+                value: id,
+                label: name
+              })) || []
+            }
+          />
+        </div>
 
-      <Toast ref={toastRef} />
-    </>
+        <Textarea
+          placeholder='Biografia'
+          error={formState.errors.biography as any}
+          ref={register('biography').ref}
+          onChange={e => setValue('biography', e.currentTarget.value)}
+          className='text-secondary-500'
+        />
+
+        <Button
+          type='submit'
+          color='secondary'
+          onClick={() => {
+            setTriedToSubmit(true)
+          }}
+          className='w-full'
+        >
+          Próximo passo
+        </Button>
+      </form>
+    </FormLayout>
   )
 }

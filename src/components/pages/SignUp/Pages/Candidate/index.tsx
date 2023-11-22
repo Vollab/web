@@ -2,12 +2,13 @@ import { Step1 } from './Step1'
 import { Step2 } from './Step2'
 import { Step3 } from './Step3'
 
-import { createContext, useContext, useState } from 'react'
+import { RefObject, createContext, useContext, useRef, useState } from 'react'
 
 import { colors } from 'src/styles/custom/colors'
 
 import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
 import { Steps } from 'src/components/shared/molecules/Steps'
+import { IForwardToast, Toast } from 'src/components/shared/molecules/Toast'
 
 import { TSetState } from 'src/types/react.types'
 
@@ -25,6 +26,7 @@ interface ICandidateContext {
   step: number
   setStep: TSetState<number>
   candidateData: ICandidateData
+  toastRef?: RefObject<IForwardToast>
   setCandidateData: TSetState<ICandidateData>
 }
 
@@ -46,6 +48,8 @@ export const CandidateContext = createContext<ICandidateContext>({
 export const Candidate = () => {
   const [step, setStep] = useState(1)
   const { setPage } = useContext(SignUpContext)
+  const toastRef = useRef<IForwardToast>(null)
+
   const [candidateData, setCandidateData] =
     useState<ICandidateData>(initialCandidateData)
 
@@ -55,10 +59,12 @@ export const Candidate = () => {
 
   return (
     <AuthLayout onBackClick={onBackClick}>
+      <Toast ref={toastRef} />
+
       <Steps quantity={3} filledQuantity={step} color={colors.secondary[500]} />
 
       <CandidateContext.Provider
-        value={{ setStep, step, setCandidateData, candidateData }}
+        value={{ setStep, step, setCandidateData, candidateData, toastRef }}
       >
         {step === 1 && <Step1 />}
         {step === 2 && <Step2 />}

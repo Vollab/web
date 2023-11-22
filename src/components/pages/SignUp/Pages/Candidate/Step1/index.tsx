@@ -71,7 +71,7 @@ export const Step1 = () => {
           placeholder='Celular'
           error={formState.errors.phone}
           {...register('phone')}
-          maxLength={16}
+          maxLength={15}
           onChange={e => {
             setValue('phone', formatPhone(e.target.value))
           }}

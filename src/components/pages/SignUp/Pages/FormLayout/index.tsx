@@ -15,6 +15,7 @@ export const FormLayout = ({
   title,
   content,
   children,
+
   color = 'secondary'
 }: IFormLayoutProps) => (
   <section className='p-6'>

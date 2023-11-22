@@ -1,14 +1,14 @@
+import { useEffect, useState } from 'react'
+
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-import { TButtonProps } from 'src/types/react.types'
-
 import { IInfo } from '..'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { tv } from 'tailwind-variants'
 
 interface IContentProps {
   info?: IInfo
-  onCloseClick: TButtonProps['onClick']
+  index: number
 }
 
 const contentVariants = {
@@ -41,30 +41,54 @@ const titleTv = tv({
   }
 })
 
-export const Content = ({ info, onCloseClick }: IContentProps) => (
-  <motion.div
-    animate={{ x: 0, opacity: 1 }}
-    exit={{ x: '100%', opacity: 0 }}
-    initial={{ x: '100%', opacity: 0 }}
-    transition={{ type: 'spring', duration: 1 }}
-    className='fixed top-4 right-4 p-4 rounded-lg flex flex-col items-center justify-center gap-3 max-w-[200px] overflow-hidden z-10'
-  >
-    <div className='bg-opacity-[.9] bg-white backdrop-blur-[2px] border border-opacity-43 border-solid border-white shadow-md rounded-lg w-full h-full absolute z-10 top-0' />
+export const Content = ({ info, index }: IContentProps) => {
+  const [showing, setShowing] = useState(false)
 
-    <div className={titleContainerTv({ variant: info?.variant })}>
-      <span className={titleTv({ variant: info?.variant })}>
-        {info?.title || (info?.variant ? contentVariants[info.variant] : '')}
-      </span>
-    </div>
+  useEffect(() => {
+    setShowing(true)
 
-    <p className='relative z-20 text-gray-600'>{info?.content}</p>
+    setTimeout(
+      () => {
+        setShowing(false)
+      },
+      info?.timeout || 7000 + index * 300
+    )
+  }, [info?.timeout, info, index])
 
-    <Button
-      color={info?.variant}
-      onClick={onCloseClick}
-      className='relative z-30 w-full py-2 rounded-lg'
-    >
-      Entendi!
-    </Button>
-  </motion.div>
-)
+  return (
+    <AnimatePresence>
+      {showing && (
+        <motion.li
+          animate={{
+            x: 0,
+            opacity: 1,
+            transition: { delay: (index * 300) / 1000 }
+          }}
+          exit={{ x: '100%', opacity: 0 }}
+          initial={{ x: '100%', opacity: 0 }}
+          transition={{ type: 'spring', duration: 1 }}
+          className='p-4 rounded-lg flex flex-col items-center justify-center gap-3 max-w-[200px] overflow-hidden'
+        >
+          <div className='bg-opacity-[.9] bg-white backdrop-blur-[2px] border border-opacity-43 border-solid border-white shadow-md rounded-lg w-full h-full absolute z-10 top-0' />
+
+          <div className={titleContainerTv({ variant: info?.variant })}>
+            <span className={titleTv({ variant: info?.variant })}>
+              {info?.title ||
+                (info?.variant ? contentVariants[info.variant] : '')}
+            </span>
+          </div>
+
+          <p className='relative z-20 text-gray-600'>{info?.content}</p>
+
+          <Button
+            color={info?.variant}
+            onClick={() => setShowing(false)}
+            className='relative z-30 w-full py-2 rounded-lg'
+          >
+            Entendi!
+          </Button>
+        </motion.li>
+      )}
+    </AnimatePresence>
+  )
+}

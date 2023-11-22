@@ -8,7 +8,6 @@ import {
   useState
 } from 'react'
 
-import { AnimatePresence } from 'framer-motion'
 import { createPortal } from 'react-dom'
 
 export interface IInfo {
@@ -19,21 +18,15 @@ export interface IInfo {
 }
 
 export interface IForwardToast {
-  triggerToast: (info: IInfo) => void
+  triggerToast: (infos: IInfo[]) => void
 }
 
 export const Toast = forwardRef<IForwardToast>((_, ref) => {
-  const [info, setInfo] = useState<IInfo>()
-  const [showing, setShowing] = useState(false)
+  const [infos, setInfos] = useState<IInfo[]>()
   const portalRef = useRef<Element | null>(null)
 
-  const triggerToast = (info: IInfo) => {
-    setInfo(info)
-    setShowing(true)
-
-    setTimeout(() => {
-      setShowing(false)
-    }, info.timeout || 7000)
+  const triggerToast = (info: IInfo[]) => {
+    setInfos(info)
   }
 
   useEffect(() => {
@@ -44,11 +37,11 @@ export const Toast = forwardRef<IForwardToast>((_, ref) => {
 
   return portalRef.current ? (
     createPortal(
-      <AnimatePresence>
-        {showing && (
-          <Content info={info} onCloseClick={() => setShowing(false)} />
-        )}
-      </AnimatePresence>,
+      <ul className='fixed top-4 right-4 z-10 flex flex-col gap-4'>
+        {infos?.map((info, index) => (
+          <Content info={info} key={index} index={index} />
+        ))}
+      </ul>,
       portalRef.current
     )
   ) : (

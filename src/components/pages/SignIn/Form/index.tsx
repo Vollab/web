@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field } from 'src/components/shared/groups/Form'
@@ -19,14 +19,6 @@ export const Form = () => {
   const onSignUpClick = () => {
     push('/sign-up')
   }
-
-  useEffect(() => {
-    toastRef.current?.triggerToast({
-      content: 'TEST',
-      variant: 'success',
-      title: 'test1'
-    })
-  }, [])
 
   return (
     <>

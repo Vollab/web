@@ -24,15 +24,25 @@ export const post = async ({
     const response = await res.json()
 
     if (response.errors) {
-      const errorMessage = response.errors.message
+      if (!Array.isArray(response.errors)) {
+        const errorMessage = response.errors.message
 
-      switch (errorMessage) {
-        case 'Something went wrong':
-          throw new Error('Algo deu errado!')
+        switch (errorMessage) {
+          case 'Something went wrong':
+            throw new Error('Algo deu errado!')
 
-        default:
-          throw new Error(response.errors.message)
+          default:
+            throw new Error(response.errors.message)
+        }
       }
+
+      const errors: Error[] = []
+
+      response.errors.map(({ message }: { message: string }) =>
+        errors.push(new Error(message))
+      )
+
+      throw errors
     }
 
     return response
