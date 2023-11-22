@@ -6,11 +6,15 @@ import { IInfo } from '..'
 import { motion } from 'framer-motion'
 import { tv } from 'tailwind-variants'
 
-const contentVariants = { success: 'Sucesso', error: 'Falha' }
-
 interface IContentProps {
   info?: IInfo
   onCloseClick: TButtonProps['onClick']
+}
+
+const contentVariants = {
+  error: 'Falha',
+  success: 'Sucesso',
+  info: 'Informação'
 }
 
 const titleContainerTv = tv({
@@ -49,7 +53,7 @@ export const Content = ({ info, onCloseClick }: IContentProps) => (
 
     <div className={titleContainerTv({ variant: info?.variant })}>
       <span className={titleTv({ variant: info?.variant })}>
-        {info?.title || info?.variant ? contentVariants[info?.variant] : ''}
+        {info?.title || (info?.variant ? contentVariants[info.variant] : '')}
       </span>
     </div>
 

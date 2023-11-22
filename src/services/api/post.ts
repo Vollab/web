@@ -20,8 +20,20 @@ export const post = async ({
     next: { revalidate: revalidate || undefined },
     body: body || JSON.stringify(data) || undefined,
     headers: customHeader || getHeaders({ options, token })
-  }).then(res => {
-    if (!res.ok) throw new Error('POST ERROR')
-    if (res) return res.json()
-    return res
+  }).then(async res => {
+    const response = await res.json()
+
+    if (response.errors) {
+      const errorMessage = response.errors.message
+
+      switch (errorMessage) {
+        case 'Something went wrong':
+          throw new Error('Algo deu errado!')
+
+        default:
+          throw new Error(response.errors.message)
+      }
+    }
+
+    return response
   })

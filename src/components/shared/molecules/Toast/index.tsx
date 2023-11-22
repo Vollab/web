@@ -13,9 +13,9 @@ import { createPortal } from 'react-dom'
 
 export interface IInfo {
   title?: string
-  content: string
+  content?: string
   timeout?: number
-  variant: 'success' | 'error'
+  variant?: 'success' | 'error' | 'info'
 }
 
 export interface IForwardToast {

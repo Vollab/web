@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FormLayout } from '../../FormLayout'
 
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 
 import { colors } from 'src/styles/custom/colors'
 
@@ -9,6 +9,7 @@ import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { File } from 'src/components/shared/groups/Form/File'
 import { LinksForm } from 'src/components/shared/molecules/LinksForm'
+import { IForwardToast, Toast } from 'src/components/shared/molecules/Toast'
 
 import { useCandidateSignUp } from 'src/hooks/api/useCandidateSignUp'
 
@@ -16,23 +17,31 @@ import { CandidateContext } from '..'
 import { Link } from 'types-vollab/dist/shared/link'
 
 export const Step3 = () => {
-  const [avatar, setAvatar] = useState<string>()
+  const toastRef = useRef<IForwardToast>(null)
   const [links, setLinks] = useState<Link[]>([])
-
-  const { mutateAsync } = useCandidateSignUp()
+  const [avatar, setAvatar] = useState<string>()
   const { candidateData } = useContext(CandidateContext)
+  const { mutateAsync, isError, error } = useCandidateSignUp()
 
   const onCreateClick = async () => {
-    try {
-      await mutateAsync({
-        name: candidateData.name,
-        phone: candidateData.phone,
-        email: candidateData.email,
-        password: candidateData.password,
-        biography: candidateData.biography
-      })
-    } catch (error) {}
+    await mutateAsync({
+      name: candidateData.name,
+      phone: candidateData.phone,
+      email: candidateData.email,
+      password: candidateData.password,
+      biography: candidateData.biography
+    })
   }
+
+  useEffect(() => {
+    isError &&
+      toastRef.current?.triggerToast({
+        variant: 'error',
+        content: error.message
+      })
+
+    console.log(error)
+  }, [isError, error])
 
   return (
     <>
@@ -58,6 +67,8 @@ export const Step3 = () => {
           </Button>
         </div>
       </FormLayout>
+
+      <Toast ref={toastRef} />
     </>
   )
 }

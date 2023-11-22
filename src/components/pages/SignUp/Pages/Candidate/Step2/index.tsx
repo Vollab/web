@@ -1,12 +1,13 @@
 import { FormLayout } from '../../FormLayout'
 
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Select } from 'src/components/shared/groups/Form'
 import { LeftIcon } from 'src/components/shared/groups/Form/Field/LeftIcon'
 import { ISelectOption } from 'src/components/shared/groups/Form/Select/types'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
+import { IForwardToast, Toast } from 'src/components/shared/molecules/Toast'
 
 import { useActivityAreas } from 'src/hooks/api/useActivityAreas'
 
@@ -32,8 +33,8 @@ const resolver = joiResolver(
 )
 
 export const Step2 = () => {
-  const { data, error } = useActivityAreas()
-
+  const toastRef = useRef<IForwardToast>(null)
+  const { data, error, isError } = useActivityAreas()
   const [triedToSubmit, setTriedToSubmit] = useState(false)
 
   const { setStep, setCandidateData, candidateData } =
@@ -52,64 +53,73 @@ export const Step2 = () => {
     if (activityAreas.length === 0 || !biography) return
 
     setCandidateData(prev => ({ ...prev, biography, activityAreas }))
-
     setStep(3)
   }
 
   useEffect(() => {
-    console.log({ error })
-  }, [error])
+    isError &&
+      toastRef.current?.triggerToast({
+        variant: 'error',
+        content: error.message
+      })
+  }, [isError, error])
 
   return (
-    <FormLayout
-      role='Candidato'
-      title='Sobre você'
-      content='Agora fale um pouco sobre você e selecione suas áreas de atuação!'
-    >
-      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 pt-6'>
-        <div className='relative'>
-          <div className='absolute -left-8 top-2'>
-            {activityAreas.length === 0 && triedToSubmit && (
-              <LeftIcon error={{ message: 'Selecione uma area de atuação!' }} />
-            )}
+    <>
+      <FormLayout
+        role='Candidato'
+        title='Sobre você'
+        content='Agora fale um pouco sobre você e selecione suas áreas de atuação!'
+      >
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 pt-6'>
+          <div className='relative'>
+            <div className='absolute -left-8 top-2'>
+              {activityAreas.length === 0 && triedToSubmit && (
+                <LeftIcon
+                  error={{ message: 'Selecione uma area de atuação!' }}
+                />
+              )}
+            </div>
+
+            <Select
+              isMulti
+              color='secondary'
+              value={activityAreas}
+              placeholder='Área de atuação'
+              onChange={newValue => {
+                setActivityAreas(newValue as ISelectOption[])
+              }}
+              options={
+                data?.activity_areas.map(({ id, name }) => ({
+                  value: id,
+                  label: name
+                })) || []
+              }
+            />
           </div>
 
-          <Select
-            isMulti
-            color='secondary'
-            value={activityAreas}
-            placeholder='Área de atuação'
-            onChange={newValue => {
-              setActivityAreas(newValue as ISelectOption[])
-            }}
-            options={
-              data?.activity_areas.map(({ id, name }) => ({
-                value: id,
-                label: name
-              })) || []
-            }
+          <Textarea
+            placeholder='Biografia'
+            error={formState.errors.biography as any}
+            ref={register('biography').ref}
+            onChange={e => setValue('biography', e.currentTarget.value)}
+            className='text-secondary-500'
           />
-        </div>
 
-        <Textarea
-          placeholder='Biografia'
-          error={formState.errors.biography as any}
-          ref={register('biography').ref}
-          onChange={e => setValue('biography', e.currentTarget.value)}
-          className='text-secondary-500'
-        />
+          <Button
+            type='submit'
+            color='secondary'
+            onClick={() => {
+              setTriedToSubmit(true)
+            }}
+            className='w-full'
+          >
+            Próximo passo
+          </Button>
+        </form>
+      </FormLayout>
 
-        <Button
-          type='submit'
-          color='secondary'
-          onClick={() => {
-            setTriedToSubmit(true)
-          }}
-          className='w-full'
-        >
-          Próximo passo
-        </Button>
-      </form>
-    </FormLayout>
+      <Toast ref={toastRef} />
+    </>
   )
 }
