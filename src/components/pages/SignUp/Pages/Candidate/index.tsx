@@ -1,75 +1,28 @@
-import { Step1 } from './Step1'
-import { Step2 } from './Step2'
-import { Step3 } from './Step3'
-
-import { RefObject, createContext, useContext, useRef, useState } from 'react'
+import { About } from './About'
+import { Optional } from './Optional'
+import { Personal } from './Personal'
 
 import { colors } from 'src/styles/custom/colors'
 
 import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
 import { Steps } from 'src/components/shared/molecules/Steps'
-import { IForwardToast, Toast } from 'src/components/shared/molecules/Toast'
 
-import { TSetState } from 'src/types/react.types'
+import { CandidateProvider } from 'src/contexts/SignUp/Candidate'
 
-import { SignUpContext } from '..'
-import { CandidateSignUpRequest } from 'types-vollab/dist/routes/candidates/sign-up'
-import { Link } from 'types-vollab/dist/shared/link'
-
-interface ICandidateData extends CandidateSignUpRequest {
-  links?: Link[]
-  avatar?: string
-  activityAreas?: { value: string; label: string }[]
-}
-
-interface ICandidateContext {
-  step: number
-  setStep: TSetState<number>
-  candidateData: ICandidateData
-  toastRef?: RefObject<IForwardToast>
-  setCandidateData: TSetState<ICandidateData>
-}
-
-const initialCandidateData = {
-  name: '',
-  email: '',
-  phone: '',
-  password: '',
-  biography: ''
-}
-
-export const CandidateContext = createContext<ICandidateContext>({
-  step: 1,
-  setStep: () => {},
-  setCandidateData: () => {},
-  candidateData: initialCandidateData
-})
+import { useBackClick } from 'src/hooks/SignUp/useBackClick'
 
 export const Candidate = () => {
-  const [step, setStep] = useState(1)
-  const { setPage } = useContext(SignUpContext)
-  const toastRef = useRef<IForwardToast>(null)
-
-  const [candidateData, setCandidateData] =
-    useState<ICandidateData>(initialCandidateData)
-
-  const onBackClick = () => {
-    step === 1 ? setPage('initial') : setStep(prev => prev - 1)
-  }
+  const { onBackClick, step } = useBackClick()
 
   return (
     <AuthLayout onBackClick={onBackClick}>
-      <Toast ref={toastRef} />
+      <Steps color={colors.secondary[500]} filledQuantity={step} quantity={3} />
 
-      <Steps quantity={3} filledQuantity={step} color={colors.secondary[500]} />
-
-      <CandidateContext.Provider
-        value={{ setStep, step, setCandidateData, candidateData, toastRef }}
-      >
-        {step === 1 && <Step1 />}
-        {step === 2 && <Step2 />}
-        {step === 3 && <Step3 />}
-      </CandidateContext.Provider>
+      <CandidateProvider>
+        {step === 1 && <Personal />}
+        {step === 2 && <About />}
+        {step === 3 && <Optional />}
+      </CandidateProvider>
     </AuthLayout>
   )
 }

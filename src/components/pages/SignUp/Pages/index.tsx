@@ -4,27 +4,27 @@ import { Candidate } from './Candidate'
 import { Initial } from './Initial'
 import { Orderer } from './Orderer'
 
-import { createContext, useState } from 'react'
-
-import { Toast } from 'src/components/shared/molecules/Toast'
-
-import { TSetState } from 'src/types/react.types'
-
-export const SignUpContext = createContext<{
-  page: string
-  setPage: TSetState<string>
-}>({ page: 'initial', setPage: () => {} })
+import { useSignUpContext } from 'src/contexts/SignUp'
+import { StepsProvider } from 'src/contexts/SignUp/Steps'
 
 export const Pages = () => {
-  const [page, setPage] = useState('initial')
+  const { page } = useSignUpContext()
 
   return (
-    <SignUpContext.Provider value={{ page, setPage }}>
+    <>
       {page === 'initial' && <Initial />}
-      {page === 'candidate' && <Candidate />}
-      {page === 'orderer' && <Orderer />}
 
-      <Toast />
-    </SignUpContext.Provider>
+      {page === 'candidate' && (
+        <StepsProvider>
+          <Candidate />
+        </StepsProvider>
+      )}
+
+      {page === 'orderer' && (
+        <StepsProvider>
+          <Orderer />
+        </StepsProvider>
+      )}
+    </>
   )
 }

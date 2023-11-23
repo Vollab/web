@@ -1,3 +1,9 @@
 import { Pages } from './Pages'
 
-export const SignUp = () => <Pages />
+import { SignUpProvider } from 'src/contexts/SignUp'
+
+export const SignUp = () => (
+  <SignUpProvider>
+    <Pages />
+  </SignUpProvider>
+)

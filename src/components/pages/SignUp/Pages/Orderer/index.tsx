@@ -1,41 +1,32 @@
-import { Step1 } from './Step1'
-import { Step2 } from './Step2'
-import { Step3 } from './Step3'
-
-import { createContext, useContext, useState } from 'react'
+import { About } from './About'
+import { Optional } from './Optional'
+import { Personal } from './Personal'
 
 import { colors } from 'src/styles/custom/colors'
 
 import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
 import { Steps } from 'src/components/shared/molecules/Steps'
 
-import { TSetState } from 'src/types/react.types'
+import { OrdererProvider } from 'src/contexts/SignUp/Orderer'
 
-import { SignUpContext } from '..'
-
-export const OrdererContext = createContext<{
-  step: number
-  setStep: TSetState<number>
-}>({ step: 1, setStep: () => {} })
+import { useBackClick } from 'src/hooks/SignUp/useBackClick'
 
 export const Orderer = () => {
-  const [step, setStep] = useState(1)
-  const { setPage } = useContext(SignUpContext)
-
-  const onBackClick = () => {
-    if (step === 1) setPage('initial')
-    else setStep(prev => prev - 1)
-  }
+  const { onBackClick, step } = useBackClick()
 
   return (
     <AuthLayout onBackClick={onBackClick}>
-      <Steps quantity={3} filledQuantity={step} color={colors.tertiary[500]} />
+      <OrdererProvider>
+        <Steps
+          quantity={3}
+          filledQuantity={step}
+          color={colors.tertiary[500]}
+        />
 
-      <OrdererContext.Provider value={{ setStep, step }}>
-        {step === 1 && <Step1 />}
-        {step === 2 && <Step2 />}
-        {step === 3 && <Step3 />}
-      </OrdererContext.Provider>
+        {step === 1 && <Personal />}
+        {step === 2 && <About />}
+        {step === 3 && <Optional />}
+      </OrdererProvider>
     </AuthLayout>
   )
 }

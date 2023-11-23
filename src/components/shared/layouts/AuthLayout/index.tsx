@@ -1,5 +1,7 @@
+'use client'
+
 import { AuthBackground } from '../../molecules/AuthBackground'
-import { AuthNav, IAuthNavProps } from './AuthNav'
+import { INavProps, Nav } from './Nav'
 
 import { colors } from 'src/styles/custom/colors'
 
@@ -10,7 +12,7 @@ import { IComponentProps } from 'src/types/react.types'
 
 import { twMerge } from 'tailwind-merge'
 
-interface IAuthLayoutProps extends IComponentProps, Partial<IAuthNavProps> {
+interface IAuthLayoutProps extends IComponentProps, Partial<INavProps> {
   title?: string
 }
 
@@ -21,7 +23,7 @@ export const AuthLayout = ({
   onBackClick
 }: IAuthLayoutProps) => (
   <>
-    {onBackClick && <AuthNav onBackClick={onBackClick} />}
+    {onBackClick && <Nav onBackClick={onBackClick} />}
 
     <main
       className='

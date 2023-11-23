@@ -16,6 +16,7 @@ export const Field = forwardRef<any, IFieldProps>(
       tws,
       type,
       error,
+      value,
       className,
       icon: iconProp,
       color = 'primary',
@@ -43,12 +44,16 @@ export const Field = forwardRef<any, IFieldProps>(
 
         <input
           ref={ref}
+          value={value}
           {...useProps.input}
+          style={styles.input}
           className={twMerge(
-            'min-w-0 flex-1 px-2 py-3 bg-transparent outline-none placeholder:text-gray-300',
+            `
+             min-w-0 flex-1 px-2 py-3 bg-transparent outline-none
+             placeholder:text-gray-300
+            `,
             tws?.input
           )}
-          style={styles.input}
           {...props}
         />
 

@@ -1,18 +1,16 @@
 import { useRouter } from 'next/navigation'
 
-import { useContext } from 'react'
-
 import { colors } from 'src/styles/custom/colors'
 
 import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
 
-import { Person } from 'src/assets/icons'
+import { useSignUpContext } from 'src/contexts/SignUp'
 
-import { SignUpContext } from '..'
+import { Person } from 'src/assets/icons'
 
 export const Initial = () => {
   const { push } = useRouter()
-  const { setPage } = useContext(SignUpContext)
+  const { setPage } = useSignUpContext()
 
   const onCandidateClick = () => {
     setPage('candidate')

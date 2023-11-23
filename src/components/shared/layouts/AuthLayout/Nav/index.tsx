@@ -6,11 +6,11 @@ import { Arrow } from 'src/assets/icons'
 
 import { TButtonProps } from 'src/types/react.types'
 
-export interface IAuthNavProps {
+export interface INavProps {
   onBackClick: TButtonProps['onClick']
 }
 
-export const AuthNav = ({ onBackClick }: IAuthNavProps) => (
+export const Nav = ({ onBackClick }: INavProps) => (
   <nav className='absolute top-0 left-0 w-full px-2 py-2'>
     <Button className='p-2' onClick={onBackClick}>
       <Arrow className='h-5 w-5' fill={colors.gray[50]} dir='left' />
