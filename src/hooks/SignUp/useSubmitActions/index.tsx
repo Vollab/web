@@ -57,6 +57,7 @@ export const useSubmitActions = ({
       }
     })
 
+    console.log(toastRef)
     toastRef?.current?.triggerToast(infos)
 
     if (newStep) setStep(newStep)

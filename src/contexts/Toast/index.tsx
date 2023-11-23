@@ -1,6 +1,6 @@
 import { RefObject, createContext, useContext, useRef } from 'react'
 
-import { IForwardToast } from 'src/components/shared/molecules/Toast'
+import { IForwardToast, Toast } from 'src/components/shared/molecules/Toast'
 
 import { IChildrenProps } from 'src/types/react.types'
 
@@ -15,6 +15,8 @@ export const ToastProvider = ({ children }: IChildrenProps) => {
 
   return (
     <ToastContext.Provider value={{ toastRef }}>
+      <Toast ref={toastRef} />
+
       {children}
     </ToastContext.Provider>
   )
