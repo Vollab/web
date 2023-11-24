@@ -2,6 +2,7 @@ import {
   OrdererSignUpRequest,
   OrdererSignupResponse
 } from 'types-vollab/dist/routes/orderers/sign-up'
+import { Link } from 'types-vollab/dist/shared/link'
 import { Role } from 'types-vollab/dist/shared/role'
 
 export interface IUseSignUpParams {
@@ -9,6 +10,10 @@ export interface IUseSignUpParams {
 }
 
 export interface IUseOrdererSignUpMutation {
-  request: OrdererSignUpRequest
+  request: {
+    links: Link[]
+    avatar?: FormData
+    signup: OrdererSignUpRequest
+  }
   response: OrdererSignupResponse
 }

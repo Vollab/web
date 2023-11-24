@@ -4,16 +4,26 @@ import { useRef, useState } from 'react'
 
 import { IForwardModal } from 'src/components/shared/molecules/Modal/types'
 
+import Cropper from 'cropperjs'
+
 export const useFile = ({ onDataUpdates }: IUseFileParams) => {
+  const [cropper, setCropper] = useState<Cropper>()
   const fileRef = useRef<HTMLInputElement>(null)
-  const [cropper, setCropper] = useState<any>()
   const modalRef = useRef<IForwardModal>(null)
   const [error, setError] = useState<string>()
   const [file, setFile] = useState<any>()
 
   const getCropData = () => {
-    const url = cropper.getCroppedCanvas().toDataURL()
-    cropper && onDataUpdates && onDataUpdates(url)
+    const canvas = cropper?.getCroppedCanvas()
+    const url = canvas?.toDataURL()
+
+    const formData = new FormData()
+
+    canvas?.toBlob(blob => {
+      blob && formData.append('avatar', blob)
+    })
+
+    onDataUpdates && onDataUpdates({ url: url || '', formData })
   }
 
   const onChange = (e: any) => {

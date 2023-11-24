@@ -7,7 +7,7 @@ import { Link } from 'types-vollab/dist/shared/link'
 
 interface IOrdererData extends OrdererSignUpRequest {
   links?: Link[]
-  avatar?: string
+  avatar?: { url: string; formData: FormData }
 }
 
 interface IOrdererContext {

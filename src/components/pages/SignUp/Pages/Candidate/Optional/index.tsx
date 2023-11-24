@@ -10,7 +10,8 @@ import { File } from 'src/components/shared/groups/Form/File'
 import { LinksForm } from 'src/components/shared/molecules/LinksForm'
 
 export const Optional = () => {
-  const { avatar, setAvatar, onCreateClick, links, setLinks } = useOptional()
+  const { onCreateClick, onAvatarChange, setLinks, candidateData } =
+    useOptional()
 
   return (
     <FormLayout
@@ -23,12 +24,19 @@ export const Optional = () => {
           name='avatar'
           label='Avatar'
           className='relative'
-          onDataUpdates={data => setAvatar(data)}
+          onDataUpdates={onAvatarChange}
         >
-          <AvatarUpload avatar={avatar} fill={colors.secondary[500]} />
+          <AvatarUpload
+            avatar={candidateData.avatar?.url}
+            fill={colors.secondary[500]}
+          />
         </File>
 
-        <LinksForm links={links} setLinks={setLinks} color='secondary' />
+        <LinksForm
+          links={candidateData.links || []}
+          setLinks={setLinks}
+          color='secondary'
+        />
 
         <Button onClick={onCreateClick} color='secondary' className='w-full'>
           Criar conta

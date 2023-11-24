@@ -8,7 +8,7 @@ export interface IFileProps extends ReactCropperProps, IChildrenProps {
   maxSize?: string
   noCropper?: boolean
   onClick?: () => void
-  onDataUpdates?: (fileData?: string) => void
+  onDataUpdates?: (params: { url: string; formData: FormData }) => void
 }
 
 export interface IUseFileParams {

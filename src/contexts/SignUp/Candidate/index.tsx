@@ -7,7 +7,7 @@ import { Link } from 'types-vollab/dist/shared/link'
 
 interface ICandidateData extends CandidateSignUpRequest {
   links?: Link[]
-  avatar?: string
+  avatar?: { url: string; formData: FormData }
   activityAreas?: { value: string; label: string }[]
 }
 

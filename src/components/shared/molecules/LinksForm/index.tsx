@@ -4,7 +4,7 @@ import { Field } from '../../groups/Form'
 
 import { useState } from 'react'
 
-import { IClassNameProps, TSetState } from 'src/types/react.types'
+import { IClassNameProps } from 'src/types/react.types'
 
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
@@ -13,8 +13,8 @@ import { Link } from 'types-vollab/dist/shared/link'
 
 interface ILinksFormProps extends IClassNameProps {
   links: Link[]
+  setLinks: (newState: Link[]) => void
   color?: 'primary' | 'secondary' | 'tertiary'
-  setLinks: TSetState<Link[]>
 }
 
 export const LinksForm = ({
@@ -71,13 +71,13 @@ export const LinksForm = ({
       return
     }
 
-    setLinks(prev => [...prev, { href: String(link), label: String(title) }])
+    setLinks([...links, { href: String(link), label: String(title) }])
   }
 
   const onRemoveLinkClick = (removedTitle: string) => {
     setLimitError(false)
 
-    setLinks(prev => prev.filter(({ label }) => label !== removedTitle))
+    setLinks(links.filter(({ label }) => label !== removedTitle))
   }
 
   return (
