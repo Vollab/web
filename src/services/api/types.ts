@@ -8,6 +8,7 @@ export interface IApiParams {
   revalidate?: number
   options?: RequestInit
   render?: 'SSR' | 'SSG'
+  service?: 'auth' | 'demand' | 'vacancy'
 }
 
 export interface IGetHeadersParams {

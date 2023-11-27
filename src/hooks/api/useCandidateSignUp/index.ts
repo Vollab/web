@@ -2,38 +2,23 @@ import { IUseCandidateSignUpMutation } from './types'
 
 import { useMutation } from 'src/hooks/useMutation'
 
-import { api } from 'src/services/api'
+import { avatar } from 'src/requests/avatar'
+import { activityAreas } from 'src/requests/candidates/activityAreas'
+import { signUp } from 'src/requests/candidates/signup'
+import { links } from 'src/requests/links'
+import { signIn } from 'src/requests/signin'
 
 export const useCandidateSignUp = () =>
   useMutation<IUseCandidateSignUpMutation>(async request => {
-    await api.post({
-      data: request.signup,
-      url: `/candidates/sign-up`
-    })
+    const activityAreasIds = request.activityAreas.map(({ value }) => value)
+    const signInData = {
+      email: request.signup.email,
+      password: request.signup.password
+    }
 
-    await api.post({
-      data: { email: request.signup.email, password: request.signup.password },
-      url: `/sign-in`
-    })
-
-    if (request.avatar)
-      await api.put({
-        url: '/avatar',
-        data: request.avatar,
-        customHeader: { 'Content-Type': 'multipart/form-data' }
-      })
-
-    const activityAreas = request.activityAreas.map(({ value }) => value)
-
-    for (let i = 0; i < activityAreas.length; i++)
-      await api.post({
-        url: `/candidates/activity-area/${activityAreas[i]}`
-      })
-
-    if (request.links)
-      for (let i = 0; i < request.links.length; i++)
-        await api.post({
-          url: `/api/users/links`,
-          data: { url: request.links[i].href, text: request.links[i].label }
-        })
+    await signUp(request.signup)
+    await signIn(signInData)
+    await links(request.links)
+    await avatar(request.avatar)
+    await activityAreas(activityAreasIds)
   })

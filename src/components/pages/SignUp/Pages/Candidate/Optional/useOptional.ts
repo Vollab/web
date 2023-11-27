@@ -6,8 +6,8 @@ import { useCandidateSignUp } from 'src/hooks/api/useCandidateSignUp'
 import { Link } from 'types-vollab/dist/shared/link'
 
 export const useOptional = () => {
-  const { mutateAsync, isError, error, isSuccess } = useCandidateSignUp()
   const { candidateData, setCandidateData } = useCandidateContext()
+  const { mutateAsync, isError, error, isSuccess } = useCandidateSignUp()
 
   useSubmitActions({ isError, error, isSuccess })
 

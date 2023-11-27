@@ -6,6 +6,12 @@ import { colors } from 'src/styles/custom/colors'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
+import { useUserContext } from 'src/contexts/User'
+
+import { infos } from 'src/static/infos'
+
+import { useSignOut } from 'src/hooks/api/useSignOut'
+
 import { Avatar } from 'src/assets/icons'
 import { House } from 'src/assets/icons/House'
 import { Logout } from 'src/assets/icons/Logout'
@@ -23,8 +29,11 @@ export const MainLayout = ({
   hideHeader = false
 }: IMainLayoutProps) => {
   const { push } = useRouter()
+  const { mutate } = useSignOut()
+  const { user } = useUserContext()
 
   const onLogoutClick = () => {
+    mutate({})
     push('/sign-in')
   }
 
@@ -49,8 +58,18 @@ export const MainLayout = ({
           </Button>
 
           <div className='flex flex-col ml-4 gap-1'>
-            <span className='font-semibold text-lg'>Olá, Miguel</span>
-            <span className='text-secondary-500 font-medium'>Candidato</span>
+            <span className='font-semibold text-lg'>
+              Olá, {user?.name.split(' ')[0]}
+            </span>
+
+            {user?.role && (
+              <span
+                className='font-medium'
+                style={{ color: infos.roles[user.role].color }}
+              >
+                {infos.roles[user.role].label}
+              </span>
+            )}
           </div>
 
           <Button className='ml-auto' onClick={onLogoutClick}>

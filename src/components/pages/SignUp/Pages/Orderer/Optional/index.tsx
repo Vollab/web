@@ -15,7 +15,8 @@ export const Optional = () => {
 
   return (
     <FormLayout
-      role='Candidato'
+      role='Solicitante'
+      color='tertiary'
       title='Informações opcionais'
       content='É sempre bom ter uma foto de perfil e alguns links para melhorar o seu perfil!'
     >

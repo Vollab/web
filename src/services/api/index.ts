@@ -4,7 +4,18 @@ import { get } from './get'
 import { post } from './post'
 import { put } from './put'
 
-export const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+export const baseUrl = (service: 'auth' | 'demand' | 'vacancy') => {
+  switch (service) {
+    case 'demand':
+      return process.env.NEXT_PUBLIC_API_DEMAND_URL
+
+    case 'vacancy':
+      return process.env.NEXT_PUBLIC_API_VACANCY_URL
+
+    default:
+      return process.env.NEXT_PUBLIC_API_AUTH_URL
+  }
+}
 
 export const getHeaders = ({ options, token }: IGetHeadersParams) => {
   const headersWithToken = {

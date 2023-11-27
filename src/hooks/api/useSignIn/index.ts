@@ -2,7 +2,7 @@ import { IUseSignInMutation } from './types'
 
 import { useMutation } from 'src/hooks/useMutation'
 
-import { signIn } from 'src/requests/sign-in'
+import { signIn } from 'src/requests/signin'
 
 export const useSignIn = () =>
-  useMutation<IUseSignInMutation>(body => signIn(body))
+  useMutation<IUseSignInMutation>(data => signIn(data))

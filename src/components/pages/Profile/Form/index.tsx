@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useForm } from './useForm'
 
 import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
@@ -8,43 +8,33 @@ import { Field, File, Label, Select } from 'src/components/shared/groups/Form'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 import { LinksForm } from 'src/components/shared/molecules/LinksForm'
 
-import { Link } from 'types-vollab/dist/shared/link'
-
 export const Form = () => {
-  const [links, setLinks] = useState<Link[]>([])
+  const { submit, links, setLinks, props } = useForm()
 
   return (
-    <div className='grid grid-cols-3 py-6 px-4 gap-4'>
+    <form className='grid grid-cols-3 py-6 px-4 gap-4' onSubmit={submit}>
       <File label='avatar' name='avatar' className='mb-2 mx-auto col-span-3'>
         <AvatarUpload />
       </File>
 
       <Label className='col-span-3' title='Nome Completo'>
-        <Field as='div' />
+        <Field as='div' {...props.name} />
       </Label>
 
       <Label className='col-span-3' title='Email'>
-        <Field as='div' />
+        <Field as='div' {...props.email} />
       </Label>
 
       <Label className='col-span-3' title='Celular'>
-        <Field as='div' />
+        <Field as='div' {...props.phone} />
       </Label>
 
       <Label title='Area de atuação' className='col-span-3'>
         <Select options={[]} />
       </Label>
 
-      <Label title='Estado'>
-        <Select placeholder='SP' options={[]} />
-      </Label>
-
-      <Label title='Cidade' className='col-span-2'>
-        <Select options={[]} />
-      </Label>
-
       <Label title='Biografia' className='col-span-3'>
-        <Textarea />
+        <Textarea {...props.biography} />
       </Label>
 
       <LinksForm links={links} setLinks={setLinks} className='col-span-3' />
@@ -52,6 +42,6 @@ export const Form = () => {
       <Button className='col-span-3' variant='primary' color='primary'>
         Salvar Alterações
       </Button>
-    </div>
+    </form>
   )
 }

@@ -10,9 +10,10 @@ export const post = async ({
   options,
   revalidate,
   customHeader,
-  render = 'SSG'
+  render = 'SSG',
+  service = 'auth'
 }: IApiParams) =>
-  fetch(`${baseUrl}${url}`, {
+  fetch(`${baseUrl(service)}${url}`, {
     ...options,
     mode: 'cors',
     method: method || 'POST',

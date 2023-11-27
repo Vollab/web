@@ -7,9 +7,10 @@ export const get = async ({
   options,
   revalidate,
   customHeader,
-  render = 'SSG'
+  render = 'SSG',
+  service = 'auth'
 }: IApiParams) =>
-  fetch(`${baseUrl}${url}`, {
+  fetch(`${baseUrl(service)}${url}`, {
     cache: getCache(render, revalidate),
     headers: customHeader || getHeaders({ options, token }),
     next: { revalidate: revalidate || undefined },

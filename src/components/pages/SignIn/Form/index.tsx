@@ -1,33 +1,25 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useForm } from './useForm'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field } from 'src/components/shared/groups/Form'
 
 export const Form = () => {
-  const { push } = useRouter()
-
-  const onSubmit = () => {
-    push('/demands')
-  }
-
-  const onSignUpClick = () => {
-    push('/sign-up')
-  }
+  const { submitHandler, onSignUpClick, props } = useForm()
 
   return (
-    <form className='flex flex-col gap-4 py-4'>
-      <Field placeholder='E-mail' />
+    <form onSubmit={submitHandler} className='flex flex-col gap-4 py-4'>
+      <Field placeholder='E-mail' {...props.email} />
 
-      <Field placeholder='Senha' type='password' />
+      <Field placeholder='Senha' type='password' {...props.password} />
 
       <footer className='flex items-center justify-between flex-col space-y-4'>
         <Button
+          type='submit'
           color='primary'
-          variant='secondary'
-          onClick={onSubmit}
           className='w-full'
+          variant='secondary'
         >
           Entrar
         </Button>
