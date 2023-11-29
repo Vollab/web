@@ -2,7 +2,7 @@ import { FormLayout } from '../../FormLayout'
 import { useAbout } from './useAbout'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
-import { Field } from 'src/components/shared/groups/Form'
+import { Field } from 'src/components/shared/groups/Form/Field'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
 export const About = () => {

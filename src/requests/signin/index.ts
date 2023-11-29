@@ -1,5 +1,9 @@
 import { TSignIn } from './types'
 
-import { api } from 'src/services/api'
+export const signIn: TSignIn = async data => {
+  const response = await fetch('/api/sign-in', {body: JSON.stringify(data),
+    method: 'post'
+  })
 
-export const signIn: TSignIn = data => api.post({ url: `/sign-in`, data })
+  return await response.json()
+}

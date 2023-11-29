@@ -9,18 +9,18 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
 
+import { TDemand } from 'src/hooks/api/demands/useDemands/types'
+
 import { Avatar } from 'src/assets/icons'
 
-import { Demand as IDemand } from 'types-vollab/dist/routes/demands'
-
 interface IDemandProps {
-  id: IDemand['id']
-  title: IDemand['title']
-  resume: IDemand['resume']
-  status: IDemand['status']
+  id: TDemand['id']
+  title: TDemand['title']
+  resume: TDemand['resume']
+  status: TDemand['status']
   showApplications?: boolean
-  orderer: IDemand['orderer']
-  vacancies: IDemand['vacancies']
+  orderer: TDemand['orderer']
+  vacancies: TDemand['vacancies']
 }
 
 export const Demand = ({

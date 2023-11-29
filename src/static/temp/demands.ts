@@ -8,12 +8,10 @@ export const demands: DemandsResponse = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
       status: 'OPEN',
       title: 'Ticpass',
-      orderer: { id: '1', name: 'Miguel Barreto' },
-      vacancies: [
-        { id: '1', name: 'Programador', work_mode: 'HYBRID' },
-        { id: '1', name: 'Programador', work_mode: 'IN_PERSON' },
-        { id: '2', name: 'Design', work_mode: 'REMOTE' }
-      ]
+      created_at: '',
+      description: '',
+      orderer_id: '',
+      updated_at: ''
     },
     {
       id: '2',
@@ -21,12 +19,10 @@ export const demands: DemandsResponse = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
       status: 'OPEN',
       title: 'Ticpass',
-      orderer: { id: '1', name: 'Miguel Barreto' },
-      vacancies: [
-        { id: '1', name: 'Programador', work_mode: 'HYBRID' },
-        { id: '1', name: 'Programador', work_mode: 'IN_PERSON' },
-        { id: '2', name: 'Design', work_mode: 'REMOTE' }
-      ]
+      created_at: '',
+      description: '',
+      orderer_id: '',
+      updated_at: ''
     },
     {
       id: '3',
@@ -34,12 +30,24 @@ export const demands: DemandsResponse = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
       status: 'OPEN',
       title: 'Ticpass',
-      orderer: { id: '1', name: 'Miguel Barreto' },
-      vacancies: [
-        { id: '1', name: 'Programador', work_mode: 'HYBRID' },
-        { id: '1', name: 'Programador', work_mode: 'IN_PERSON' },
-        { id: '2', name: 'Design', work_mode: 'REMOTE' }
-      ]
+      created_at: '',
+      description: '',
+      orderer_id: '',
+      updated_at: ''
     }
   ]
 }
+
+// {
+//   id: '3',
+//   resume:
+//     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
+//   status: 'OPEN',
+//   title: 'Ticpass',
+//   orderer: { id: '1', name: 'Miguel Barreto' },
+//   vacancies: [
+//     { id: '1', name: 'Programador', work_mode: 'HYBRID' },
+//     { id: '1', name: 'Programador', work_mode: 'IN_PERSON' },
+//     { id: '2', name: 'Design', work_mode: 'REMOTE' }
+//   ]
+// }

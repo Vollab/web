@@ -1,6 +1,7 @@
 import { TGetDemands } from './types'
 
-import { api } from 'src/services/api'
+export const getDemands: TGetDemands = async () => {
+  const response = await fetch('/api/demands')
 
-export const getDemands: TGetDemands = () =>
-  api.get({ url: `/demands`, service: 'demand' })
+  return await response.json()
+}

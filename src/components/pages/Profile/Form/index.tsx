@@ -4,7 +4,10 @@ import { useForm } from './useForm'
 
 import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
-import { Field, File, Label, Select } from 'src/components/shared/groups/Form'
+import { Field } from 'src/components/shared/groups/Form/Field'
+import { File } from 'src/components/shared/groups/Form/File'
+import { Label } from 'src/components/shared/groups/Form/Label'
+import { Select } from 'src/components/shared/groups/Form/Select'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 import { LinksForm } from 'src/components/shared/molecules/LinksForm'
 

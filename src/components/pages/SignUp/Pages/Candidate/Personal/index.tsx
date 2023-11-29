@@ -2,7 +2,7 @@ import { FormLayout } from '../../FormLayout'
 import { usePersonal } from './usePersonal'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
-import { Field } from 'src/components/shared/groups/Form'
+import { Field } from 'src/components/shared/groups/Form/Field'
 
 import { formatPhone } from 'src/utils/format/phone'
 

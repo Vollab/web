@@ -5,4 +5,4 @@ const withPWA = require('next-pwa')({ dest: 'public' })
 /** @type {import('next').NextConfig} */
 const nextConfig = { reactStrictMode: false, images: { domains: [] } }
 
-module.exports = withPWA(nextConfig)
+module.exports = nextConfig

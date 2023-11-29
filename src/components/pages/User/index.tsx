@@ -5,7 +5,8 @@ import { colors } from 'src/styles/custom/colors'
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
 import { infos } from 'src/static/infos'
-import { user } from 'src/static/temp/user'
+
+import { useUsers } from 'src/hooks/api/useUsers'
 
 import { Avatar } from 'src/assets/icons'
 
@@ -13,11 +14,13 @@ interface IUserProps {
   id: string
 }
 
-export const User = async ({}: IUserProps) => {
-  const data = user
+export const User = async ({ id }: IUserProps) => {
+  const { data } = useUsers({ id })
 
-  const roleColor = data ? infos.roles[data.role].color : ''
-  const roleLabel = data ? infos.roles[data.role].label : ''
+  const user = data?.user
+
+  const roleColor = user ? infos.roles[user.role].color : ''
+  const roleLabel = user ? infos.roles[user.role].label : ''
 
   return (
     <MainLayout>
@@ -32,7 +35,7 @@ export const User = async ({}: IUserProps) => {
             </span>
 
             <h1 className='font-semibold text-xl leading-9 text-gray-600 ellipsis'>
-              {data?.name}
+              {user?.name}
             </h1>
           </div>
 
@@ -43,25 +46,25 @@ export const User = async ({}: IUserProps) => {
 
         <ul className='flex flex-col gap-4 py-4'>
           <li>
-            <p className='text-gray-500'>{data?.biography}</p>
+            <p className='text-gray-500'>{user?.biography}</p>
           </li>
 
           <li className='flex flex-col gap-1'>
             <span className='font-medium text-lg'>Email:</span>
 
-            <span className='text-gray-500'>{data?.email}</span>
+            <span className='text-gray-500'>{user?.email}</span>
           </li>
 
           <li className='flex flex-col gap-1'>
             <span className='font-medium text-lg'>Celular:</span>
 
-            <span className='text-gray-500'>{data?.phone}</span>
+            <span className='text-gray-500'>{user?.phone}</span>
           </li>
 
           <li className='flex flex-col gap-1'>
             <span className='font-medium text-lg'>Links:</span>
 
-            <Links links={data?.links} />
+            <Links links={user?.links} />
           </li>
         </ul>
       </main>

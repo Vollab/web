@@ -2,8 +2,8 @@ import { FormLayout } from '../../FormLayout'
 import { useAbout } from './useAbout'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
-import { Select } from 'src/components/shared/groups/Form'
 import { LeftIcon } from 'src/components/shared/groups/Form/Field/LeftIcon'
+import { Select } from 'src/components/shared/groups/Form/Select'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
 export const About = () => {

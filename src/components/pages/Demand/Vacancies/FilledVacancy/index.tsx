@@ -1,6 +1,6 @@
 import { infos } from 'src/static/infos'
 
-import { Vacancy } from 'types-vollab/dist/routes/demands/id'
+import { Vacancy } from 'types-vollab/dist/shared/vacancy'
 
 export interface IFilledVacancyProps {
   name: Vacancy['name']

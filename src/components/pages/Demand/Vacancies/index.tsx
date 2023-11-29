@@ -1,10 +1,10 @@
 import { FilledVacancy } from './FilledVacancy'
 import { OpenVacancy } from './OpenVacancy'
 
-import { DemandResponse } from 'types-vollab/dist/routes/demands/id'
+import { Vacancy } from 'types-vollab/dist/shared/vacancy'
 
 export interface IVacanciesProps {
-  vacancies?: DemandResponse['vacancies']
+  vacancies?: Vacancy[]
 }
 
 export const Vacancies = ({ vacancies }: IVacanciesProps) => (

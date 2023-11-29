@@ -1,18 +1,22 @@
+'use client'
+
+import { Title } from './Title'
+
 import { AvatarButton } from 'src/components/shared/groups/Buttons/AvatarButton'
 import { BackButton } from 'src/components/shared/groups/Buttons/BackButton'
 
 import { infos } from 'src/static/infos'
 
-import { DemandResponse, Orderer } from 'types-vollab/dist/routes/demands/id'
+import { Demand } from 'types-vollab/dist/shared/demand'
 
 interface IHeaderProps {
-  id?: DemandResponse['id']
-  avatar?: Orderer['avatar']
-  title?: DemandResponse['title']
-  status?: DemandResponse['status']
+  avatar?: string
+  id?: Demand['id']
+  title?: Demand['title']
+  status?: Demand['status']
 }
 
-export const Header = ({ status, title, id, avatar }: IHeaderProps) => {
+export const Header = ({ id, status, avatar, title }: IHeaderProps) => {
   const statusColor = status ? infos.demandStatus[status].color : ''
   const statusLabel = status ? infos.demandStatus[status].label : ''
 
@@ -21,9 +25,7 @@ export const Header = ({ status, title, id, avatar }: IHeaderProps) => {
       <BackButton />
 
       <div className='flex flex-col gap-1'>
-        <h1 className='font-semibold text-h5 text-tertiary-500 font-primary'>
-          {title}
-        </h1>
+        <Title title={title} />
 
         <span className='font-medium text-lg' style={{ color: statusColor }}>
           {statusLabel}

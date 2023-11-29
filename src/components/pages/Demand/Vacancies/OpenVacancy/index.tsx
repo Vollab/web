@@ -5,7 +5,7 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
 
-import { Vacancy } from 'types-vollab/dist/routes/demands/id'
+import { Vacancy } from 'types-vollab/dist/shared/vacancy'
 
 export interface IOpenVacancyProps {
   id: Vacancy['id']
