@@ -14,8 +14,8 @@ export const useSignIn = () => {
     useMutation<IUseSignInMutation>(data => signIn(data))
 
   useEffect(() => {
-    if (isSuccess) setUser(data?.user)
-  }, [data?.user, isSuccess, setUser])
+    if (isSuccess) setUser(data)
+  }, [data, isSuccess, setUser])
 
   return { mutate, mutateAsync }
 }

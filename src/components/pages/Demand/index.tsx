@@ -13,7 +13,7 @@ interface IDemandProps {
 export const Demand = async ({ id }: IDemandProps) => {
   const data = await getDemand({ id })
 
-  const demand = data.demand
+  const demand = data
 
   return (
     <MainLayout hideHeader>

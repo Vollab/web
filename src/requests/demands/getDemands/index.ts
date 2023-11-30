@@ -3,6 +3,7 @@ import { TGetDemands } from './types'
 import { IUseDemandsResponse } from 'src/hooks/api/demands/useDemands/types'
 
 import { DemandsResponse } from 'types-vollab/dist/routes/demands'
+import { VacanciesResponse } from 'types-vollab/dist/routes/demands/[id]/vacancies/index'
 import { UserResponse } from 'types-vollab/dist/routes/users/[id]'
 
 export const getDemands: TGetDemands = async () => {
@@ -17,20 +18,21 @@ export const getDemands: TGetDemands = async () => {
       await fetch(`/api/users/${demand.orderer_id}`)
     ).json()
 
-    const avatar = await (
-      await fetch(`/api/users/${orderer.user}/avatar`)
-    ).json()
+    const avatar = await fetch(`/api/users/${demand.orderer_id}/avatar`)
 
-    const vacancies = (
-      await (await fetch(`api/demands/${demand.id}/vacancies/`)).json()
+    const vacancies: VacanciesResponse['vacancies'] = (
+      await (await fetch(`api/demands/${demand.id}/vacancies`)).json()
     ).vacancies
 
     formattedDemands.push({
-      vacancies: [],
-      orderer: { ...orderer.user, avatar },
-      ...demand
+      ...demand,
+      vacancies,
+      orderer: {
+        ...orderer.user,
+        avatar: URL.createObjectURL(await avatar.blob())
+      }
     })
   })
 
-  return
+  return { demands: formattedDemands }
 }

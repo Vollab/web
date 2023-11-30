@@ -25,9 +25,7 @@ export const useForm = () => {
       defaultValues: { name: '', phone: '', biography: '', email: '' }
     })
 
-  const onSubmit = (data: IFormData) => {
-    console.log(data)
-  }
+  const onSubmit = (data: IFormData) => {}
 
   const onPhoneChange: TInputProps['onChange'] = e => {
     setValue('phone', formatPhone(e.target.value))

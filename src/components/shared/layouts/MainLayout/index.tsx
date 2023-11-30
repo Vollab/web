@@ -1,5 +1,7 @@
 'use client'
 
+import { Image } from '../../atoms/Image'
+
 import { useRouter } from 'next/navigation'
 
 import { colors } from 'src/styles/custom/colors'
@@ -54,12 +56,20 @@ export const MainLayout = ({
       {!hideHeader && (
         <header className='flex p-4 items-center shadow-md fixed top-0 left-0 right-0 bg-gray-50 z-10'>
           <Button onClick={onProfileClick}>
-            <Avatar fill={colors.primary[500]} className='h-12 w-12' />
+            {user?.avatar ? (
+              <Image
+                alt='avatar'
+                src={user.avatar}
+                className='h-12 w-12 rounded-full object-cover border border-primary-500'
+              />
+            ) : (
+              <Avatar fill={colors.primary[500]} className='h-12 w-12' />
+            )}
           </Button>
 
           <div className='flex flex-col ml-4 gap-1'>
             <span className='font-semibold text-lg'>
-              Olá, {user?.name.split(' ')[0]}
+              Olá, {user?.name?.split(' ')[0]}
             </span>
 
             {user?.role && (

@@ -11,8 +11,6 @@ export const ResizableInput = ({
   onKeyDown: onKeyDownProp,
   ...props
 }: IResizableProps) => {
-  console.log(className)
-
   const inputRef = useRef<HTMLInputElement>(null)
 
   const onKeyDown: TInputProps['onKeyDown'] = e => {

@@ -1,11 +1,7 @@
 export const UseApplication = () => {
-  const confirmApplication = (id: string) => {
-    console.log(id)
-  }
+  const confirmApplication = (id: string) => {}
 
-  const cancelApplication = (id: string) => {
-    console.log(id)
-  }
+  const cancelApplication = (id: string) => {}
 
   return { confirmApplication, cancelApplication }
 }
