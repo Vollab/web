@@ -3,6 +3,4 @@ import {
   DemandResponse
 } from 'types-vollab/dist/routes/demands/[id]'
 
-export type TGetDemand = (
-  params: DemandParams
-) => Promise<DemandResponse> | DemandResponse
+export type TGetDemand = (params: DemandParams) => Promise<DemandResponse>

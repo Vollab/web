@@ -9,7 +9,7 @@ export type TDemand = Demand & {
   }
 }
 
-interface IUseDemandsResponse {
+export interface IUseDemandsResponse {
   demands: TDemand[]
 }
 

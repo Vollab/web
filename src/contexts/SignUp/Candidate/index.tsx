@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from 'react'
 
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+
 import { IChildrenProps, TSetState } from 'src/types/react.types'
 
 import { CandidateSignUpRequest } from 'types-vollab/dist/routes/candidates/sign-up'
-import { Link } from 'types-vollab/dist/shared/link'
 
 interface ICandidateData extends CandidateSignUpRequest {
-  links?: Link[]
+  links?: ILinksFormProps['links']
   avatar?: { url: string; formData: FormData }
   activityAreas?: { value: string; label: string }[]
 }

@@ -18,7 +18,6 @@ export const User = async ({ id }: IUserProps) => {
   const { data } = useUsers({ id })
 
   const user = data?.user
-
   const roleColor = user ? infos.roles[user.role].color : ''
   const roleLabel = user ? infos.roles[user.role].label : ''
 
@@ -64,7 +63,7 @@ export const User = async ({ id }: IUserProps) => {
           <li className='flex flex-col gap-1'>
             <span className='font-medium text-lg'>Links:</span>
 
-            <Links links={user?.links} />
+            <Links links={[]} />
           </li>
         </ul>
       </main>

@@ -1,9 +1,9 @@
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+
 import { useOrdererContext } from 'src/contexts/SignUp/Orderer'
 
 import { useSubmitActions } from 'src/hooks/SignUp/useSubmitActions'
 import { useOrdererSignUp } from 'src/hooks/api/useOrdererSignUp'
-
-import { Link } from 'types-vollab/dist/shared/link'
 
 export const useOptional = () => {
   const { mutateAsync, isError, error, isSuccess } = useOrdererSignUp()
@@ -15,7 +15,7 @@ export const useOptional = () => {
     setOrdererData(prev => ({ ...prev, avatar: data }))
   }
 
-  const setLinks = (links: Link[]) => {
+  const setLinks = (links: ILinksFormProps['links']) => {
     setOrdererData(prev => ({ ...prev, links }))
   }
 

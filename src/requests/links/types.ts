@@ -1,3 +1,3 @@
-import { Link } from 'types-vollab/dist/shared/link'
+import { LinksRequest } from 'types-vollab/dist/routes/current-user/links/post'
 
-export type TLinks = (links: Link[]) => Promise<void>
+export type TLinks = (links: LinksRequest[]) => Promise<void>

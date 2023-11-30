@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from 'react'
 
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+
 import { IChildrenProps, TSetState } from 'src/types/react.types'
 
 import { OrdererSignUpRequest } from 'types-vollab/dist/routes/orderers/sign-up'
-import { Link } from 'types-vollab/dist/shared/link'
 
 interface IOrdererData extends OrdererSignUpRequest {
-  links?: Link[]
+  links?: ILinksFormProps['links']
   avatar?: { url: string; formData: FormData }
 }
 

@@ -27,6 +27,6 @@ export const useOrdererSignUp = () =>
       for (let i = 0; i < request.links.length; i++)
         await api.post({
           url: `/api/users/links`,
-          data: { url: request.links[i].href, text: request.links[i].label }
+          data: { url: request.links[i].url, text: request.links[i].text }
         })
   })

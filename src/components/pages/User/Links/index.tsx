@@ -19,12 +19,8 @@ export const Links = ({ links }: ILinksProps) => {
 
   return links ? (
     <ul className='flex-col gap-1 flex py-2'>
-      {links?.map(({ label, href }) => (
-        <LinkLabel
-          key={label}
-          title={label}
-          onClick={() => onLinkClick(href)}
-        />
+      {links?.map(({ text, url }) => (
+        <LinkLabel key={text} title={text} onClick={() => onLinkClick(url)} />
       ))}
     </ul>
   ) : (

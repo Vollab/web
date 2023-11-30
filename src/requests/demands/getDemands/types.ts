@@ -1,3 +1,3 @@
-import { DemandsResponse } from 'types-vollab/dist/routes/demands'
+import { IUseDemandsResponse } from 'src/hooks/api/demands/useDemands/types'
 
-export type TGetDemands = () => Promise<DemandsResponse>
+export type TGetDemands = () => Promise<IUseDemandsResponse>

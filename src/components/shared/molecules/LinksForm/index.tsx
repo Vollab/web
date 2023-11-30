@@ -11,9 +11,12 @@ import Joi from 'joi'
 import { useForm } from 'react-hook-form'
 import { Link } from 'types-vollab/dist/shared/link'
 
-interface ILinksFormProps extends IClassNameProps {
-  links: Link[]
-  setLinks: (newState: Link[]) => void
+export interface ILinksFormProps extends IClassNameProps {
+  links: {
+    url: Link['url']
+    text: Link['text']
+  }[]
+  setLinks: (newState: ILinksFormProps['links']) => void
   color?: 'primary' | 'secondary' | 'tertiary'
 }
 
@@ -27,7 +30,7 @@ export const LinksForm = ({
   const [linkError, setLinkError] = useState<{ message: string }>()
   const [titleError, setTitleError] = useState<{ message: string }>()
 
-  const { handleSubmit, register } = useForm({
+  const { handleSubmit, register } = useForm<ILinksFormProps['links'][number]>({
     resolver: joiResolver(
       Joi.object({
         href: Joi.string(),
@@ -36,7 +39,7 @@ export const LinksForm = ({
         })
       })
     ),
-    defaultValues: { href: '', label: '' }
+    defaultValues: { text: '', url: '' }
   })
 
   const onLinkFocus = () => {
@@ -47,17 +50,17 @@ export const LinksForm = ({
     setTitleError(undefined)
   }
 
-  const onAddLinkClick = (values: any) => {
-    const link = values.href
-    const title = values.label
+  const onAddLinkClick = (values: ILinksFormProps['links'][number]) => {
+    const link = values.url
+    const title = values.text
 
     if (!link) setLinkError({ message: 'Informe um Link' })
     if (!title) setTitleError({ message: 'Informe um Título' })
 
     if (!link || !title) return
 
-    const titleAlreadyExists = links.find(prevItem => prevItem.label === title)
-    const linkAlreadyExists = links.find(prevItem => prevItem.href === link)
+    const titleAlreadyExists = links.find(prevItem => prevItem.text === title)
+    const linkAlreadyExists = links.find(prevItem => prevItem.url === link)
 
     if (linkAlreadyExists) setLinkError({ message: 'Link ja existe' })
     if (titleAlreadyExists) setTitleError({ message: 'Título ja existe' })
@@ -71,13 +74,13 @@ export const LinksForm = ({
       return
     }
 
-    setLinks([...links, { href: String(link), label: String(title) }])
+    setLinks([...links, { text: String(link), url: String(title) }])
   }
 
   const onRemoveLinkClick = (removedTitle: string) => {
     setLimitError(false)
 
-    setLinks(links.filter(({ label }) => label !== removedTitle))
+    setLinks(links.filter(({ text }) => text !== removedTitle))
   }
 
   return (
@@ -92,12 +95,12 @@ export const LinksForm = ({
         </span>
 
         <ul className='flex pt-2 flex-wrap'>
-          {links.map(({ label }, index) => (
+          {links.map(({ text }, index) => (
             <LinkLabel
               key={index}
-              title={label}
+              title={text}
               color={color}
-              onRemoveClick={() => onRemoveLinkClick(label)}
+              onRemoveClick={() => onRemoveLinkClick(text)}
             />
           ))}
         </ul>
@@ -112,7 +115,7 @@ export const LinksForm = ({
           placeholder='Link'
           error={linkError}
           onFocus={onLinkFocus}
-          {...register('href')}
+          {...register('url')}
           className={`
             col-span-2 text-sm
             ${linkError && 'border-red-500'}
@@ -125,7 +128,7 @@ export const LinksForm = ({
           error={titleError}
           onFocus={onTitleFocus}
           maxLength={16}
-          {...register('label')}
+          {...register('text')}
           className={`
             text-sm
             ${titleError && 'border-error-500'}

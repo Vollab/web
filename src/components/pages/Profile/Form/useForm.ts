@@ -2,6 +2,8 @@ import { IFormData } from './types'
 
 import { FormEventHandler, useState } from 'react'
 
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+
 import { biography } from 'src/schemas/biography'
 
 import { TInputProps } from 'src/types/react.types'
@@ -12,12 +14,11 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm as useFormHook } from 'react-hook-form'
 import { email, name, phone } from 'src/schemas'
-import { Link } from 'types-vollab/dist/shared/link'
 
 const resolver = joiResolver(Joi.object({ phone, name, biography, email }))
 
 export const useForm = () => {
-  const [links, setLinks] = useState<Link[]>([])
+  const [links, setLinks] = useState<ILinksFormProps['links']>([])
   const { handleSubmit, register, formState, setValue } =
     useFormHook<IFormData>({
       resolver,

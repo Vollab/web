@@ -1,8 +1,9 @@
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+
 import {
   OrdererSignUpRequest,
   OrdererSignupResponse
 } from 'types-vollab/dist/routes/orderers/sign-up'
-import { Link } from 'types-vollab/dist/shared/link'
 import { Role } from 'types-vollab/dist/shared/role'
 
 export interface IUseSignUpParams {
@@ -11,9 +12,9 @@ export interface IUseSignUpParams {
 
 export interface IUseOrdererSignUpMutation {
   request: {
-    links: Link[]
     avatar?: FormData
     signup: OrdererSignUpRequest
+    links: ILinksFormProps['links']
   }
   response: OrdererSignupResponse
 }

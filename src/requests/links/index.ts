@@ -7,6 +7,6 @@ export const links: TLinks = async links => {
     for (let i = 0; i < links.length; i++)
       api.post({
         url: `/api/users/links`,
-        data: { url: links[i].href, text: links[i].label }
+        data: { url: links[i].url, text: links[i].text }
       })
 }

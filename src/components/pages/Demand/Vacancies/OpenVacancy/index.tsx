@@ -5,6 +5,7 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
 
+import { Enrollment } from 'types-vollab/dist/shared/enrollment'
 import { Vacancy } from 'types-vollab/dist/shared/vacancy'
 
 export interface IOpenVacancyProps {
@@ -12,7 +13,7 @@ export interface IOpenVacancyProps {
   name: Vacancy['name']
   city: Vacancy['city']
   state: Vacancy['state']
-  status?: Vacancy['status']
+  status?: Enrollment['status']
   work_mode: Vacancy['work_mode']
   description: Vacancy['description']
 }

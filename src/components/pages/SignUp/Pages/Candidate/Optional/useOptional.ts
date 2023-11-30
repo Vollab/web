@@ -1,9 +1,9 @@
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+
 import { useCandidateContext } from 'src/contexts/SignUp/Candidate'
 
 import { useSubmitActions } from 'src/hooks/SignUp/useSubmitActions'
 import { useCandidateSignUp } from 'src/hooks/api/useCandidateSignUp'
-
-import { Link } from 'types-vollab/dist/shared/link'
 
 export const useOptional = () => {
   const { candidateData, setCandidateData } = useCandidateContext()
@@ -15,7 +15,7 @@ export const useOptional = () => {
     setCandidateData(prev => ({ ...prev, avatar: data }))
   }
 
-  const setLinks = (links: Link[]) => {
+  const setLinks = (links: ILinksFormProps['links']) => {
     setCandidateData(prev => ({ ...prev, links }))
   }
 
