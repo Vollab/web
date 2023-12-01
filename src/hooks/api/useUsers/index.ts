@@ -6,4 +6,4 @@ import { getUsers } from 'src/requests/users'
 import { UserParams } from 'types-vollab/dist/routes/users/[id]'
 
 export const useUsers = ({ id }: UserParams) =>
-  useQuery<IUseUsersQuery>(['users', id], getUsers)
+  useQuery<IUseUsersQuery>(['users', id], () => getUsers({ id }))

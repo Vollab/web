@@ -6,7 +6,14 @@ import OriginalImage from 'next/image'
 
 import { useEffect, useState } from 'react'
 
-export const Image = ({ src, className, ...props }: IImageProps) => {
+import { twMerge } from 'tailwind-merge'
+
+export const Image = ({
+  src,
+  className,
+  errorComponent,
+  ...props
+}: IImageProps) => {
   const [error, setError] = useState<any>(null)
 
   useEffect(() => {
@@ -14,14 +21,26 @@ export const Image = ({ src, className, ...props }: IImageProps) => {
   }, [src])
 
   return (
-    <OriginalImage
-      width={500}
-      height={500}
-      draggable='false'
-      onError={() => setError(true)}
-      src={error ? '/image_placeholder.svg' : src || '/image_placeholder.svg'}
-      className={`object-cover ${className}`}
-      {...props}
-    />
+    <>
+      {errorComponent && error ? errorComponent : <></>}
+
+      <OriginalImage
+        width={500}
+        height={500}
+        draggable='false'
+        onError={() => setError(true)}
+        src={
+          error
+            ? '/images/image_placeholder.svg'
+            : src || '/images/image_placeholder.svg'
+        }
+        className={twMerge(
+          'object-cover',
+          className,
+          errorComponent && error ? 'hidden' : 'block'
+        )}
+        {...props}
+      />
+    </>
   )
 }

@@ -7,9 +7,10 @@ import { twMerge } from 'tailwind-merge'
 
 interface ILoadingProps extends IClassNameProps {
   size?: number
+  fill?: string
 }
 
-export const Loading = ({ size = 16, className }: ILoadingProps) => (
+export const Loading = ({ size = 16, className, fill }: ILoadingProps) => (
   <div className={twMerge('relative h-11 w-11', className)}>
     <div
       className='absolute left-1/2 top-1/2'
@@ -31,7 +32,8 @@ export const Loading = ({ size = 16, className }: ILoadingProps) => (
                 delay: index * 0.1
               }
             }}
-            className='bg-gray-50 h-2 w-2 rounded-full'
+            className='h-2 w-2 rounded-full'
+            style={{ backgroundColor: fill || '#fff' }}
           />
         </div>
       ))}

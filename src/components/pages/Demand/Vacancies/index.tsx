@@ -1,16 +1,16 @@
 import { FilledVacancy } from './FilledVacancy'
 import { OpenVacancy } from './OpenVacancy'
 
-import { Vacancy } from 'types-vollab/dist/shared/vacancy'
+import { Response } from 'types-vollab/dist/v2/auth/api/demands/[id]/GET'
 
 export interface IVacanciesProps {
-  vacancies?: Vacancy[]
+  vacancies?: Response['demand']['vacancies']
 }
 
 export const Vacancies = ({ vacancies }: IVacanciesProps) => (
   <ul className='flex flex-col gap-4 py-4'>
     {vacancies?.map(
-      ({ id, open, name, work_mode, city, description, state, status }) =>
+      ({ id, open, name, work_mode, city, state, description, enrollment }) =>
         open ? (
           <OpenVacancy
             id={id}
@@ -18,9 +18,9 @@ export const Vacancies = ({ vacancies }: IVacanciesProps) => (
             name={name}
             city={city}
             state={state}
-            status={status}
             work_mode={work_mode}
             description={description}
+            status={enrollment?.status}
           />
         ) : (
           <FilledVacancy key={id} name={name} work_mode={work_mode} />

@@ -1,3 +1,5 @@
-import { UserResponse } from 'types-vollab/dist/routes/users/[id]'
+import { UserParams, UserResponse } from 'types-vollab/dist/routes/users/[id]'
 
-export type TGetUsers = () => Promise<UserResponse>
+export type TGetUsers = ({
+  id
+}: UserParams) => Promise<UserResponse['user'] & { avatar: any }>

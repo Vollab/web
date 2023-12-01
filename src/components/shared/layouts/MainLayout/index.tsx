@@ -1,6 +1,6 @@
 'use client'
 
-import { Image } from '../../atoms/Image'
+import { Loading } from '../../atoms/Loading'
 
 import { useRouter } from 'next/navigation'
 
@@ -55,36 +55,36 @@ export const MainLayout = ({
     <>
       {!hideHeader && (
         <header className='flex p-4 items-center shadow-md fixed top-0 left-0 right-0 bg-gray-50 z-10'>
-          <Button onClick={onProfileClick}>
-            {user?.avatar ? (
-              <Image
-                alt='avatar'
-                src={user.avatar}
-                className='h-12 w-12 rounded-full object-cover border border-primary-500'
-              />
-            ) : (
-              <Avatar fill={colors.primary[500]} className='h-12 w-12' />
-            )}
-          </Button>
+          {user ? (
+            <>
+              <Button onClick={onProfileClick}>
+                <Avatar
+                  src={user?.avatar}
+                  className='h-12 w-12'
+                  fill={colors.primary[500]}
+                />
+              </Button>
+              <div className='flex flex-col ml-4 gap-1'>
+                <span className='font-semibold text-lg'>
+                  Olá, {user?.name?.split(' ')[0]}
+                </span>
 
-          <div className='flex flex-col ml-4 gap-1'>
-            <span className='font-semibold text-lg'>
-              Olá, {user?.name?.split(' ')[0]}
-            </span>
-
-            {user?.role && (
-              <span
-                className='font-medium'
-                style={{ color: infos.roles[user.role].color }}
-              >
-                {infos.roles[user.role].label}
-              </span>
-            )}
-          </div>
-
-          <Button className='ml-auto' onClick={onLogoutClick}>
-            <Logout className='h-5 w-5 stroke-gray-500 hover:stroke-error-500' />
-          </Button>
+                {user?.role && (
+                  <span
+                    className='font-medium'
+                    style={{ color: infos.roles[user.role].color }}
+                  >
+                    {infos.roles[user.role].label}
+                  </span>
+                )}
+              </div>
+              <Button className='ml-auto' onClick={onLogoutClick}>
+                <Logout className='h-5 w-5 stroke-gray-500 hover:stroke-error-500' />
+              </Button>
+            </>
+          ) : (
+            <Loading fill={colors.primary[500]} />
+          )}
         </header>
       )}
 

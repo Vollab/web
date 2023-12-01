@@ -6,6 +6,6 @@ export const getUser: TGetUser = async () => {
 
   return {
     ...(await response.json()).user,
-    avatar: URL.createObjectURL(await avatar.blob())
+    avatar: (await avatar.json()).avatar
   }
 }

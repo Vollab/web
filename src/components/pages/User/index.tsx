@@ -1,3 +1,5 @@
+'use client'
+
 import { Links } from './Links'
 
 import { colors } from 'src/styles/custom/colors'
@@ -14,10 +16,9 @@ interface IUserProps {
   id: string
 }
 
-export const User = async ({ id }: IUserProps) => {
-  const { data } = useUsers({ id })
+export const User = ({ id }: IUserProps) => {
+  const { data: user } = useUsers({ id })
 
-  const user = data?.user
   const roleColor = user ? infos.roles[user.role].color : ''
   const roleLabel = user ? infos.roles[user.role].label : ''
 
@@ -39,7 +40,11 @@ export const User = async ({ id }: IUserProps) => {
           </div>
 
           <div className='h-14 w-14 '>
-            <Avatar fill={colors.primary[500]} className='h-14 w-14 ' />
+            <Avatar
+              src={user?.avatar}
+              fill={colors.primary[500]}
+              className='h-14 w-14 '
+            />
           </div>
         </header>
 

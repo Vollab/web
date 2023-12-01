@@ -20,11 +20,7 @@ export const AvatarUpload = ({
   fill = colors.primary[500]
 }: IAvatarUploadProps) => (
   <div className={twMerge('h-28 w-28 relative cursor-pointer', className)}>
-    {avatar ? (
-      <img src={avatar} alt='avatar' className='w-full h-full rounded-full' />
-    ) : (
-      <Avatar fill={fill} className='w-full h-full rounded-full' />
-    )}
+    <Avatar fill={fill} src={avatar} className='w-full h-full rounded-full' />
 
     <AddPhoto
       fill={fill}

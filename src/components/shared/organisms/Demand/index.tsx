@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation'
 
 import { colors } from 'src/styles/custom/colors'
 
-import { Image } from 'src/components/shared/atoms/Image'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
@@ -45,15 +44,11 @@ export const Demand = ({
     <article className='rounded-2xl shadow-md flex flex-col'>
       <Button onClick={onSeeProfileClick} className='text-left px-4 pt-4'>
         <header className='flex gap-2 items-center'>
-          {orderer?.avatar ? (
-            <Image
-              alt=''
-              src={orderer.avatar}
-              className='h-11 w-11 rounded-full'
-            />
-          ) : (
-            <Avatar className='h-11 w-11 border' fill={colors.primary[500]} />
-          )}
+          <Avatar
+            src={orderer.avatar}
+            fill={colors.primary[500]}
+            className='h-11 w-11'
+          />
 
           <div className='flex flex-col gap-1'>
             <h3 className='text-md font-medium'>{orderer.name}</h3>
