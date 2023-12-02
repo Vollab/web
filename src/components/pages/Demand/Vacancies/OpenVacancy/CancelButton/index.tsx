@@ -19,7 +19,7 @@ export const CancelButton = ({ id, status }: ICancelButtonProps) => {
     <Button
       color='error'
       onClick={() => cancelApplication(id)}
-      className='py-3  rounded-none flex-1'
+      className='py-3 rounded-none flex-1'
     >
       Cancelar
     </Button>

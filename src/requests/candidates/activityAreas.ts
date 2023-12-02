@@ -1,6 +1,8 @@
-import { TActivityAreas } from './types'
-
 import { api } from 'src/services/api'
+
+import { ActivityArea } from 'types-vollab/dist/shared/activity-area'
+
+export type TActivityAreas = (data: ActivityArea['id'][]) => Promise<void>
 
 export const activityAreas: TActivityAreas = async activityAreas => {
   if (activityAreas.length > 0)

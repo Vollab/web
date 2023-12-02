@@ -1,11 +1,12 @@
 import { TSignIn } from './types'
 
-import { userResponse } from 'src/static/temp/user'
+import { userResponse, userResponse2 } from 'src/static/temp/user'
 
 export const signIn: TSignIn = async data => {
-  console.log('sign-in', userResponse)
-
-  return userResponse
+  if (data.email === 'miguelandradebarreto2@gmail.com') {
+    console.log('sign-in', userResponse)
+    return userResponse
+  } else return userResponse2
 
   const response = await fetch('/api/sign-in', {
     body: JSON.stringify(data),

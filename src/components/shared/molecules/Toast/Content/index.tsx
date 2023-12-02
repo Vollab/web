@@ -78,7 +78,9 @@ export const Content = ({ info, index }: IContentProps) => {
             </span>
           </div>
 
-          <p className='relative z-20 text-gray-600'>{info?.content}</p>
+          <p className='relative z-20 text-gray-600 text-center'>
+            {info?.content}
+          </p>
 
           <Button
             color={info?.variant}

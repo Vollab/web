@@ -37,7 +37,7 @@ export const demandsResponse: Response = {
           activity_area: activityAreas.activity_areas[0]
         },
         {
-          id: '1',
+          id: '2',
           work_mode: 'IN_PERSON',
           activity_area: activityAreas.activity_areas[1]
         }

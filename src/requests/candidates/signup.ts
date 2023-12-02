@@ -1,3 +1,5 @@
+import { api } from 'src/services/api'
+
 import {
   CandidateSignUpRequest,
   CandidateSignUpResponse
@@ -6,3 +8,6 @@ import {
 export type TSignUp = (
   request: CandidateSignUpRequest
 ) => Promise<CandidateSignUpResponse>
+
+export const signUp: TSignUp = request =>
+  api.post({ data: request, url: `/candidates/sign-up` })

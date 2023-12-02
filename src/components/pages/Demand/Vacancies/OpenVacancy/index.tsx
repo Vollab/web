@@ -1,21 +1,20 @@
-import { CancelButton } from './CancelButton'
-import { ConfirmButton } from './ConfirmButton'
-
-import { Button } from 'src/components/shared/groups/Buttons/Button'
+import { Status } from './Status'
 
 import { infos } from 'src/static/infos'
 
-import { Enrollment } from 'types-vollab/dist/shared/enrollment'
-import { Vacancy } from 'types-vollab/dist/shared/vacancy'
+import {
+  TEnrollmentStatus,
+  TVacancy
+} from 'src/requests/demands/getDemand/types'
 
 export interface IOpenVacancyProps {
-  id: Vacancy['id']
-  name: Vacancy['name']
-  city: Vacancy['city']
-  state: Vacancy['state']
-  status?: Enrollment['status']
-  work_mode: Vacancy['work_mode']
-  description: Vacancy['description']
+  id: TVacancy['id']
+  name: TVacancy['name']
+  city: TVacancy['city']
+  state: TVacancy['state']
+  status?: TEnrollmentStatus
+  work_mode: TVacancy['work_mode']
+  description: TVacancy['description']
 }
 
 export const OpenVacancy = ({
@@ -48,32 +47,7 @@ export const OpenVacancy = ({
 
       <p className='px-4 text-gray-500 mt-1'>{description}</p>
 
-      {status ? (
-        <footer>
-          <div className='mt-2 py-3 px-4 flex flex-col gap-1'>
-            <span className='font-medium text-lg'>Candidatado</span>
-
-            <span
-              style={{ color: infos.enrollmentStatus[status].color }}
-              className='font-medium text-lg'
-            >
-              {infos.enrollmentStatus[status].label}
-            </span>
-          </div>
-
-          <div className='w-full flex mt-2'>
-            <ConfirmButton id={id} status={status} />
-
-            <CancelButton id={id} status={status} />
-          </div>
-        </footer>
-      ) : (
-        <footer>
-          <Button color='success' className='mt-2 py-3  rounded-none'>
-            Candidatar-se
-          </Button>
-        </footer>
-      )}
+      <Status id={id} status={status} />
     </article>
   </li>
 )

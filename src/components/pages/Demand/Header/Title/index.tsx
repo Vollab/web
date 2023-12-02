@@ -1,15 +1,16 @@
+'use client'
+
 import { useState } from 'react'
 
 import { LabelHover } from 'src/components/shared/groups/Form/LabelHover'
 
+import { useDemandContext } from 'src/contexts/Demand'
+
 import { TInputProps } from 'src/types/react.types'
 
-interface ITitleProps {
-  title?: string
-}
-
-export const Title = ({ title: titleProp }: ITitleProps) => {
-  const [title, setTitle] = useState(titleProp)
+export const Title = () => {
+  const { demand, isOwner } = useDemandContext()
+  const [title, setTitle] = useState(demand?.title)
 
   const titleTw =
     'h-[26px] font-semibold text-h5 text-tertiary-500 font-primary border-none'
@@ -20,7 +21,7 @@ export const Title = ({ title: titleProp }: ITitleProps) => {
 
   const onTitleConfirmClick = () => {}
 
-  return (
+  return isOwner ? (
     <LabelHover
       value={title}
       maxLength={13}
@@ -30,5 +31,7 @@ export const Title = ({ title: titleProp }: ITitleProps) => {
     >
       <h1 className={titleTw}>{title}</h1>
     </LabelHover>
+  ) : (
+    <h1 className={titleTw}>{title}</h1>
   )
 }

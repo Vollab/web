@@ -7,16 +7,16 @@ import { BackButton } from 'src/components/shared/groups/Buttons/BackButton'
 
 import { infos } from 'src/static/infos'
 
-import { Demand } from 'types-vollab/dist/shared/demand'
+import { TDemand } from 'src/requests/demands/getDemand/types'
 
 interface IHeaderProps {
   avatar?: string
-  id?: Demand['id']
-  title?: Demand['title']
-  status?: Demand['status']
+  id?: TDemand['id']
+  title?: TDemand['title']
+  status?: TDemand['status']
 }
 
-export const Header = ({ id, status, avatar, title }: IHeaderProps) => {
+export const Header = ({ id, status, avatar }: IHeaderProps) => {
   const statusColor = status ? infos.demandStatus[status].color : ''
   const statusLabel = status ? infos.demandStatus[status].label : ''
 
@@ -25,7 +25,7 @@ export const Header = ({ id, status, avatar, title }: IHeaderProps) => {
       <BackButton />
 
       <div className='flex flex-col gap-1'>
-        <Title title={title} />
+        <Title />
 
         <span className='font-medium text-lg' style={{ color: statusColor }}>
           {statusLabel}
