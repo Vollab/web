@@ -22,12 +22,7 @@ export const List = () => {
           ({ id, orderer, resume, status, title, vacancies }) => (
             <li key={id}>
               <Demand
-                id={id}
-                title={title}
-                resume={resume}
-                status={status}
-                orderer={orderer}
-                vacancies={vacancies}
+                demand={{ id, title, resume, status, orderer, vacancies }}
               />
             </li>
           )

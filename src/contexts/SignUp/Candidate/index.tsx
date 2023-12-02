@@ -1,28 +1,21 @@
 import { createContext, useContext, useState } from 'react'
 
-import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
-
 import { IChildrenProps, TSetState } from 'src/types/react.types'
 
-import { CandidateSignUpRequest } from 'types-vollab/dist/routes/candidates/sign-up'
-
-interface ICandidateData extends CandidateSignUpRequest {
-  links?: ILinksFormProps['links']
-  avatar?: { url: string; formData: FormData }
-  activityAreas?: { value: string; label: string }[]
-}
+import { Request } from 'types-vollab/dist/v2/auth/api/candidates/sign-up/(all)/POST'
 
 interface ICandidateContext {
-  candidateData: ICandidateData
-  setCandidateData: TSetState<ICandidateData>
+  candidateData: Request
+  setCandidateData: TSetState<Request>
 }
 
-const initial: ICandidateData = {
+const initial: ICandidateContext['candidateData'] = {
   name: '',
   email: '',
   phone: '',
   password: '',
-  biography: ''
+  biography: '',
+  activity_areas: []
 }
 
 const CandidateContext = createContext<ICandidateContext>({
@@ -31,7 +24,7 @@ const CandidateContext = createContext<ICandidateContext>({
 })
 
 export const CandidateProvider = ({ children }: IChildrenProps) => {
-  const [candidateData, setCandidateData] = useState<ICandidateData>(initial)
+  const [candidateData, setCandidateData] = useState<Request>(initial)
 
   return (
     <CandidateContext.Provider value={{ candidateData, setCandidateData }}>

@@ -8,11 +8,10 @@ import { colors } from 'src/styles/custom/colors'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-import { useUserContext } from 'src/contexts/User'
-
 import { infos } from 'src/static/infos'
 
 import { useSignOut } from 'src/hooks/api/useSignOut'
+import { useUser } from 'src/hooks/api/useUser'
 
 import { Avatar } from 'src/assets/icons'
 import { House } from 'src/assets/icons/House'
@@ -30,9 +29,11 @@ export const MainLayout = ({
   children,
   hideHeader = false
 }: IMainLayoutProps) => {
+  const { data } = useUser()
   const { push } = useRouter()
   const { mutate } = useSignOut()
-  const { user } = useUserContext()
+
+  const user = data?.user
 
   const onLogoutClick = () => {
     mutate({})

@@ -1,7 +1,7 @@
 import { FilledVacancy } from './FilledVacancy'
 import { OpenVacancy } from './OpenVacancy'
 
-import { Response } from 'types-vollab/dist/v2/auth/api/demands/[id]/GET'
+import { Response } from 'types-vollab/dist/v2/demands/api/demands/[id]/GET'
 
 export interface IVacanciesProps {
   vacancies?: Response['demand']['vacancies']

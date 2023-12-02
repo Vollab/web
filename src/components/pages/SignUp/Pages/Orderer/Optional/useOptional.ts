@@ -20,17 +20,7 @@ export const useOptional = () => {
   }
 
   const onCreateClick = async () => {
-    await mutateAsync({
-      links: ordererData.links || [],
-      avatar: ordererData?.avatar?.formData,
-      signup: {
-        name: ordererData.name,
-        phone: ordererData.phone,
-        email: ordererData.email,
-        password: ordererData.password,
-        biography: ordererData.biography
-      }
-    })
+    await mutateAsync(ordererData)
   }
 
   return {
@@ -38,6 +28,6 @@ export const useOptional = () => {
     onCreateClick,
     onAvatarChange,
     links: ordererData.links,
-    avatar: ordererData.avatar?.url
+    avatar: ordererData.avatar
   }
 }

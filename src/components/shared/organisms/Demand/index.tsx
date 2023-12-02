@@ -8,29 +8,26 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
 
-import { TDemand } from 'src/hooks/api/demands/useDemands/types'
-
 import { Avatar } from 'src/assets/icons'
 
+import { Response } from 'types-vollab/dist/v2/demands/api/demands/GET'
+
+type TDemand = Response['demands'][number]
+
 interface IDemandProps {
-  id: TDemand['id']
-  title: TDemand['title']
-  resume: TDemand['resume']
-  status: TDemand['status']
-  showApplications?: boolean
-  orderer: TDemand['orderer']
-  vacancies: TDemand['vacancies']
+  demand: {
+    id: TDemand['id']
+    title: TDemand['title']
+    resume: TDemand['resume']
+    status: TDemand['status']
+    orderer: TDemand['orderer']
+    vacancies: TDemand['vacancies']
+  }
 }
 
-export const Demand = ({
-  id,
-  title,
-  resume,
-  status,
-  orderer,
-  vacancies
-}: IDemandProps) => {
+export const Demand = ({ demand }: IDemandProps) => {
   const { push } = useRouter()
+  const { id, orderer, resume, status, title, vacancies } = demand
 
   const onSeeProfileClick = () => {
     push(`/users/${orderer.id}`)
@@ -76,9 +73,12 @@ export const Demand = ({
       <footer>
         <Button onClick={onDemandClick} className='text-left px-4 pb-4'>
           <ul className='flex mt-3 flex-wrap gap-2'>
-            {vacancies.map(({ id, name, work_mode }) => (
+            {vacancies?.map(({ id, activity_area, work_mode }) => (
               <li key={id}>
-                <ActivityLabel name={name} work_mode={work_mode} />
+                <ActivityLabel
+                  work_mode={work_mode}
+                  name={activity_area.name}
+                />
               </li>
             ))}
           </ul>

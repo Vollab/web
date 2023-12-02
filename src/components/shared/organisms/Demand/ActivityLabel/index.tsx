@@ -6,19 +6,12 @@ import { VacancyWorkMode } from 'types-vollab/dist/shared/vacancy'
 
 interface IActivityLabelProps {
   name: string
-  quantity?: number
   work_mode?: VacancyWorkMode
 }
 
-export const ActivityLabel = ({
-  name,
-  work_mode,
-  quantity
-}: IActivityLabelProps) => (
+export const ActivityLabel = ({ name, work_mode }: IActivityLabelProps) => (
   <div className='bg-primary-500 w-auto flex items-center justify-center p-2 rounded-full gap-1'>
-    <span className='text-gray-50 text-sm font-medium px-1'>
-      {name} {quantity && quantity > 1 ? `(${quantity})` : ''}
-    </span>
+    <span className='text-gray-50 text-sm font-medium px-1'>{name}</span>
 
     <WorkMode work_mode={work_mode} fill={colors.gray[50]} />
   </div>

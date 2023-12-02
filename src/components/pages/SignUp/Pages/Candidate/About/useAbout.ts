@@ -30,7 +30,10 @@ export const useAbout = () => {
   const [triedToSubmit, setTriedToSubmit] = useState(false)
   const { setCandidateData, candidateData } = useCandidateContext()
   const [activityAreas, setActivityAreas] = useState<ISelectOption[]>(
-    candidateData?.activityAreas || []
+    candidateData?.activity_areas.map(({ id, name }) => ({
+      label: name,
+      value: id
+    }))
   )
 
   const { register, handleSubmit, formState, setValue } = useForm<IAbout>({

@@ -1,22 +1,15 @@
 import { createContext, useContext, useState } from 'react'
 
-import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
-
 import { IChildrenProps, TSetState } from 'src/types/react.types'
 
-import { OrdererSignUpRequest } from 'types-vollab/dist/routes/orderers/sign-up'
-
-interface IOrdererData extends OrdererSignUpRequest {
-  links?: ILinksFormProps['links']
-  avatar?: { url: string; formData: FormData }
-}
+import { Request } from 'types-vollab/dist/v2/auth/api/orderers/sign-up/(all)/POST'
 
 interface IOrdererContext {
-  ordererData: IOrdererData
-  setOrdererData: TSetState<IOrdererData>
+  ordererData: Request
+  setOrdererData: TSetState<Request>
 }
 
-const initial: IOrdererData = {
+const initial: IOrdererContext['ordererData'] = {
   name: '',
   email: '',
   phone: '',
@@ -30,7 +23,7 @@ const OrdererContext = createContext<IOrdererContext>({
 })
 
 export const OrdererProvider = ({ children }: IChildrenProps) => {
-  const [ordererData, setOrdererData] = useState<IOrdererData>(initial)
+  const [ordererData, setOrdererData] = useState<Request>(initial)
 
   return (
     <OrdererContext.Provider value={{ ordererData, setOrdererData }}>

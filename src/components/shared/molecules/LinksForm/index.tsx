@@ -9,15 +9,14 @@ import { IClassNameProps } from 'src/types/react.types'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm } from 'react-hook-form'
-import { Link } from 'types-vollab/dist/shared/link'
+import { Link } from 'types-vollab/dist/v2/shared/link'
+
+export type TLink = { text: Link['text']; url: Link['url'] }
 
 export interface ILinksFormProps extends IClassNameProps {
-  links: {
-    url: Link['url']
-    text: Link['text']
-  }[]
-  setLinks: (newState: ILinksFormProps['links']) => void
+  links?: TLink[]
   color?: 'primary' | 'secondary' | 'tertiary'
+  setLinks: (newState: ILinksFormProps['links']) => void
 }
 
 export const LinksForm = ({
@@ -30,7 +29,7 @@ export const LinksForm = ({
   const [linkError, setLinkError] = useState<{ message: string }>()
   const [titleError, setTitleError] = useState<{ message: string }>()
 
-  const { handleSubmit, register } = useForm<ILinksFormProps['links'][number]>({
+  const { handleSubmit, register } = useForm<TLink>({
     resolver: joiResolver(
       Joi.object({
         href: Joi.string(),
@@ -50,7 +49,7 @@ export const LinksForm = ({
     setTitleError(undefined)
   }
 
-  const onAddLinkClick = (values: ILinksFormProps['links'][number]) => {
+  const onAddLinkClick = (values: TLink) => {
     const link = values.url
     const title = values.text
 
@@ -59,28 +58,30 @@ export const LinksForm = ({
 
     if (!link || !title) return
 
-    const titleAlreadyExists = links.find(prevItem => prevItem.text === title)
-    const linkAlreadyExists = links.find(prevItem => prevItem.url === link)
+    const titleAlreadyExists = links?.find(prevItem => prevItem.text === title)
+    const linkAlreadyExists = links?.find(prevItem => prevItem.url === link)
 
     if (linkAlreadyExists) setLinkError({ message: 'Link ja existe' })
     if (titleAlreadyExists) setTitleError({ message: 'Título ja existe' })
 
     if (linkAlreadyExists || titleAlreadyExists) return
 
-    const hitMaxLimit = links.length === 10
+    const hitMaxLimit = links?.length === 10
 
     if (hitMaxLimit) {
       setLimitError(true)
       return
     }
 
-    setLinks([...links, { text: String(link), url: String(title) }])
+    links
+      ? setLinks([...links, { text: title, url: link }])
+      : setLinks([{ text: title, url: link }])
   }
 
   const onRemoveLinkClick = (removedTitle: string) => {
     setLimitError(false)
 
-    setLinks(links.filter(({ text }) => text !== removedTitle))
+    setLinks(links?.filter(({ text }) => text !== removedTitle))
   }
 
   return (
@@ -95,7 +96,7 @@ export const LinksForm = ({
         </span>
 
         <ul className='flex pt-2 flex-wrap'>
-          {links.map(({ text }, index) => (
+          {links?.map(({ text }, index) => (
             <LinkLabel
               key={index}
               title={text}

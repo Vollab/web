@@ -27,15 +27,15 @@ export const Optional = () => {
           onDataUpdates={onAvatarChange}
         >
           <AvatarUpload
-            avatar={candidateData.avatar?.url}
             fill={colors.secondary[500]}
+            avatar={candidateData.avatar}
           />
         </File>
 
         <LinksForm
-          links={candidateData.links || []}
-          setLinks={setLinks}
           color='secondary'
+          setLinks={setLinks}
+          links={candidateData.links}
         />
 
         <Button onClick={onCreateClick} color='secondary' className='w-full'>
