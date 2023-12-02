@@ -1,20 +1,9 @@
-import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
-
 import {
-  OrdererSignUpRequest,
-  OrdererSignupResponse
-} from 'types-vollab/dist/routes/orderers/sign-up'
-import { Role } from 'types-vollab/dist/shared/role'
-
-export interface IUseSignUpParams {
-  role: Role
-}
+  Request,
+  Response
+} from 'types-vollab/dist/v2/auth/api/orderers/sign-up/(all)/POST'
 
 export interface IUseOrdererSignUpMutation {
-  request: {
-    avatar?: FormData
-    signup: OrdererSignUpRequest
-    links: ILinksFormProps['links']
-  }
-  response: OrdererSignupResponse
+  request: Request
+  response: Response
 }

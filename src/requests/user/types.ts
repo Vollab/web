@@ -1,3 +1,3 @@
-import { CurrentUserResponse } from 'types-vollab/dist/routes/current-user/index'
+import { Response } from 'types-vollab/dist/v2/auth/api/current-user/GET'
 
-export type TGetUser = () => Promise<CurrentUserResponse & { avatar: any }>
+export type TGetUser = () => Promise<Response>

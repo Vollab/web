@@ -1,5 +1,5 @@
-import { DemandResponse } from 'types-vollab/dist/routes/demands/[id]'
+import { Response } from 'types-vollab/dist/v2/demands/api/demands/[id]/GET'
 
-export interface IUseDemandsQuery {
-  response: DemandResponse
+export interface IUseDemandQuery {
+  response: Response
 }

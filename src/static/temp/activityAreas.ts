@@ -1,9 +1,8 @@
-import { ActivityAreasResponse } from 'types-vollab/dist/routes/activity-areas'
+import { Response } from 'types-vollab/dist/v2/auth/api/activity-areas/GET'
 
-export const activityAreas: ActivityAreasResponse = {
+export const activityAreas: Response = {
   activity_areas: [
-    { id: '1', name: 'Programador', created_at: '', updated_at: '' },
-    { id: '2', name: 'Design', created_at: '', updated_at: '' },
-    { id: '3', name: 'CEO', created_at: '', updated_at: '' }
+    { id: '1', name: 'Programador' },
+    { id: '2', name: 'Design' }
   ]
 }

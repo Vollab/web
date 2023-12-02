@@ -1,3 +1,3 @@
-import { IUseDemandsResponse } from 'src/hooks/api/demands/useDemands/types'
+import { IUseDemandsQuery } from 'src/hooks/api/demands/useDemands/types'
 
-export type TGetDemands = () => Promise<IUseDemandsResponse>
+export type TGetDemands = () => Promise<IUseDemandsQuery['response']>

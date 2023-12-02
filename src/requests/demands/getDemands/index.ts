@@ -1,38 +1,36 @@
 import { TGetDemands } from './types'
 
-import { IUseDemandsResponse } from 'src/hooks/api/demands/useDemands/types'
-
-import { DemandsResponse } from 'types-vollab/dist/routes/demands'
-import { VacanciesResponse } from 'types-vollab/dist/routes/demands/[id]/vacancies/index'
-import { UserResponse } from 'types-vollab/dist/routes/users/[id]'
+import { demandsResponse } from 'src/static/temp/demands'
 
 export const getDemands: TGetDemands = async () => {
-  const formattedDemands: IUseDemandsResponse['demands'] = []
+  return demandsResponse
 
-  const demands: DemandsResponse['demands'] = (
-    await (await fetch('/api/demands')).json()
-  ).demands
+  // const formattedDemands: IUseDemandsQuery['response']['demands'] = []
 
-  demands.forEach(async demand => {
-    const orderer: UserResponse = await (
-      await fetch(`/api/users/${demand.orderer_id}`)
-    ).json()
+  // const demands: DemandsResponse['demands'] = (
+  //   await (await fetch('/api/demands')).json()
+  // ).demands
 
-    const avatar = await fetch(`/api/users/${demand.orderer_id}/avatar`)
+  // demands.forEach(async demand => {
+  //   const orderer: UserResponse = await (
+  //     await fetch(`/api/users/${demand.orderer_id}`)
+  //   ).json()
 
-    const vacancies: VacanciesResponse['vacancies'] = (
-      await (await fetch(`api/demands/${demand.id}/vacancies`)).json()
-    ).vacancies
+  //   const avatar = await fetch(`/api/users/${demand.orderer_id}/avatar`)
 
-    formattedDemands.push({
-      ...demand,
-      vacancies,
-      orderer: {
-        ...orderer.user,
-        avatar: URL.createObjectURL(await avatar.blob())
-      }
-    })
-  })
+  //   const vacancies: VacanciesResponse['vacancies'] = (
+  //     await (await fetch(`api/demands/${demand.id}/vacancies`)).json()
+  //   ).vacancies
 
-  return { demands: formattedDemands }
+  //   formattedDemands.push({
+  //     ...demand,
+  //     vacancies,
+  //     orderer: {
+  //       ...orderer.user,
+  //       avatar: URL.createObjectURL(await avatar.blob())
+  //     }
+  //   })
+  // })
+
+  // return { demands: formattedDemands }
 }

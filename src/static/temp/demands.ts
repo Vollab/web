@@ -1,53 +1,47 @@
-import { DemandsResponse } from 'types-vollab/dist/routes/demands'
+import { activityAreas } from './activityAreas'
+import { usersResponse } from './users'
 
-export const demands: DemandsResponse = {
+import { Response } from 'types-vollab/dist/v2/demands/api/demands/GET'
+
+export const demandsResponse: Response = {
   demands: [
     {
       id: '1',
+      status: 'OPEN',
+      title: 'Microsoft',
+      orderer: {
+        id: usersResponse.users[1].id,
+        name: usersResponse.users[1].name
+      },
       resume:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
-      status: 'OPEN',
-      title: 'Ticpass',
-      created_at: '',
-      description: '',
-      orderer_id: '',
-      updated_at: ''
+      vacancies: [
+        {
+          id: '1',
+          work_mode: 'HYBRID',
+          activity_area: activityAreas.activity_areas[0]
+        }
+      ]
     },
     {
       id: '2',
+      title: 'Google',
+      status: 'IN_PROGRESS',
+      orderer: { id: '3', name: 'Jean Domingues' },
       resume:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
-      status: 'OPEN',
-      title: 'Ticpass',
-      created_at: '',
-      description: '',
-      orderer_id: '',
-      updated_at: ''
-    },
-    {
-      id: '3',
-      resume:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
-      status: 'OPEN',
-      title: 'Ticpass',
-      created_at: '',
-      description: '',
-      orderer_id: '',
-      updated_at: ''
+      vacancies: [
+        {
+          id: '1',
+          work_mode: 'REMOTE',
+          activity_area: activityAreas.activity_areas[0]
+        },
+        {
+          id: '1',
+          work_mode: 'IN_PERSON',
+          activity_area: activityAreas.activity_areas[1]
+        }
+      ]
     }
   ]
 }
-
-// {
-//   id: '3',
-//   resume:
-//     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',
-//   status: 'OPEN',
-//   title: 'Ticpass',
-//   orderer: { id: '1', name: 'Miguel Barreto' },
-//   vacancies: [
-//     { id: '1', name: 'Programador', work_mode: 'HYBRID' },
-//     { id: '1', name: 'Programador', work_mode: 'IN_PERSON' },
-//     { id: '2', name: 'Design', work_mode: 'REMOTE' }
-//   ]
-// }

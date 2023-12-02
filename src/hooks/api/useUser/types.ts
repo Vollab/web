@@ -1,5 +1,5 @@
-import { CurrentUserResponse } from 'types-vollab/dist/routes/current-user'
+import { Response } from 'types-vollab/dist/v2/auth/api/current-user/GET'
 
 export interface IUseUserQuery {
-  response: CurrentUserResponse['user'] & { avatar: any }
+  response: Response
 }

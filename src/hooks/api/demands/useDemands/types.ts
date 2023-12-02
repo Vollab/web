@@ -1,18 +1,5 @@
-import { Demand } from 'types-vollab/dist/shared/demand'
-import { User } from 'types-vollab/dist/shared/user'
-import { Vacancy } from 'types-vollab/dist/shared/vacancy'
-
-export type TDemand = Demand & {
-  vacancies: Vacancy[]
-  orderer: User & {
-    avatar: string
-  }
-}
-
-export interface IUseDemandsResponse {
-  demands: TDemand[]
-}
+import { Response } from 'types-vollab/dist/v2/demands/api/demands/GET'
 
 export interface IUseDemandsQuery {
-  response: IUseDemandsResponse
+  response: Response
 }
