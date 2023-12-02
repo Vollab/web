@@ -10,9 +10,20 @@ export const Form = () => {
 
   return (
     <form onSubmit={submitHandler} className='flex flex-col gap-4 py-4'>
-      <Field {...props.email} placeholder='E-mail' />
+      <Field
+        {...props.email}
+        name='email'
+        placeholder='E-mail'
+        autoComplete='true'
+      />
 
-      <Field type='password' {...props.password} placeholder='Senha' />
+      <Field
+        type='password'
+        {...props.password}
+        name='password'
+        placeholder='Senha'
+        autoComplete='true'
+      />
 
       <footer className='flex items-center justify-between flex-col space-y-4'>
         <Button

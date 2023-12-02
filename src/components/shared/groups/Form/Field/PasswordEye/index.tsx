@@ -13,7 +13,7 @@ export const PasswordEye = ({
   onClick
 }: IPasswordEyeProps) =>
   enabled ? (
-    <Button type='button' onClick={onClick}>
+    <Button onClick={onClick}>
       {show ? (
         <Hide fill={fill} className='h-6' />
       ) : (

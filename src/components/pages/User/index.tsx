@@ -8,7 +8,7 @@ import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
 import { infos } from 'src/static/infos'
 
-import { useUsers } from 'src/hooks/api/useUsers'
+import { useFindUser } from 'src/hooks/api/useUsers'
 
 import { Avatar } from 'src/assets/icons'
 
@@ -17,7 +17,7 @@ interface IUserProps {
 }
 
 export const User = ({ id }: IUserProps) => {
-  const { data: user } = useUsers({ id })
+  const { data: user } = useFindUser({ id })
 
   const roleColor = user ? infos.roles[user.role].color : ''
   const roleLabel = user ? infos.roles[user.role].label : ''

@@ -8,6 +8,8 @@ import {
 type TSignUpCandidate = (request: Request) => Promise<Response>
 
 export const signupCandidate: TSignUpCandidate = async () => {
+  console.log('candidate/sign-up', userResponse)
+
   return userResponse
 
   // const activityAreasIds = request.activityAreas.map(({ value }) => value)

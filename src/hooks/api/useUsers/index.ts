@@ -2,8 +2,8 @@ import { IUseUsersQuery } from './types'
 
 import { useQuery } from 'src/hooks/useQuery'
 
-import { getUsers } from 'src/requests/users'
+import { findUser } from 'src/requests/findUser'
 import { UserParams } from 'types-vollab/dist/routes/users/[id]'
 
-export const useUsers = ({ id }: UserParams) =>
-  useQuery<IUseUsersQuery>(['users', id], () => getUsers({ id }))
+export const useFindUser = ({ id }: UserParams) =>
+  useQuery<IUseUsersQuery>(['users', id], () => findUser({ id }))
