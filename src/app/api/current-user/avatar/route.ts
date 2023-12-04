@@ -1,4 +1,4 @@
-import { sendCookies } from 'src/utils/next/sendCookies'
+import { sendCookies } from 'src/utils/next/cookies/send'
 
 export const GET = () =>
   sendCookies({ route: '/current-user/avatar', service: 'auth' })

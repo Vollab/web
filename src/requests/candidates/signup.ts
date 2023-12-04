@@ -1,13 +1,11 @@
-import { api } from 'src/services/api'
+import { interceptor } from 'src/services/api/interceptor'
 
-import {
-  CandidateSignUpRequest,
-  CandidateSignUpResponse
-} from 'types-vollab/dist/routes/candidates/sign-up'
+import type {
+  Request,
+  Response
+} from 'types-vollab/dist/modules/auth/api/candidates/sign-up/POST'
 
-export type TSignUp = (
-  request: CandidateSignUpRequest
-) => Promise<CandidateSignUpResponse>
+type TSignUp = (request: Request) => Promise<Response>
 
-export const signUp: TSignUp = request =>
-  api.post({ data: request, url: `/candidates/sign-up` })
+export const signup: TSignUp = request =>
+  interceptor({ route: '/candidates/sign-up', request, method: 'POST' })

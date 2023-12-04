@@ -4,7 +4,7 @@ import { demandsResponse } from './demands'
 import {
   Params,
   Response
-} from 'types-vollab/dist/v2/demands/api/demands/[id]/GET'
+} from 'types-vollab/dist/modules/demands/api/demands/[id]/GET'
 
 type TDemand = (params: Params) => Response
 

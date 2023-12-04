@@ -11,7 +11,7 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { infos } from 'src/static/infos'
 
 import { useSignOut } from 'src/hooks/api/useSignOut'
-import { useUser } from 'src/hooks/api/useUser'
+import { useUser } from 'src/hooks/api/users/useCurrentUser'
 
 import { Avatar } from 'src/assets/icons'
 import { House } from 'src/assets/icons/House'

@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react'
 
 import { IChildrenProps, TSetState } from 'src/types/react.types'
 
-import { Request } from 'types-vollab/dist/v2/auth/api/orderers/sign-up/(all)/POST'
+import { Request } from 'types-vollab/dist/modules/auth/api/orderers/sign-up/(all)/POST'
 
 interface IOrdererContext {
   ordererData: Request

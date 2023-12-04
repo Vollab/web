@@ -10,7 +10,7 @@ import { infos } from 'src/static/infos'
 
 import { Avatar } from 'src/assets/icons'
 
-import { Response } from 'types-vollab/dist/v2/demands/api/demands/GET'
+import { Response } from 'types-vollab/dist/modules/demands/api/demands/GET'
 
 type TDemand = Response['demands'][number]
 

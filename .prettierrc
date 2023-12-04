@@ -29,6 +29,7 @@
     "^src/static/(.*)$",
     "^src/pages/(.*)$",
     "^src/hooks/(.*)$",
+    "^src/requests/(.*)$",
     "^src/assets/(.*)$",
     "^src/hocs/(.*)$",
     "^src/store/(.*)$",

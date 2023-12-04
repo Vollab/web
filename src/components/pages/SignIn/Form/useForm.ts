@@ -10,21 +10,21 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm as useHookForm } from 'react-hook-form'
 import { email, password } from 'src/schemas'
-import { SignInRequest } from 'types-vollab/dist/routes/sign-in'
+import { Request } from 'types-vollab/dist/modules/auth/api/sign-in/POST'
 
 const resolver = joiResolver(Joi.object({ email, password }))
 
 export const useForm = () => {
   const { push } = useRouter()
-
-  const { toastRef } = useToastContext()
   const { mutateAsync } = useSignIn()
-  const { handleSubmit, register, formState } = useHookForm<SignInRequest>({
+  const { toastRef } = useToastContext()
+
+  const { handleSubmit, register, formState } = useHookForm<Request>({
     resolver,
     defaultValues: { email: '', password: '' }
   })
 
-  const onSubmit = async (data: SignInRequest) => {
+  const onSubmit = async (data: Request) => {
     const toastInfos: IInfo[] = []
 
     try {

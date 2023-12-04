@@ -2,11 +2,11 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import { useUser } from 'src/hooks/api/useUser'
-
-import { IChildrenProps } from 'src/types/react.types'
+import { useUser } from 'src/hooks/api/users/useCurrentUser'
 
 import { TDemand } from 'src/requests/demands/getDemand/types'
+
+import { IChildrenProps } from 'src/types/react.types'
 
 interface IDemandProviderProps extends IChildrenProps, IDemandContext {}
 

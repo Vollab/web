@@ -15,7 +15,6 @@ import { generateToasts } from 'src/utils/generateToasts'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm } from 'react-hook-form'
-import { CandidateSignUpRequest } from 'types-vollab/dist/routes/candidates/sign-up'
 
 interface IAbout {
   biography?: CandidateSignUpRequest['biography']

@@ -9,7 +9,7 @@ import { IClassNameProps } from 'src/types/react.types'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm } from 'react-hook-form'
-import { Link } from 'types-vollab/dist/v2/shared/link'
+import { Link } from 'types-vollab/dist/modules/shared/link'
 
 export type TLink = { text: Link['text']; url: Link['url'] }
 

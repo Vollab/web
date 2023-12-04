@@ -7,11 +7,12 @@ import { TTextareaProps } from 'src/types/react.types'
 import { twMerge } from 'tailwind-merge'
 
 export interface ITextareaProps extends TTextareaProps {
+  value?: string
   error?: { message: string }
 }
 
 export const Textarea = forwardRef<any, ITextareaProps>(
-  ({ className, error, ...props }, ref) => (
+  ({ className, error, value, ...props }, ref) => (
     <div
       className={twMerge('border w-full rounded-lg h-32 relative', className)}
     >
@@ -21,6 +22,7 @@ export const Textarea = forwardRef<any, ITextareaProps>(
 
       <textarea
         ref={ref}
+        value={value}
         {...props}
         className='resize-none outline-none h-full w-full px-4 py-3 bg-transparent'
       />

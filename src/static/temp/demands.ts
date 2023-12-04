@@ -1,7 +1,7 @@
 import { activityAreas } from './activityAreas'
 import { usersResponse } from './users'
 
-import { Response } from 'types-vollab/dist/v2/demands/api/demands/GET'
+import { Response } from 'types-vollab/dist/modules/demands/api/demands/GET'
 
 export const demandsResponse: Response = {
   demands: [

@@ -1,14 +1,14 @@
-import {
+import { interceptor } from 'src/services/api/interceptor'
+
+import type {
   Params,
   Response
-} from 'types-vollab/dist/v2/vacancy/api/demands/[demand_id]/vacancies/[vacancy_id]/enroll/POST'
+} from 'types-vollab/dist/modules/vacancy/api/demands/[demand_id]/vacancies/[vacancy_id]/enroll/POST'
 
-export type TEnroll = (params: Params) => Promise<Response>
+type TEnroll = (params: Params) => Promise<Response>
 
-export const enroll: TEnroll = async () => {
-  const enrollResponse: Response = { enrollment: { status: 'PENDING' } }
-
-  console.log('enroll', enrollResponse)
-
-  return enrollResponse
-}
+export const enroll: TEnroll = ({ demand_id, vacancy_id }) =>
+  interceptor({
+    route: `/demands/${demand_id}/vacancies/${vacancy_id}/enroll`,
+    method: 'POST'
+  })

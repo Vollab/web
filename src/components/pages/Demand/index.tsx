@@ -1,13 +1,15 @@
+import { Description } from './Description'
 import { Header } from './Header'
 import { InfoItem } from './InfoItem'
+import { Resume } from './Resume'
 import { Vacancies } from './Vacancies'
 
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
 import { DemandProvider } from 'src/contexts/Demand'
 
-import { getDemand } from 'src/requests/demands/getDemand'
-import { Response } from 'types-vollab/dist/v2/demands/api/demands/[id]/GET'
+import { getDemand } from 'src/requests/demands/demand'
+import { Response } from 'types-vollab/dist/modules/demands/api/demands/[id]/GET'
 
 interface IDemandProps {
   id: string
@@ -30,17 +32,11 @@ export const Demand = async ({ id }: IDemandProps) => {
           />
 
           <ul className='px-4 space-y-4 pb-16'>
-            <InfoItem title='Resumo'>
-              <p className='text-gray-600'>{demand?.resume}</p>
-            </InfoItem>
+            <Resume />
 
-            <InfoItem title='Descrição'>
-              <p className='text-gray-600'>{demand?.description}</p>
-            </InfoItem>
+            <Description />
 
             <InfoItem title='Vagas'>
-              <p className='text-gray-600'>{demand?.description}</p>
-
               <Vacancies vacancies={demand?.vacancies} />
             </InfoItem>
           </ul>

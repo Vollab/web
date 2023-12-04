@@ -1,4 +1,4 @@
-import { Response } from 'types-vollab/dist/v2/auth/api/activity-areas/GET'
+import { Response } from 'types-vollab/dist/modules/auth/api/activity-areas/GET'
 
 export const activityAreas: Response = {
   activity_areas: [
