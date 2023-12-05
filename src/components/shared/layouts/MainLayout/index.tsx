@@ -10,8 +10,9 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
 
+import { useCurrentUser } from 'src/hooks/api/currentUser/useCurrentUser'
 import { useSignOut } from 'src/hooks/api/useSignOut'
-import { useUser } from 'src/hooks/api/users/useCurrentUser'
+import { useAvatar } from 'src/hooks/api/users/useAvatar'
 
 import { Avatar } from 'src/assets/icons'
 import { House } from 'src/assets/icons/House'
@@ -29,10 +30,10 @@ export const MainLayout = ({
   children,
   hideHeader = false
 }: IMainLayoutProps) => {
-  const { data } = useUser()
   const { push } = useRouter()
   const { mutate } = useSignOut()
-
+  const { data } = useCurrentUser()
+  const { data: avatarData } = useAvatar({ id: data?.user.id })
   const user = data?.user
 
   const onLogoutClick = () => {
@@ -60,7 +61,7 @@ export const MainLayout = ({
             <>
               <Button onClick={onProfileClick}>
                 <Avatar
-                  src={user?.avatar}
+                  src={avatarData?.avatar}
                   className='h-12 w-12'
                   fill={colors.primary[500]}
                 />
@@ -73,7 +74,7 @@ export const MainLayout = ({
                 {user?.role && (
                   <span
                     className='font-medium'
-                    style={{ color: infos.roles[user.role].color }}
+                    style={{ color: infos.roles[data.user.role].color }}
                   >
                     {infos.roles[user.role].label}
                   </span>

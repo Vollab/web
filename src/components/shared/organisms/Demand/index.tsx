@@ -1,41 +1,27 @@
-import { ActivityLabel } from './ActivityLabel'
+'use client'
 
-import { useRouter } from 'next/navigation'
+import { IDemandProps } from './types'
+
+import { ActivityLabel } from './ActivityLabel'
+import { useDemand } from './useDemand'
 
 import { colors } from 'src/styles/custom/colors'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-import { infos } from 'src/static/infos'
-
 import { Avatar } from 'src/assets/icons'
 
-import { Response } from 'types-vollab/dist/modules/demands/api/demands/GET'
-
-type TDemand = Response['demands'][number]
-
-interface IDemandProps {
-  demand: {
-    id: TDemand['id']
-    title: TDemand['title']
-    resume: TDemand['resume']
-    status: TDemand['status']
-    orderer: TDemand['orderer']
-    vacancies: TDemand['vacancies']
-  }
-}
-
 export const Demand = ({ demand }: IDemandProps) => {
-  const { push } = useRouter()
-  const { id, orderer, resume, status, title, vacancies } = demand
-
-  const onSeeProfileClick = () => {
-    push(`/users/${orderer.id}`)
-  }
-
-  const onDemandClick = () => {
-    push(`/demands/${id}`)
-  }
+  const {
+    title,
+    resume,
+    orderer,
+    vacancies,
+    statusColor,
+    statusLabel,
+    onDemandClick,
+    onSeeProfileClick
+  } = useDemand({ demand })
 
   return (
     <article className='rounded-2xl shadow-md flex flex-col'>
@@ -62,9 +48,9 @@ export const Demand = ({ demand }: IDemandProps) => {
 
         <span
           className='block mt-1 mb-3 font-medium'
-          style={{ color: infos.demandStatus[status].color }}
+          style={{ color: statusColor }}
         >
-          {infos.demandStatus[status].label}
+          {statusLabel}
         </span>
 
         <p>{resume}</p>
@@ -75,10 +61,7 @@ export const Demand = ({ demand }: IDemandProps) => {
           <ul className='flex mt-3 flex-wrap gap-2'>
             {vacancies?.map(({ id, activity_area, work_mode }) => (
               <li key={id}>
-                <ActivityLabel
-                  work_mode={work_mode}
-                  name={activity_area.name}
-                />
+                <ActivityLabel work_mode={work_mode} name={activity_area} />
               </li>
             ))}
           </ul>

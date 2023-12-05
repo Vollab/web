@@ -8,6 +8,7 @@ import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
 import { infos } from 'src/static/infos'
 
+import { useAvatar } from 'src/hooks/api/users/useAvatar'
 import { useUser } from 'src/hooks/api/users/useUser'
 
 import { Avatar } from 'src/assets/icons'
@@ -18,7 +19,9 @@ interface IUserProps {
 
 export const User = ({ id }: IUserProps) => {
   const { data } = useUser({ id })
+  const { data: avatarData } = useAvatar({ id })
 
+  const user = data?.user
   const roleColor = user ? infos.roles[user.role].color : ''
   const roleLabel = user ? infos.roles[user.role].label : ''
 
@@ -41,7 +44,7 @@ export const User = ({ id }: IUserProps) => {
 
           <div className='h-14 w-14 '>
             <Avatar
-              src={user?.avatar}
+              src={avatarData?.avatar}
               fill={colors.primary[500]}
               className='h-14 w-14 '
             />

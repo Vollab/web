@@ -2,7 +2,7 @@ import { colors } from 'src/styles/custom/colors'
 
 import { WorkMode } from 'src/assets/icons/WorkMode'
 
-import { VacancyWorkMode } from 'types-vollab/dist/shared/vacancy'
+import { VacancyWorkMode } from 'types-vollab/dist/src/shared/vacancy'
 
 interface IActivityLabelProps {
   name: string

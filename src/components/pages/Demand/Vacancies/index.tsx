@@ -1,26 +1,24 @@
 import { FilledVacancy } from './FilledVacancy'
 import { OpenVacancy } from './OpenVacancy'
 
-import { TDemand } from 'src/requests/demands/getDemand/types'
+import { IDemandResponse } from 'src/requests/demands/demand'
+
+export type IVacancy = NonNullable<IDemandResponse['vacancies']>[number]
 
 export interface IVacanciesProps {
-  vacancies?: TDemand['vacancies']
+  vacancies?: IDemandResponse['vacancies']
+  demandId: IDemandResponse['demand']['id']
 }
 
-export const Vacancies = ({ vacancies }: IVacanciesProps) => (
+export const Vacancies = ({ vacancies, demandId }: IVacanciesProps) => (
   <ul className='flex flex-col gap-4 py-4'>
     {vacancies?.map(
-      ({ id, name, work_mode, open, city, state, description, enrollment }) =>
+      ({ id, name, work_mode, open, city, state, description }) =>
         open ? (
           <OpenVacancy
-            id={id}
             key={id}
-            name={name}
-            city={city}
-            state={state}
-            work_mode={work_mode}
-            description={description}
-            status={enrollment?.status}
+            demandId={demandId}
+            vacancy={{ id, name, city, state, work_mode, description }}
           />
         ) : (
           <FilledVacancy key={id} name={name} work_mode={work_mode} />

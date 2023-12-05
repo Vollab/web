@@ -2,7 +2,7 @@ import { IFormData } from './types'
 
 import { FormEventHandler, useState } from 'react'
 
-import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm/types'
 
 import { biography } from 'src/schemas/biography'
 
@@ -25,7 +25,7 @@ export const useForm = () => {
       defaultValues: { name: '', phone: '', biography: '', email: '' }
     })
 
-  const onSubmit = (data: IFormData) => {}
+  const onSubmit = handleSubmit(() => {})
 
   const onPhoneChange: TInputProps['onChange'] = e => {
     setValue('phone', formatPhone(e.target.value))
@@ -34,10 +34,8 @@ export const useForm = () => {
   const onTextAreaChange: FormEventHandler<any> = e =>
     setValue('biography', e.currentTarget.value)
 
-  const submit = handleSubmit(onSubmit)
-
   return {
-    submit,
+    onSubmit,
     links,
     setLinks,
     props: {

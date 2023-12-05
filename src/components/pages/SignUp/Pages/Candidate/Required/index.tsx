@@ -1,22 +1,23 @@
 import { FormLayout } from '../../FormLayout'
-import { usePersonal } from './usePersonal'
+import { useRequired } from './useRequired'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Field } from 'src/components/shared/groups/Form/Field'
+import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
 import { formatPhone } from 'src/utils/format/phone'
 
-export const Personal = () => {
-  const { formState, handleSubmit, onSubmit, register, setValue } =
-    usePersonal()
+export const Required = () => {
+  const { formState, onTextAreaChange, onSubmit, register, setValue } =
+    useRequired()
 
   return (
     <FormLayout
       role='Candidato'
-      title='Informações pessoais'
+      title='Informações obrigatórias'
       content='Adicione suas informações pessoais e de contato!'
     >
-      <form className='space-y-4 pt-6' onSubmit={handleSubmit(onSubmit)}>
+      <form className='space-y-4 pt-6' onSubmit={onSubmit}>
         <Field
           color='secondary'
           {...register('name')}
@@ -51,8 +52,16 @@ export const Personal = () => {
           error={formState.errors.password}
         />
 
+        <Textarea
+          placeholder='Biografia'
+          error={formState.errors.biography as any}
+          ref={register('biography').ref}
+          onChange={onTextAreaChange}
+          className='text-secondary-500'
+        />
+
         <Button color='secondary' className='w-full' type='submit'>
-          Próximo passo
+          Cadastrar
         </Button>
       </form>
     </FormLayout>

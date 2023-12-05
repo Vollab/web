@@ -4,7 +4,7 @@ import type {
   Params,
   Request,
   Response
-} from 'types-vollab/dist/modules/demands/api/demands/[id]/PATCH'
+} from 'types-vollab/dist/src/modules/demands/api/demands/[id]/PATCH'
 
 type TUpdateDemand = (request: Request & Params) => Promise<Response>
 

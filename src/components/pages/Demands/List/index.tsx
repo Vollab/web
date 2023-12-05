@@ -12,13 +12,13 @@ export const List = () => {
 
   return (
     <ul className='flex flex-col gap-4 pb-6 relative'>
-      {data?.demands.length === 0 ? (
+      {!data?.demands ? (
         <Loading
           fill={colors.primary[500]}
           className='left-1/2 -translate-x-1/2'
         />
       ) : (
-        data?.demands.map(
+        data?.demands?.map(
           ({ id, orderer, resume, status, title, vacancies }) => (
             <li key={id}>
               <Demand

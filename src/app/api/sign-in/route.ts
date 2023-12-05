@@ -1,4 +1,8 @@
-import { getCookies } from 'src/utils/next/cookies/getSet'
+import { getSetCookies } from 'src/utils/next/cookies/getSet'
 
 export const POST = async (request: Request) =>
-  getCookies({ route: '/sign-in', method: 'POST', data: await request.json() })
+  getSetCookies({
+    request,
+    method: 'POST',
+    route: '/sign-in'
+  })

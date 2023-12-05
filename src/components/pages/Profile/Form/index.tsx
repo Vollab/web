@@ -12,10 +12,10 @@ import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 import { LinksForm } from 'src/components/shared/molecules/LinksForm'
 
 export const Form = () => {
-  const { submit, links, setLinks, props } = useForm()
+  const { onSubmit, links, setLinks, props } = useForm()
 
   return (
-    <form className='grid grid-cols-3 py-6 px-4 gap-4' onSubmit={submit}>
+    <form className='grid grid-cols-3 py-6 px-4 gap-4' onSubmit={onSubmit}>
       <File label='avatar' name='avatar' className='mb-2 mx-auto col-span-3'>
         <AvatarUpload />
       </File>

@@ -1,7 +1,6 @@
-import { activityAreas } from './activityAreas'
 import { usersResponse } from './users'
 
-import { Response } from 'types-vollab/dist/modules/demands/api/demands/GET'
+import { Response } from 'types-vollab/dist/src/modules/demands/api/demands/GET'
 
 export const demandsResponse: Response = {
   demands: [
@@ -19,7 +18,7 @@ export const demandsResponse: Response = {
         {
           id: '1',
           work_mode: 'HYBRID',
-          activity_area: activityAreas.activity_areas[0]
+          activity_area: 'activityAreas.activity_areas[0]'
         }
       ]
     },
@@ -34,12 +33,12 @@ export const demandsResponse: Response = {
         {
           id: '1',
           work_mode: 'REMOTE',
-          activity_area: activityAreas.activity_areas[0]
+          activity_area: 'activityAreas.activity_areas[0]'
         },
         {
           id: '2',
           work_mode: 'IN_PERSON',
-          activity_area: activityAreas.activity_areas[1]
+          activity_area: 'activityAreas.activity_areas[1]'
         }
       ]
     }

@@ -3,7 +3,7 @@ import { interceptor } from 'src/services/api/interceptor'
 import type {
   Params,
   Response
-} from 'types-vollab/dist/modules/auth/api/candidates/[id]/GET'
+} from 'types-vollab/dist/src/modules/auth/api/candidates/[id]/GET'
 
 type TGetCandidate = ({ id }: Params) => Promise<Response>
 

@@ -1,4 +1,4 @@
-import { Response } from 'types-vollab/dist/modules/auth/api/current-user/GET'
+import { Response } from 'types-vollab/dist/src/modules/auth/api/current-user/GET'
 
 export const usersResponse: { users: Response['user'][] } = {
   users: [

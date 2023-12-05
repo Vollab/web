@@ -5,7 +5,7 @@ import { getCandidate } from 'src/requests/candidates/candidate'
 import type {
   Params,
   Response
-} from 'types-vollab/dist/modules/auth/api/users/[id]/GET'
+} from 'types-vollab/dist/src/modules/auth/api/users/[id]/GET'
 
 export interface IUseCandidateQuery {
   response: Response

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import { LinkLabel } from 'src/components/shared/atoms/LinkLabel'
 
-import { Link } from 'types-vollab/dist/shared/link'
+import { Link } from 'types-vollab/dist/src/shared/link'
 
 interface ILinksProps {
   links?: Link[]

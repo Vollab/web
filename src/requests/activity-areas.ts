@@ -1,6 +1,6 @@
 import { api } from 'src/services/api'
 
-import type { Response } from 'types-vollab/dist/modules/auth/api/activity-areas/GET'
+import type { Response } from 'types-vollab/dist/src/modules/auth/api/activity-areas/GET'
 
 type TGetActivityAreas = () => Promise<Response>
 

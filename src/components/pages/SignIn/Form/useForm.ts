@@ -10,7 +10,7 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm as useHookForm } from 'react-hook-form'
 import { email, password } from 'src/schemas'
-import { Request } from 'types-vollab/dist/modules/auth/api/sign-in/POST'
+import { Request } from 'types-vollab/dist/src/modules/auth/api/sign-in/POST'
 
 const resolver = joiResolver(Joi.object({ email, password }))
 

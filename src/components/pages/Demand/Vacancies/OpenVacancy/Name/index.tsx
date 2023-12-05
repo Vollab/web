@@ -1,6 +1,3 @@
-export const Name = () => {
-  return ('use client'
-
 import { useState } from 'react'
 
 import { LabelHover } from 'src/components/shared/groups/Form/LabelHover'
@@ -9,9 +6,8 @@ import { useDemandContext } from 'src/contexts/Demand'
 
 import { useUpdateDemand } from 'src/hooks/api/demands/useUpdateDemand'
 
-export const Title = () => {
+export const Name = () => {
   const { mutate } = useUpdateDemand()
-
   const { demand, isOwner } = useDemandContext()
   const [title, setTitle] = useState(demand?.title)
 
@@ -35,6 +31,4 @@ export const Title = () => {
   ) : (
     <h1 className={titleTw}>{title}</h1>
   )
-}
-)
 }

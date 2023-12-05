@@ -1,33 +1,26 @@
-import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm'
+import { useState } from 'react'
 
-import { useCandidateContext } from 'src/contexts/SignUp/Candidate'
-
-import { useSubmitActions } from 'src/hooks/SignUp/useSubmitActions'
-import { useCandidateSignUp } from 'src/hooks/api/useCandidateSignUp'
+import { ISelectOption } from 'src/components/shared/groups/Form/Select/types'
+import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm/types'
 
 export const useOptional = () => {
-  const { candidateData, setCandidateData } = useCandidateContext()
-  const { mutateAsync, isError, error, isSuccess } = useCandidateSignUp()
+  const [activityAreas, setActivityAreas] = useState<ISelectOption[]>([])
+  const [links, setLinks] = useState<ILinksFormProps['links']>([])
 
-  useSubmitActions({ isError, error, isSuccess })
+  const onAvatarChange = () => {}
 
-  const onAvatarChange = (data: any) => {
-    setCandidateData(prev => ({ ...prev, avatar: data }))
-  }
+  const onCreateClick = () => {}
 
-  const setLinks = (links: ILinksFormProps['links']) => {
-    setCandidateData(prev => ({ ...prev, links }))
-  }
-
-  const onCreateClick = async () => {
-    await mutateAsync(candidateData)
+  const onActivityAreasChange = (newValue: unknown) => {
+    setActivityAreas(newValue as ISelectOption[])
   }
 
   return {
+    links,
     setLinks,
-    candidateData,
+    activityAreas,
     onCreateClick,
     onAvatarChange,
-    links: candidateData.links
+    onActivityAreasChange
   }
 }

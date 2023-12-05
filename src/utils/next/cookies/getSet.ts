@@ -3,18 +3,13 @@ import { ICookiesParams } from './types'
 import { services } from 'src/static/services'
 
 export async function getSetCookies({
-  data,
   route,
+  request,
   method = 'GET',
   service = 'auth'
 }: ICookiesParams) {
   const response = await fetch(`${services[service]}${route}`, {
-    method,
-    body: data,
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
+    method
   })
 
   return new Response(response.body, {

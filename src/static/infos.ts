@@ -1,9 +1,9 @@
 import { colors } from 'src/styles/custom/colors'
 
-import { DemandStatus } from 'types-vollab/dist/shared/demand'
-import { EnrollmentStatus } from 'types-vollab/dist/shared/enrollment'
-import { Role } from 'types-vollab/dist/shared/role'
-import { VacancyWorkMode } from 'types-vollab/dist/shared/vacancy'
+import { DemandStatus } from 'types-vollab/dist/src/shared/demand'
+import { EnrollmentStatus } from 'types-vollab/dist/src/shared/enrollment'
+import { Role } from 'types-vollab/dist/src/shared/role'
+import { VacancyWorkMode } from 'types-vollab/dist/src/shared/vacancy'
 
 interface IInfo {
   label: string

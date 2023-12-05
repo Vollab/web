@@ -7,11 +7,18 @@ import { colors } from 'src/styles/custom/colors'
 import { AvatarUpload } from 'src/components/shared/atoms/AvatarUpload'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { File } from 'src/components/shared/groups/Form/File'
+import { Select } from 'src/components/shared/groups/Form/Select'
 import { LinksForm } from 'src/components/shared/molecules/LinksForm'
 
 export const Optional = () => {
-  const { onCreateClick, onAvatarChange, setLinks, candidateData } =
-    useOptional()
+  const {
+    links,
+    setLinks,
+    activityAreas,
+    onCreateClick,
+    onAvatarChange,
+    onActivityAreasChange
+  } = useOptional()
 
   return (
     <FormLayout
@@ -26,20 +33,24 @@ export const Optional = () => {
           className='relative'
           onDataUpdates={onAvatarChange}
         >
-          <AvatarUpload
-            fill={colors.secondary[500]}
-            avatar={candidateData.avatar}
-          />
+          <AvatarUpload fill={colors.secondary[500]} />
         </File>
 
-        <LinksForm
-          color='secondary'
-          setLinks={setLinks}
-          links={candidateData.links}
-        />
+        <div className='absolute -left-8 top-2'>
+          <Select
+            isMulti
+            color='secondary'
+            value={activityAreas}
+            options={activityAreas}
+            placeholder='Área de atuação'
+            onChange={onActivityAreasChange}
+          />
+        </div>
+
+        <LinksForm color='secondary' setLinks={setLinks} links={links} />
 
         <Button onClick={onCreateClick} color='secondary' className='w-full'>
-          Criar conta
+          Conectar!
         </Button>
       </div>
     </FormLayout>

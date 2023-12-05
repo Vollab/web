@@ -7,18 +7,22 @@ import { BackButton } from 'src/components/shared/groups/Buttons/BackButton'
 
 import { infos } from 'src/static/infos'
 
-import { TDemand } from 'src/requests/demands/getDemand/types'
+import { useAvatar } from 'src/hooks/api/users/useAvatar'
+
+import { IDemandResponse } from 'src/requests/demands/demand'
 
 interface IHeaderProps {
-  avatar?: string
-  id?: TDemand['id']
-  title?: TDemand['title']
-  status?: TDemand['status']
+  id: IDemandResponse['demand']['id']
+  title: IDemandResponse['demand']['title']
+  status: IDemandResponse['demand']['status']
+  ordererId: IDemandResponse['demand']['orderer']['id']
 }
 
-export const Header = ({ id, status, avatar }: IHeaderProps) => {
-  const statusColor = status ? infos.demandStatus[status].color : ''
-  const statusLabel = status ? infos.demandStatus[status].label : ''
+export const Header = ({ id, status, ordererId }: IHeaderProps) => {
+  const { data } = useAvatar({ id: ordererId })
+
+  const statusColor = infos.demandStatus[status].color
+  const statusLabel = infos.demandStatus[status].label
 
   return (
     <header className='grid grid-cols-[24px_1fr_1fr] py-4 items-center gap-2 px-4 shadow-md'>
@@ -32,7 +36,7 @@ export const Header = ({ id, status, avatar }: IHeaderProps) => {
         </span>
       </div>
 
-      <AvatarButton route={`/users/${id}`} avatar={avatar} />
+      <AvatarButton route={`/users/${id}`} avatar={data?.avatar} />
     </header>
   )
 }

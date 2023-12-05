@@ -5,7 +5,7 @@ import { enroll } from 'src/requests/candidates/enroll'
 import type {
   Params,
   Response
-} from 'types-vollab/dist/modules/vacancy/api/demands/[demand_id]/vacancies/[vacancy_id]/enroll/POST'
+} from 'types-vollab/dist/src/modules/vacancy/api/demands/[demand_id]/vacancies/[vacancy_id]/enroll/POST'
 
 interface IUseEnrollMutation {
   request: Params

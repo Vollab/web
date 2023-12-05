@@ -1,17 +1,17 @@
 'use client'
 
+import { IVacancy } from '../../..'
+
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { UseApplication } from 'src/hooks/api/useApplication'
 
-import { Enrollment } from 'types-vollab/dist/shared/enrollment'
-import { Vacancy } from 'types-vollab/dist/shared/vacancy'
+import { EnrollmentStatus } from 'types-vollab/dist/src/shared/enrollment'
 
 export interface ICancelButtonProps {
-  id: Vacancy['id']
-  status: Enrollment['status']
+  id: IVacancy['id']
+  status: EnrollmentStatus
 }
-
 export const CancelButton = ({ id, status }: ICancelButtonProps) => {
   const { cancelApplication } = UseApplication()
 

@@ -1,10 +1,10 @@
 import { infos } from 'src/static/infos'
 
-import { Vacancy } from 'types-vollab/dist/shared/vacancy'
+import { IVacancy } from '..'
 
 export interface IFilledVacancyProps {
-  name: Vacancy['name']
-  work_mode: Vacancy['work_mode']
+  name: IVacancy['name']
+  work_mode: IVacancy['work_mode']
 }
 
 export const FilledVacancy = ({ name, work_mode }: IFilledVacancyProps) => (
