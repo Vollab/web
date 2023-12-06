@@ -1,5 +1,3 @@
-import { usersResponse } from './users'
-
 import { Response } from 'types-vollab/dist/src/modules/demands/api/demands/GET'
 
 export const demandsResponse: Response = {
@@ -9,8 +7,8 @@ export const demandsResponse: Response = {
       status: 'OPEN',
       title: 'Microsoft',
       orderer: {
-        id: usersResponse.users[1].id,
-        name: usersResponse.users[1].name
+        id: 'usersResponse.users[1].id',
+        name: 'usersResponse.users[1].name'
       },
       resume:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit non odio mollis vehicula. Donec ornare, justo a facilisis viverra',

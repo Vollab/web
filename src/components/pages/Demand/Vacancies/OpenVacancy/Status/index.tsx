@@ -8,9 +8,9 @@ import { useStatus } from './useStatus'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-export const Status = ({ demandId, id }: IStatusProps) => {
+export const Status = ({ status: statusProp, id }: IStatusProps) => {
   const { onEnrollClick, status, statusColor, statusLabel } = useStatus({
-    demandId,
+    status: statusProp,
     id
   })
 

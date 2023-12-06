@@ -1,10 +1,10 @@
 import { infos } from 'src/static/infos'
 
-import { IVacancy } from '..'
+import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
 
 export interface IFilledVacancyProps {
-  name: IVacancy['name']
-  work_mode: IVacancy['work_mode']
+  name: TVacancy['name']
+  work_mode: TVacancy['work_mode']
 }
 
 export const FilledVacancy = ({ name, work_mode }: IFilledVacancyProps) => (

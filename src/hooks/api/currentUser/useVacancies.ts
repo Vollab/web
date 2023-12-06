@@ -9,4 +9,4 @@ interface IUseVacanciesQuery {
 }
 
 export const useVacancies = () =>
-  useQuery<IUseVacanciesQuery>('current-user', getVacancies)
+  useQuery<IUseVacanciesQuery>('current-vacancies', getVacancies)

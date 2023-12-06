@@ -18,7 +18,7 @@ export const List = () => {
           className='left-1/2 -translate-x-1/2'
         />
       ) : (
-        data?.demands?.map(
+        data?.demands.map(
           ({ id, orderer, resume, status, title, vacancies }) => (
             <li key={id}>
               <Demand

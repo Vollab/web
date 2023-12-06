@@ -2,25 +2,22 @@ import { Status } from './Status'
 
 import { infos } from 'src/static/infos'
 
-import { IDemandResponse } from 'src/requests/demands/demand'
-
-import { IVacancy } from '..'
+import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
 
 interface IOpenVacancyProps {
-  demandId: IDemandResponse['demand']['id']
   vacancy: {
-    id: IVacancy['id']
-    name: IVacancy['name']
-    city: IVacancy['city']
-    state: IVacancy['state']
-    work_mode: IVacancy['work_mode']
-    description: IVacancy['description']
+    id: TVacancy['id']
+    name: TVacancy['name']
+    city: TVacancy['city']
+    state: TVacancy['state']
+    status: TVacancy['status']
+    work_mode: TVacancy['work_mode']
+    description: TVacancy['description']
   }
 }
 
 export const OpenVacancy = ({
-  demandId,
-  vacancy: { id, name, city, state, work_mode, description }
+  vacancy: { id, name, city, state, work_mode, description, status }
 }: IOpenVacancyProps) => (
   <li>
     <article className='flex flex-col gap-1 rounded-2xl shadow-lg  overflow-hidden'>
@@ -43,7 +40,7 @@ export const OpenVacancy = ({
 
       <p className='px-4 text-gray-500 mt-1'>{description}</p>
 
-      <Status id={id} demandId={demandId} />
+      <Status id={id} status={status} />
     </article>
   </li>
 )

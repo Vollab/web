@@ -1,7 +1,5 @@
 import { IStatusProps } from './types'
 
-import { getEnrollmentStatus } from './functions/getEnrollmentStatus'
-
 import { useCallback, useEffect, useState } from 'react'
 
 import { IInfo } from 'src/components/shared/molecules/Toast'
@@ -12,30 +10,17 @@ import { useToastContext } from 'src/contexts/Toast'
 import { infos } from 'src/static/infos'
 
 import { useEnroll } from 'src/hooks/api/candidates/useEnroll'
-import { useCurrentUser } from 'src/hooks/api/currentUser/useCurrentUser'
-import { useVacancies } from 'src/hooks/api/currentUser/useVacancies'
+import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
 
 import { transformToArray } from 'src/utils/transformToArray'
 
-import { EnrollmentStatus } from 'types-vollab/dist/src/shared/enrollment'
-
-export const useStatus = ({ id, demandId }: IStatusProps) => {
+export const useStatus = ({ id, status }: IStatusProps) => {
   const { toastRef } = useToastContext()
-  const { data: userData } = useCurrentUser()
   const { demand, isOwner } = useDemandContext()
-  const { data: userVacanciesData } = useVacancies()
   const { mutate, data, isSuccess, error, isError } = useEnroll()
 
-  const initialEnrollmentStatus = getEnrollmentStatus({
-    demandId,
-    vacancyId: id,
-    userId: userData?.user.id,
-    userVacancies: userVacanciesData?.vacancies
-  })
-
-  const [enrollmentStatus, setEnrollmentStatus] = useState<
-    EnrollmentStatus | undefined
-  >(initialEnrollmentStatus)
+  const [enrollmentStatus, setEnrollmentStatus] =
+    useState<TVacancy['status']>(status)
 
   const statusColor = enrollmentStatus
     ? infos.enrollmentStatus[enrollmentStatus].color

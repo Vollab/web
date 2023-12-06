@@ -1,8 +1,6 @@
-import { IVacancy } from '../..'
-
-import { IDemandResponse } from 'src/requests/demands/demand'
+import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
 
 export interface IStatusProps {
-  id: IVacancy['id']
-  demandId?: IDemandResponse['demand']['id']
+  id: TVacancy['id']
+  status?: TVacancy['status']
 }

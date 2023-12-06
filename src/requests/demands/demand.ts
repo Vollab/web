@@ -1,3 +1,5 @@
+import { interceptor } from 'src/services/api/interceptor'
+
 import type {
   Response as DemandResponse,
   Params
@@ -11,6 +13,21 @@ export interface IDemandResponse {
 
 export type TGetDemand = (params: Params) => Promise<IDemandResponse>
 
-export const getDemand: TGetDemand = () => {
-  return { demand: {} } as unknown as Promise<any>
+export const getDemand: TGetDemand = async ({ id }) => {
+  const demandsResponse: DemandResponse = await interceptor({
+    method: 'GET',
+    service: 'demand',
+    route: `/demands/${id}`
+  })
+
+  const vacanciesResponse: VacanciesResponse = await interceptor({
+    method: 'GET',
+    service: 'vacancy',
+    route: `/demands/${id}/vacancies`
+  })
+
+  return {
+    demand: demandsResponse.demand,
+    vacancies: vacanciesResponse.vacancies
+  }
 }

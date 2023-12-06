@@ -3,5 +3,6 @@ import { sendCookies } from 'src/services/api/cookies/send'
 export const GET = async (request: Request) =>
   sendCookies({
     request,
-    route: '/current-user'
+    service: 'vacancy',
+    route: '/current-user/vacancies'
   })
