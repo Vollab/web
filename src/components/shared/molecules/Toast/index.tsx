@@ -35,17 +35,21 @@ export const Toast = forwardRef<IForwardToast>((_, ref) => {
 
   useImperativeHandle(ref, () => ({ triggerToast }))
 
-  return portalRef.current ? (
-    createPortal(
-      <ul className='fixed top-4 right-4 z-50 flex flex-col gap-4'>
-        {infos?.map((info, index) => (
-          <Content info={info} key={index} index={index} />
-        ))}
-      </ul>,
-      portalRef.current
-    )
-  ) : (
-    <></>
+  return (
+    <>
+      {portalRef.current ? (
+        createPortal(
+          <ul className='fixed top-4 right-4 z-50 flex flex-col gap-4'>
+            {infos?.map((info, index) => (
+              <Content info={info} key={index} index={index} />
+            ))}
+          </ul>,
+          portalRef.current
+        )
+      ) : (
+        <></>
+      )}
+    </>
   )
 })
 
