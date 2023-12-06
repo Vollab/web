@@ -15,6 +15,7 @@ const RootLayout = async ({ children }: IRootLayoutProps) => {
     <html lang='pt-BR' className={poppins}>
       <head>
         <link rel='icon' type='image/png' href='./favicon.png' />
+        <link rel='manifest' href='/manifest.json' />
       </head>
 
       <body className='light'>

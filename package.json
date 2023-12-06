@@ -5,9 +5,10 @@
   "scripts": {
     "d": "clear && yarn dev",
     "restart": "npm run clear && npm run build && npm run start",
-    "clear": "clear && rm -rf .next public/sw* public/workbox*",
+    "clear": "rm -rf .next public/sw* public/workbox*",
     "start": "next start",
     "build": "next build",
+    "front:start": "yarn clear && yarn build && yarn start",
     "dev": "next dev",
     "git:clean": "git clean -fd",
     "clear-index": "cti clean src/assets/icons && cti clean src/assets/images && cti clean src/schemas",

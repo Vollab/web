@@ -17,9 +17,9 @@
   "orientation": "portrait",
   "related_applications": [],
   "background_color": "#ffffff",
-  "name": "instintos-template-web",
+  "name": "vollab",
   "prefer_related_applications": false,
-  "description": "instintos-template-web",
+  "description": "vollab",
   "icons": [
     {
       "src": "/icon_16.png",
