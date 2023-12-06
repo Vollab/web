@@ -8,11 +8,11 @@ import { Demand } from 'src/components/shared/organisms/Demand'
 import { useDemands } from 'src/hooks/api/demands/useDemands'
 
 export const List = () => {
-  const { data } = useDemands()
+  const { data, isLoading } = useDemands()
 
   return (
     <ul className='flex flex-col gap-4 pb-6 relative'>
-      {!data?.demands ? (
+      {isLoading ? (
         <Loading
           fill={colors.primary[500]}
           className='left-1/2 -translate-x-1/2'

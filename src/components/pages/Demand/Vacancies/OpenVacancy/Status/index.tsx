@@ -2,8 +2,8 @@
 
 import { IStatusProps } from './types'
 
-import { CancelButton } from '../CancelButton'
-import { ConfirmButton } from '../ConfirmButton'
+import { CancelButton } from './CancelButton'
+import { ConfirmButton } from './ConfirmButton'
 import { useStatus } from './useStatus'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'

@@ -6,7 +6,7 @@ import { colors } from 'src/styles/custom/colors'
 import { IClassNameProps } from 'src/types/react.types'
 
 import { twMerge } from 'tailwind-merge'
-import { VacancyWorkMode } from 'types-vollab/dist/shared/vacancy'
+import { VacancyWorkMode } from 'types-vollab/dist/src/shared/vacancy'
 
 interface IWorkModeProps extends IClassNameProps {
   fill?: string

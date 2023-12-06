@@ -1,7 +1,5 @@
 import { FormEventHandler } from 'react'
 
-import { useStepsContext } from 'src/contexts/SignUp/Steps'
-
 import { useSignUp } from 'src/hooks/api/candidates/useSignUp'
 
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -15,7 +13,6 @@ const resolver = joiResolver(
 )
 
 export const useRequired = () => {
-  const { setStep } = useStepsContext()
   const { mutateAsync } = useSignUp()
 
   const { register, handleSubmit, formState, setValue } = useForm<Request>({
@@ -24,8 +21,6 @@ export const useRequired = () => {
   })
 
   const onSubmit = handleSubmit(async data => {
-    console.log({ data })
-
     await mutateAsync(data)
   })
 

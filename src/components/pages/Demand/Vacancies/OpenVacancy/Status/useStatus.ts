@@ -22,15 +22,15 @@ import { EnrollmentStatus } from 'types-vollab/dist/src/shared/enrollment'
 export const useStatus = ({ id, demandId }: IStatusProps) => {
   const { toastRef } = useToastContext()
   const { data: userData } = useCurrentUser()
-  const { data: userVacanciesData } = useVacancies()
   const { demand, isOwner } = useDemandContext()
+  const { data: userVacanciesData } = useVacancies()
   const { mutate, data, isSuccess, error, isError } = useEnroll()
 
   const initialEnrollmentStatus = getEnrollmentStatus({
     demandId,
     vacancyId: id,
     userId: userData?.user.id,
-    userVacancies: userVacanciesData.vacancies
+    userVacancies: userVacanciesData?.vacancies
   })
 
   const [enrollmentStatus, setEnrollmentStatus] = useState<

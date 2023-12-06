@@ -8,7 +8,6 @@ import { useAvatar } from 'src/hooks/api/users/useAvatar'
 
 export const useDemand = ({ demand }: IDemandProps) => {
   const orderer = demand.orderer
-
   const { push } = useRouter()
   const { data: avatarData } = useAvatar({ id: orderer.id })
 

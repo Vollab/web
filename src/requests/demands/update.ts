@@ -15,13 +15,5 @@ export const updateDemand: TUpdateDemand = async ({ id, ...request }) => {
     demand: { ...res.demand, ...request }
   }
 
-  console.log('update-demand', {
-    info: {
-      id,
-      request: { ...request },
-      response: updatedDemandResponse
-    }
-  })
-
   return updatedDemandResponse
 }

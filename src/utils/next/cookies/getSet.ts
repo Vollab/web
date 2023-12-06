@@ -5,11 +5,17 @@ import { services } from 'src/static/services'
 export async function getSetCookies({
   route,
   request,
-  method = 'GET',
   service = 'auth'
 }: ICookiesParams) {
+  const reqBody = JSON.stringify(await request?.json())
+
   const response = await fetch(`${services[service]}${route}`, {
-    method
+    method: 'POST',
+    body: reqBody,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
   })
 
   return new Response(response.body, {
