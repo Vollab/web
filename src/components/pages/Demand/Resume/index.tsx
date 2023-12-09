@@ -15,7 +15,7 @@ export const Resume = () => {
   const { isOwner, demand } = useDemandContext()
   const [resume, setResume] = useState<string>()
 
-  const resumeTw = 'text-gray-600 w-full min-h-[20px]'
+  const resumeTw = 'text-gray-600 w-full min-h-[20px] break-words'
 
   useEffect(() => {
     setResume(demand?.resume)

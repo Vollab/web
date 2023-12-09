@@ -15,7 +15,7 @@ export const Description = () => {
   const { isOwner, demand } = useDemandContext()
   const [description, setDescription] = useState<string>()
 
-  const descriptionTw = 'text-gray-600 w-full min-h-[20px]'
+  const descriptionTw = 'text-gray-600 w-full min-h-[20px] break-words'
 
   useEffect(() => {
     setDescription(demand?.description)

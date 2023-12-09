@@ -44,7 +44,7 @@ export const Demand = ({ demand }: IDemandProps) => {
       </Button>
 
       <Button onClick={onDemandClick} className='text-left px-4'>
-        <h2 className='text-lg font-semibold mt-3'>{title}</h2>
+        <h2 className='text-lg font-semibold mt-3 break-words'>{title}</h2>
 
         <span
           className='block mt-1 mb-3 font-medium'
@@ -53,7 +53,7 @@ export const Demand = ({ demand }: IDemandProps) => {
           {statusLabel}
         </span>
 
-        <p>{resume}</p>
+        <p className='break-words'>{resume}</p>
       </Button>
 
       <footer>
