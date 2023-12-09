@@ -11,7 +11,10 @@ interface ILoadingProps extends IClassNameProps {
 }
 
 export const Loading = ({ size = 16, className, fill }: ILoadingProps) => (
-  <div className={twMerge('relative h-11 w-11', className)}>
+  <motion.div
+    className={twMerge('relative h-11 w-11', className)}
+    animate={{ y: [-44, 0], opacity: [0, 1] }}
+  >
     <div
       className='absolute left-1/2 top-1/2'
       style={{ transform: `translate(${-size / 2}px, ${-size / 2}px` }}
@@ -38,5 +41,5 @@ export const Loading = ({ size = 16, className, fill }: ILoadingProps) => (
         </div>
       ))}
     </div>
-  </div>
+  </motion.div>
 )

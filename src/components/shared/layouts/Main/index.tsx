@@ -1,6 +1,7 @@
 'use client'
 
 import { Loading } from '../../atoms/Loading'
+import { Splash } from '../../organisms/Splash'
 
 import { useRouter } from 'next/navigation'
 
@@ -13,6 +14,8 @@ import { colors } from 'src/styles/custom/colors'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
+
+import { useProtectedRoute } from 'src/hooks/useProtectedRoute'
 
 import { Avatar } from 'src/assets/icons'
 import { House } from 'src/assets/icons/House'
@@ -33,8 +36,16 @@ export const MainLayout = ({
   const { push } = useRouter()
   const { mutate } = useSignOut()
   const { data } = useCurrentUser()
+  const { isLoading, allowed } = useProtectedRoute()
   const { data: avatarData } = useAvatar({ id: data?.user.id })
+
   const user = data?.user
+
+  if (isLoading) return <Splash />
+
+  if (!allowed) {
+    push('/sign-in')
+  }
 
   const onLogoutClick = () => {
     mutate({})
@@ -66,6 +77,7 @@ export const MainLayout = ({
                   fill={colors.primary[500]}
                 />
               </Button>
+
               <div className='flex flex-col ml-4 gap-1'>
                 <span className='font-semibold text-lg'>
                   Olá, {user?.name?.split(' ')[0]}
@@ -80,6 +92,7 @@ export const MainLayout = ({
                   </span>
                 )}
               </div>
+
               <Button className='ml-auto' onClick={onLogoutClick}>
                 <Logout className='h-5 w-5 stroke-gray-500 hover:stroke-error-500' />
               </Button>

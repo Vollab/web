@@ -1,7 +1,7 @@
-export interface IUseProtectedRouteParams {
-  enabled?: boolean
-}
+import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
 
-export const useProtectedRoute = ({}: IUseProtectedRouteParams) => {
-  return { allowed: true }
+export const useProtectedRoute = (enabled = true) => {
+  const { data, isLoading } = useCurrentUser()
+
+  return { isLoading, allowed: enabled ? !!data?.user.id : true }
 }

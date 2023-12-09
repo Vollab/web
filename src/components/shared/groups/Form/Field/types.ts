@@ -20,6 +20,8 @@ export interface IUseFieldParams {
   icon: IFieldProps['icon']
   type: IFieldProps['type']
   error: IFieldProps['error']
+  onBlurProp: IFieldProps['onBlur']
+  onFocusProp: IFieldProps['onFocus']
 }
 
 export interface IProps {

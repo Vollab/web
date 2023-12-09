@@ -20,6 +20,8 @@ export const Field = forwardRef<any, IFieldProps>(
       className,
       icon: iconProp,
       color = 'primary',
+      onBlur: onBlurProp,
+      onFocus: onFocusProp,
       as: Element = 'label',
       ...props
     },
@@ -29,6 +31,8 @@ export const Field = forwardRef<any, IFieldProps>(
       type,
       error,
       color,
+      onBlurProp,
+      onFocusProp,
       icon: iconProp
     })
 
@@ -45,16 +49,13 @@ export const Field = forwardRef<any, IFieldProps>(
         <input
           ref={ref}
           value={value}
-          {...useProps.input}
           style={styles.input}
           className={twMerge(
-            `
-             min-w-0 flex-1 px-2 h-full bg-transparent outline-none
-             placeholder:text-gray-300
-            `,
+            'min-w-0 flex-1 px-2 h-full bg-transparent outline-none placeholder:text-gray-500',
             tws?.input
           )}
           {...props}
+          {...useProps.input}
         />
 
         <PasswordEye {...useProps.passwordEye} />

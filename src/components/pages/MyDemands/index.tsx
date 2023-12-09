@@ -1,6 +1,6 @@
 import { List } from './List'
 
-import { MainLayout } from 'src/components/shared/layouts/MainLayout'
+import { MainLayout } from 'src/components/shared/layouts/Main'
 
 export const MyDemands = () => (
   <MainLayout>

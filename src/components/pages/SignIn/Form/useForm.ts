@@ -1,11 +1,12 @@
 import { useRouter } from 'next/navigation'
 
+import { useSignIn } from 'src/api/requests/auth/signIn/useSignIn'
+
 import { useToastContext } from 'src/contexts/Toast'
 
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm as useHookForm } from 'react-hook-form'
-import { useSignIn } from 'src/api/requests/auth/signIn/useSignIn'
 import { email, password } from 'src/schemas'
 import { Request } from 'types-vollab/dist/src/modules/auth/api/sign-in/POST'
 
@@ -38,10 +39,7 @@ export const useForm = () => {
     onSignUpClick,
     submitHandler: handleSubmit(onSubmit),
     props: {
-      email: {
-        ...register('email'),
-        error: formState.errors.email
-      },
+      email: { ...register('email'), error: formState.errors.email },
       password: { ...register('password'), error: formState.errors.password }
     }
   }

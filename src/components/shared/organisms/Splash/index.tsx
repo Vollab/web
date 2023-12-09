@@ -1,36 +1,30 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-
-import { useCallback, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Loading } from 'src/components/shared/atoms/Loading'
 import { AuthBackground } from 'src/components/shared/molecules/AuthBackground'
 
 import { Logo } from 'src/assets/images'
 
-export const Splash = () => {
-  const { push } = useRouter()
+import { AnimatePresence } from 'framer-motion'
 
-  const updateRoute = useCallback(() => {
-    setTimeout(() => {
-      push('/sign-in')
-    }, 300)
-  }, [push])
+export const Splash = () => {
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    updateRoute()
-  }, [updateRoute])
+    setIsMounted(true)
+  }, [])
 
   return (
-    <>
+    <div className='fixed left-0 right-0 w-screen h-screen z-50'>
       <AuthBackground />
 
       <div className='flex items-center justify-center flex-col space-y-4 h-screen w-screen'>
         <Logo className='h-18' />
 
-        <Loading />
+        <AnimatePresence>{isMounted && <Loading />}</AnimatePresence>
       </div>
-    </>
+    </div>
   )
 }

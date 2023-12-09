@@ -1,24 +1,19 @@
 import { IProps, IUseFieldParams } from './types'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { colors } from 'src/styles/custom/colors'
 
 export const useField = ({
   type,
   error,
-
+  onBlurProp,
+  onFocusProp,
   icon: iconProp,
   color: colorProp
 }: IUseFieldParams) => {
-  const [isFocused, setIsFocused] = useState(false)
+  const [color, setColor] = useState(colors[colorProp][300])
   const [showPassword, setShowPassword] = useState(false)
-
-  const isFocusedColor = isFocused
-    ? colors[colorProp][500]
-    : colors[colorProp][400]
-
-  const color = error ? colors.error[500] : isFocusedColor
 
   const styles = { input: { color } }
 
@@ -26,12 +21,23 @@ export const useField = ({
     setShowPassword(prev => !prev)
   }
 
+  useEffect(() => {
+    if (error) setColor(colors.error[500])
+    else setColor(colors[colorProp][500])
+  }, [colorProp, error])
+
   const useProps: IProps = {
     leftIcon: { error, icon: iconProp ? iconProp({ fill: color }) : undefined },
 
     input: {
-      onBlur: () => setIsFocused(false),
-      onFocus: () => setIsFocused(false),
+      onBlur: e => {
+        setColor(error ? colors.error[500] : colors[colorProp][300])
+        onBlurProp && onBlurProp(e)
+      },
+      onFocus: e => {
+        setColor(error ? colors.error[500] : colors[colorProp][500])
+        onFocusProp && onFocusProp(e)
+      },
       type: type === 'password' ? (showPassword ? 'text' : 'password') : type
     },
 

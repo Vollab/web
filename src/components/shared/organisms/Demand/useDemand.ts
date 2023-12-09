@@ -2,9 +2,9 @@ import { IDemandProps } from './types'
 
 import { useRouter } from 'next/navigation'
 
-import { infos } from 'src/static/infos'
-
 import { useAvatar } from 'src/api/requests/avatar/useAvatar'
+
+import { infos } from 'src/static/infos'
 
 export const useDemand = ({ demand }: IDemandProps) => {
   const orderer = demand.orderer

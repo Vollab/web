@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation'
 
 import { colors } from 'src/styles/custom/colors'
 
-import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
+import { AuthLayout } from 'src/components/shared/layouts/Auth'
 
 import { useSignUpContext } from 'src/contexts/SignUp'
 

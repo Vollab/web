@@ -1,6 +1,6 @@
 import { Form } from './Form'
 
-import { MainLayout } from 'src/components/shared/layouts/MainLayout'
+import { MainLayout } from 'src/components/shared/layouts/Main'
 
 export const Profile = () => (
   <MainLayout>

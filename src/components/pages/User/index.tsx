@@ -7,7 +7,7 @@ import { useUser } from 'src/api/requests/users/useUser'
 
 import { colors } from 'src/styles/custom/colors'
 
-import { MainLayout } from 'src/components/shared/layouts/MainLayout'
+import { MainLayout } from 'src/components/shared/layouts/Main'
 
 import { infos } from 'src/static/infos'
 

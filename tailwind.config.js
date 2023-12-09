@@ -25,6 +25,6 @@ module.exports = {
     boxShadow: shadow,
     borderWidth: border,
     borderRadius: radius,
-    extend: { colors: generatedColors, maxWidth: sizes }
+    extend: { maxWidth: sizes, colors: generatedColors }
   }
 }

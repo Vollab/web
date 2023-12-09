@@ -4,7 +4,7 @@ import { InfoItem } from './InfoItem'
 import { Resume } from './Resume'
 import { Vacancies } from './Vacancies'
 
-import { MainLayout } from 'src/components/shared/layouts/MainLayout'
+import { MainLayout } from 'src/components/shared/layouts/Main'
 
 import { DemandProvider } from 'src/contexts/Demand'
 

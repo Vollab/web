@@ -2,7 +2,7 @@ import { Required } from './Required'
 
 import { colors } from 'src/styles/custom/colors'
 
-import { AuthLayout } from 'src/components/shared/layouts/AuthLayout'
+import { AuthLayout } from 'src/components/shared/layouts/Auth'
 import { Steps } from 'src/components/shared/molecules/Steps'
 
 import { useBackClick } from 'src/hooks/SignUp/useBackClick'
