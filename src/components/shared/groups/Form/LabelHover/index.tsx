@@ -25,12 +25,14 @@ export const LabelHover = ({
   } = useLabelHover({ trigger: children, onConfirmClick: onConfirmClickProp })
 
   return enabled ? (
-    <div className={twMerge('flex gap-1 h-full items-center', className)}>
+    <div
+      className={twMerge('flex gap-1 h-full items-center flex-col', className)}
+    >
       <label
         ref={labelRef}
         onClick={onLabelClick}
         className={twMerge(
-          'group cursor-pointer flex gap-1 items-center h-full',
+          'group cursor-pointer flex gap-1 items-center h-full flex-1 border',
           custom?.tws?.label
         )}
       >

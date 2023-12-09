@@ -13,6 +13,7 @@ export const OrdererAvatar = () => {
 
   return (
     <AvatarButton
+      className='h-16 w-16 row-span-2'
       avatar={avatarData?.avatar}
       route={`/users/${demand?.orderer.id}`}
     />

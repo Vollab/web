@@ -12,7 +12,10 @@ export const Status = () => {
   const statusLabel = status ? infos.demandStatus[status].label : ''
 
   return (
-    <span className='font-medium text-lg' style={{ color: statusColor }}>
+    <span
+      className='font-medium text-lg col-span-3'
+      style={{ color: statusColor }}
+    >
       {statusLabel}
     </span>
   )

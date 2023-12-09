@@ -17,7 +17,7 @@ export const BackButton = () => {
 
   return (
     <Button onClick={onBackClick} className='flex gap-1'>
-      <Arrow dir='left' className='h-5 w-5' fill={colors.tertiary[500]} />
+      <Arrow dir='left' className='h-5 w-5' fill={colors.primary[500]} />
     </Button>
   )
 }

@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-head-element */
+import { PageProtection } from '../../atoms/PageProtection'
 import { Portals } from './Portals'
 
 import { Poppins } from 'next/font/google'
@@ -26,7 +27,7 @@ const RootLayout = ({ children }: IRootLayoutProps) => (
       <GlobalProvider>
         <Portals />
 
-        {children}
+        <PageProtection>{children}</PageProtection>
       </GlobalProvider>
     </body>
   </html>

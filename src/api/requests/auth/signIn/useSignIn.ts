@@ -1,3 +1,4 @@
+import { getCurrentUser } from '../../currentUser/get/getCurrentUser'
 import { signIn } from './signIn'
 
 import { queryClient } from 'src/contexts/ReactQuery'
@@ -16,7 +17,7 @@ interface IUseSignInMutation {
 
 export const useSignIn = () =>
   useMutation<IUseSignInMutation>(signIn, {
-    onSuccess: data => {
-      queryClient.setQueryData('user', data)
+    onSuccess: () => {
+      queryClient.fetchQuery('current-user', { queryFn: getCurrentUser })
     }
   })

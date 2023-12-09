@@ -1,7 +1,9 @@
 import { Description } from './Description'
-import { Header } from './Header'
 import { InfoItem } from './InfoItem'
+import { OrdererAvatar } from './OrdererAvatar'
 import { Resume } from './Resume'
+import { Status } from './Status'
+import { Title } from './Title'
 import { Vacancies } from './Vacancies'
 
 import { MainLayout } from 'src/components/shared/layouts/Main'
@@ -16,7 +18,11 @@ export const Demand = ({ id }: IDemandProps) => (
   <MainLayout hideHeader>
     <DemandProvider id={id}>
       <main className='space-y-4'>
-        <Header />
+        <header className='px-4 gap-x-4 gap-y-2 grid grid-cols-4 mt-6'>
+          <Title />
+          <OrdererAvatar />
+          <Status />
+        </header>
 
         <ul className='px-4 space-y-4 pb-16'>
           <Resume />

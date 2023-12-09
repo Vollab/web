@@ -8,5 +8,5 @@ interface IUseCurrentUserQuery {
   response: Response
 }
 
-export const useCurrentUser = () =>
-  useQuery<IUseCurrentUserQuery>('current-user', getCurrentUser)
+export const useCurrentUser = (enabled = true) =>
+  useQuery<IUseCurrentUserQuery>('current-user', getCurrentUser, { enabled })

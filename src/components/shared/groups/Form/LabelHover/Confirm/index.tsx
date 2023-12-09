@@ -21,7 +21,7 @@ export const Confirm = ({
       onClick={onConfirmClick}
       className={twMerge(
         `
-          flex items-center justify-center h-5 w-5 rounded-md group/confirm bg-gray-50 border border-success-500
+          flex items-center justify-center min-h-5 min-w-5 h-5 w-5 rounded-md group/confirm bg-gray-50 border border-success-500
           hover:bg-success-500
         `,
         className

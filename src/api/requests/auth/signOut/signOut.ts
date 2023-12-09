@@ -1,3 +1,4 @@
-import { api } from 'src/api/core'
+import { interceptor } from 'src/api/core/interceptor'
 
-export const signOut = () => api.post({ url: '/sign-out' })
+export const signOut = () =>
+  interceptor({ route: '/sign-out', method: 'POST', service: 'auth' })

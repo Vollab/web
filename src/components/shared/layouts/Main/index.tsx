@@ -1,27 +1,9 @@
 'use client'
 
-import { Loading } from '../../atoms/Loading'
-import { Splash } from '../../organisms/Splash'
+import { Header } from './Header'
+import { Nav } from './Nav'
 
-import { useRouter } from 'next/navigation'
-
-import { useSignOut } from 'src/api/requests/auth/signOut/useSignOut'
-import { useAvatar } from 'src/api/requests/avatar/useAvatar'
 import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
-
-import { colors } from 'src/styles/custom/colors'
-
-import { Button } from 'src/components/shared/groups/Buttons/Button'
-
-import { infos } from 'src/static/infos'
-
-import { useProtectedRoute } from 'src/hooks/useProtectedRoute'
-
-import { Avatar } from 'src/assets/icons'
-import { House } from 'src/assets/icons/House'
-import { Logout } from 'src/assets/icons/Logout'
-import { Profile } from 'src/assets/icons/Profile'
-import { Projects } from 'src/assets/icons/Projects'
 
 import { IChildrenProps } from 'src/types/react.types'
 
@@ -33,108 +15,15 @@ export const MainLayout = ({
   children,
   hideHeader = false
 }: IMainLayoutProps) => {
-  const { push } = useRouter()
-  const { mutate } = useSignOut()
-  const { data } = useCurrentUser()
-  const { isLoading, allowed } = useProtectedRoute()
-  const { data: avatarData } = useAvatar({ id: data?.user.id })
-
-  const user = data?.user
-
-  if (isLoading) return <Splash />
-
-  if (!allowed) {
-    push('/sign-in')
-  }
-
-  const onLogoutClick = () => {
-    mutate({})
-    push('/sign-in')
-  }
-
-  const onMyDemandsClick = () => {
-    push('/my-demands')
-  }
-
-  const onDemandsClick = () => {
-    push('/demands')
-  }
-
-  const onProfileClick = () => {
-    push('/profile')
-  }
+  useCurrentUser()
 
   return (
     <>
-      {!hideHeader && (
-        <header className='flex p-4 items-center shadow-md fixed top-0 left-0 right-0 bg-gray-50 z-10'>
-          {user ? (
-            <>
-              <Button onClick={onProfileClick}>
-                <Avatar
-                  src={avatarData?.avatar}
-                  className='h-12 w-12'
-                  fill={colors.primary[500]}
-                />
-              </Button>
-
-              <div className='flex flex-col ml-4 gap-1'>
-                <span className='font-semibold text-lg'>
-                  Olá, {user?.name?.split(' ')[0]}
-                </span>
-
-                {user?.role && (
-                  <span
-                    className='font-medium'
-                    style={{ color: infos.roles[data.user.role].color }}
-                  >
-                    {infos.roles[user.role].label}
-                  </span>
-                )}
-              </div>
-
-              <Button className='ml-auto' onClick={onLogoutClick}>
-                <Logout className='h-5 w-5 stroke-gray-500 hover:stroke-error-500' />
-              </Button>
-            </>
-          ) : (
-            <Loading fill={colors.primary[500]} />
-          )}
-        </header>
-      )}
+      {!hideHeader && <Header />}
 
       {children}
 
-      <nav className='bg-primary-500 fixed bottom-0 left-0 right-0 z-10'>
-        <ul className='flex items-center justify-center'>
-          <li className='flex-1'>
-            <Button
-              onClick={onMyDemandsClick}
-              className='py-4 w-full flex items-center justify-center'
-            >
-              <Projects fill={colors.gray[50]} className='h-6 w-6' />
-            </Button>
-          </li>
-
-          <li className='flex-1'>
-            <Button
-              onClick={onDemandsClick}
-              className='py-4 w-full flex items-center justify-center'
-            >
-              <House fill={colors.gray[50]} className='h-7 w-7' />
-            </Button>
-          </li>
-
-          <li className='flex-1'>
-            <Button
-              onClick={onProfileClick}
-              className='py-4 w-full flex items-center justify-center'
-            >
-              <Profile fill={colors.gray[50]} className='h-6 w-6' />
-            </Button>
-          </li>
-        </ul>
-      </nav>
+      <Nav />
     </>
   )
 }

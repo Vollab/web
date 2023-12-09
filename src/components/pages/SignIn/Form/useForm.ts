@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation'
 
 import { useSignIn } from 'src/api/requests/auth/signIn/useSignIn'
+import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
 
 import { useToastContext } from 'src/contexts/Toast'
 
@@ -16,6 +17,7 @@ export const useForm = () => {
   const { push } = useRouter()
   const { mutateAsync } = useSignIn()
   const { toastRef } = useToastContext()
+  const { refetch } = useCurrentUser(false)
   const { handleSubmit, register, formState } = useHookForm<Request>({
     resolver,
     defaultValues: { email: '', password: '' }
@@ -28,7 +30,12 @@ export const useForm = () => {
       toastRef?.current?.triggerToast([
         { variant: 'error', content: 'Falha ao fazer login' }
       ])
-    } else push('/demands')
+    }
+    const { data: currentUserData } = await refetch()
+
+    if (currentUserData?.user) {
+      push('/demands')
+    }
   }
 
   const onSignUpClick = () => {
