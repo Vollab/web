@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
+import { useUpdateDemand } from 'src/api/requests/demands/update/useUpdateDemand'
+
 import { LabelHover } from 'src/components/shared/groups/Form/LabelHover'
 
 import { useDemandContext } from 'src/contexts/Demand'
 
-import { useUpdateDemand } from 'src/hooks/api/demands/useUpdateDemand'
-
 export const Name = () => {
   const { mutate } = useUpdateDemand()
-  const { demand, isOwner } = useDemandContext()
+  const { isOwner, demand } = useDemandContext()
   const [title, setTitle] = useState(demand?.title)
 
   const titleTw =

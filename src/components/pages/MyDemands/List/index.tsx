@@ -1,8 +1,8 @@
 'use client'
 
-import { Demand } from 'src/components/shared/organisms/Demand'
+import { useDemands } from 'src/api/requests/demands/getAll/useDemands'
 
-import { useDemands } from 'src/hooks/api/demands/useDemands'
+import { Demand } from 'src/components/shared/organisms/Demand'
 
 export const List = () => {
   const { data } = useDemands()

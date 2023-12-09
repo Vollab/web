@@ -1,21 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { useUpdateDemand } from 'src/api/requests/demands/update/useUpdateDemand'
 
 import { LabelHover } from 'src/components/shared/groups/Form/LabelHover'
 
 import { useDemandContext } from 'src/contexts/Demand'
 
-import { useUpdateDemand } from 'src/hooks/api/demands/useUpdateDemand'
-
 export const Title = () => {
   const { mutate } = useUpdateDemand()
-
+  const [title, setTitle] = useState<string>()
   const { demand, isOwner } = useDemandContext()
-  const [title, setTitle] = useState(demand?.title)
 
   const titleTw =
     'h-[26px] font-semibold text-h5 text-tertiary-500 font-primary border-none'
+
+  useEffect(() => {
+    setTitle(demand?.title)
+  }, [demand])
 
   return isOwner ? (
     <LabelHover

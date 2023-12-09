@@ -2,14 +2,14 @@
 
 import { Links } from './Links'
 
+import { useAvatar } from 'src/api/requests/avatar/useAvatar'
+import { useUser } from 'src/api/requests/users/useUser'
+
 import { colors } from 'src/styles/custom/colors'
 
 import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
 import { infos } from 'src/static/infos'
-
-import { useAvatar } from 'src/hooks/api/users/useAvatar'
-import { useUser } from 'src/hooks/api/users/useUser'
 
 import { Avatar } from 'src/assets/icons'
 

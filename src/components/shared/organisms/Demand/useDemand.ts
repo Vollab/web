@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import { infos } from 'src/static/infos'
 
-import { useAvatar } from 'src/hooks/api/users/useAvatar'
+import { useAvatar } from 'src/api/requests/avatar/useAvatar'
 
 export const useDemand = ({ demand }: IDemandProps) => {
   const orderer = demand.orderer

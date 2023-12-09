@@ -1,6 +1,6 @@
 import { infos } from 'src/static/infos'
 
-import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
+import { TVacancy } from 'src/utils/addStatusInVacancies'
 
 export interface IFilledVacancyProps {
   name: TVacancy['name']

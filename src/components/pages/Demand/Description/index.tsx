@@ -4,16 +4,16 @@ import { InfoItem } from '../InfoItem'
 
 import { useEffect, useState } from 'react'
 
-import { TextareaHover } from 'src/components/shared/groups/Form/TexareaHover'
+import { useUpdateDemand } from 'src/api/requests/demands/update/useUpdateDemand'
+
+import { TextareaHover } from 'src/components/shared/groups/Form/TextareaHover'
 
 import { useDemandContext } from 'src/contexts/Demand'
-
-import { useUpdateDemand } from 'src/hooks/api/demands/useUpdateDemand'
 
 export const Description = () => {
   const { mutate } = useUpdateDemand()
   const { isOwner, demand } = useDemandContext()
-  const [description, setDescription] = useState(demand?.description)
+  const [description, setDescription] = useState<string>()
 
   const descriptionTw = 'text-gray-600 w-full min-h-[20px]'
 

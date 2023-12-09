@@ -19,6 +19,7 @@
     "^react$",
     "^common/(.*)$",
     "^public/(.*)$",
+    "^src/api/(.*)$",
     "^src/styles/(.*)$",
     "^src/screens/(.*)$",
     "^src/components/(.*)$",

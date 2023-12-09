@@ -4,15 +4,15 @@ import { Loading } from '../../atoms/Loading'
 
 import { useRouter } from 'next/navigation'
 
+import { useSignOut } from 'src/api/requests/auth/signOut/useSignOut'
+import { useAvatar } from 'src/api/requests/avatar/useAvatar'
+import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
+
 import { colors } from 'src/styles/custom/colors'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { infos } from 'src/static/infos'
-
-import { useCurrentUser } from 'src/hooks/api/currentUser/useCurrentUser'
-import { useSignOut } from 'src/hooks/api/useSignOut'
-import { useAvatar } from 'src/hooks/api/users/useAvatar'
 
 import { Avatar } from 'src/assets/icons'
 import { House } from 'src/assets/icons/House'

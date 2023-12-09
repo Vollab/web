@@ -1,5 +1,3 @@
-'use client'
-
 import { Description } from './Description'
 import { Header } from './Header'
 import { InfoItem } from './InfoItem'
@@ -10,39 +8,26 @@ import { MainLayout } from 'src/components/shared/layouts/MainLayout'
 
 import { DemandProvider } from 'src/contexts/Demand'
 
-import { useDemand } from 'src/hooks/api/demands/useDemand'
-
 interface IDemandProps {
   id: string
 }
 
-export const Demand = ({ id }: IDemandProps) => {
-  const { data } = useDemand({ id })
-  const demand = data?.demand
-  const vacancies = data?.vacancies
+export const Demand = ({ id }: IDemandProps) => (
+  <MainLayout hideHeader>
+    <DemandProvider id={id}>
+      <main className='space-y-4'>
+        <Header />
 
-  return (
-    <MainLayout hideHeader>
-      <DemandProvider demand={demand}>
-        <main className='space-y-4'>
-          <Header
-            id={demand?.id}
-            title={demand?.title}
-            status={demand?.status}
-            ordererId={demand?.orderer.id}
-          />
+        <ul className='px-4 space-y-4 pb-16'>
+          <Resume />
 
-          <ul className='px-4 space-y-4 pb-16'>
-            <Resume />
+          <Description />
 
-            <Description />
-
-            <InfoItem title='Vagas'>
-              <Vacancies vacancies={vacancies} />
-            </InfoItem>
-          </ul>
-        </main>
-      </DemandProvider>
-    </MainLayout>
-  )
-}
+          <InfoItem title='Vagas'>
+            <Vacancies />
+          </InfoItem>
+        </ul>
+      </main>
+    </DemandProvider>
+  </MainLayout>
+)

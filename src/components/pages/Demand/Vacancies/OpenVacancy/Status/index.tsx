@@ -25,8 +25,8 @@ export const Status = ({ status: statusProp, id }: IStatusProps) => {
       </div>
 
       <div className='w-full flex mt-2'>
-        <ConfirmButton id={id} status={status} />
-        <CancelButton id={id} status={status} />
+        <ConfirmButton status={status} />
+        <CancelButton status={status} />
       </div>
     </footer>
   ) : (

@@ -1,11 +1,11 @@
 'use client'
 
+import { useDemands } from 'src/api/requests/demands/getAll/useDemands'
+
 import { colors } from 'src/styles/custom/colors'
 
 import { Loading } from 'src/components/shared/atoms/Loading'
 import { Demand } from 'src/components/shared/organisms/Demand'
-
-import { useDemands } from 'src/hooks/api/demands/useDemands'
 
 export const List = () => {
   const { data, isLoading } = useDemands()

@@ -2,6 +2,8 @@ import { IStatusProps } from './types'
 
 import { useCallback, useEffect, useState } from 'react'
 
+import { useEnroll } from 'src/api/requests/candidate/enroll/useEnroll'
+
 import { IInfo } from 'src/components/shared/molecules/Toast'
 
 import { useDemandContext } from 'src/contexts/Demand'
@@ -9,14 +11,12 @@ import { useToastContext } from 'src/contexts/Toast'
 
 import { infos } from 'src/static/infos'
 
-import { useEnroll } from 'src/hooks/api/candidates/useEnroll'
-import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
-
+import { TVacancy } from 'src/utils/addStatusInVacancies'
 import { transformToArray } from 'src/utils/transformToArray'
 
 export const useStatus = ({ id, status }: IStatusProps) => {
   const { toastRef } = useToastContext()
-  const { demand, isOwner } = useDemandContext()
+  const { isOwner, demand } = useDemandContext()
   const { mutate, data, isSuccess, error, isError } = useEnroll()
 
   const [enrollmentStatus, setEnrollmentStatus] =

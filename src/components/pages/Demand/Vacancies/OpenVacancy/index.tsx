@@ -2,18 +2,10 @@ import { Status } from './Status'
 
 import { infos } from 'src/static/infos'
 
-import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
+import { TVacancy } from 'src/utils/addStatusInVacancies'
 
 interface IOpenVacancyProps {
-  vacancy: {
-    id: TVacancy['id']
-    name: TVacancy['name']
-    city: TVacancy['city']
-    state: TVacancy['state']
-    status: TVacancy['status']
-    work_mode: TVacancy['work_mode']
-    description: TVacancy['description']
-  }
+  vacancy: TVacancy
 }
 
 export const OpenVacancy = ({

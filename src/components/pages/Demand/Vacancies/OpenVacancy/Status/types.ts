@@ -1,4 +1,4 @@
-import { TVacancy } from 'src/hooks/api/demands/useDemand/types'
+import { TVacancy } from 'src/utils/addStatusInVacancies'
 
 export interface IStatusProps {
   id: TVacancy['id']

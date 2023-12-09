@@ -1,4 +1,4 @@
-import { sendCookies } from 'src/services/api/cookies/send'
+import { sendCookies } from 'src/api/core/cookies/send'
 
 export const GET = async (request: Request) =>
   sendCookies({

@@ -4,17 +4,16 @@ import { InfoItem } from '../InfoItem'
 
 import { useEffect, useState } from 'react'
 
-import { TextareaHover } from 'src/components/shared/groups/Form/TexareaHover'
+import { useUpdateDemand } from 'src/api/requests/demands/update/useUpdateDemand'
+
+import { TextareaHover } from 'src/components/shared/groups/Form/TextareaHover'
 
 import { useDemandContext } from 'src/contexts/Demand'
-
-import { useUpdateDemand } from 'src/hooks/api/demands/useUpdateDemand'
 
 export const Resume = () => {
   const { mutate } = useUpdateDemand()
   const { isOwner, demand } = useDemandContext()
-
-  const [resume, setResume] = useState(demand?.resume)
+  const [resume, setResume] = useState<string>()
 
   const resumeTw = 'text-gray-600 w-full min-h-[20px]'
 

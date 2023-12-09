@@ -1,6 +1,6 @@
 'use client'
 
-import type { IForwardModal, IModalProps } from './types'
+import { IForwardModal, IModalProps } from './types'
 
 import { Button } from '../../groups/Buttons/Button'
 import { useModal } from './useModal'
