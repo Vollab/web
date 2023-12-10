@@ -139,15 +139,17 @@ export const useCreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
         placeholder: 'Modo de trabalho'
       },
       description: {
+        maxLength: 255,
         placeholder: 'Descrição',
         onChange: onDescriptionChange,
         ref: register('description').ref,
         error: formState.errors.description as any
       },
       name: {
-        error: formState.errors.name,
+        maxLength: 30,
         ...register('name'),
-        placeholder: 'Título'
+        placeholder: 'Título',
+        error: formState.errors.name
       }
     }
   }

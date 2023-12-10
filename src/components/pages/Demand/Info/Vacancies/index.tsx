@@ -13,7 +13,7 @@ import { IForwardModal } from 'src/components/shared/molecules/Modal/types'
 import { useDemandContext } from 'src/contexts/Demand'
 
 export const Vacancies = () => {
-  const { vacancies } = useDemandContext()
+  const { vacancies, isOwner } = useDemandContext()
   const addVacancyModalRef = useRef<IForwardModal>(null)
 
   const onAddVacancyClick = () => {
@@ -26,8 +26,11 @@ export const Vacancies = () => {
 
   return (
     <>
-      <InfoItem title='Vagas' onAddClick={onAddVacancyClick}>
-        <ul className='flex flex-col gap-4 py-4'>
+      <InfoItem
+        title='Vagas'
+        onAddClick={isOwner ? onAddVacancyClick : undefined}
+      >
+        <ul className='flex flex-col gap-4 pt-4'>
           {vacancies?.map(({ id, open, name, work_mode, ...vacancy }) =>
             open ? (
               <OpenVacancy

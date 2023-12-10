@@ -16,7 +16,7 @@ import { useToastContext } from 'src/contexts/Toast'
 
 export const Footer = () => {
   const { push } = useRouter()
-  const { demand } = useDemandContext()
+  const { demand, isOwner } = useDemandContext()
   const { toastRef } = useToastContext()
   const { mutateAsync } = useDeleteDemand()
   const confirmModalRef = useRef<IForwardModal>(null)
@@ -47,15 +47,17 @@ export const Footer = () => {
 
   return (
     <>
-      <footer>
-        <Button
-          className='text-error-600 font-semibold text-lg w-full text-center hover:text-error-400'
-          onClick={() => {
-            confirmModalRef.current?.triggerModal({ open: true })
-          }}
-        >
-          Excluir Demanda
-        </Button>
+      <footer className='pb-20'>
+        {isOwner && (
+          <Button
+            className='text-error-600 font-semibold text-lg w-full text-center hover:text-error-400'
+            onClick={() => {
+              confirmModalRef.current?.triggerModal({ open: true })
+            }}
+          >
+            Excluir Demanda
+          </Button>
+        )}
       </footer>
 
       <ConfirmModal

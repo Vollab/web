@@ -4,7 +4,8 @@
 
 @layer components {
   .ModalContainer {
-    @apply bg-gray-50 p-4 m-4 rounded-xl flex flex-col gap-y-4 w-full max-w-[500px] relative;
+    @apply bg-gray-50 p-4 m-4 rounded-xl flex flex-col gap-y-4 w-full relative;
+    max-width: min(500px, 100% - 24px);
   }
 }
 

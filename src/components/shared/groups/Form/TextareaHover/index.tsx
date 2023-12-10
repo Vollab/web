@@ -51,7 +51,7 @@ export const TextareaHover = ({
           children
         )}
 
-        <Pencil showInput={showInput} />
+        <Pencil showInput={showInput} className={custom?.tws?.pencil} />
       </label>
 
       <Confirm onConfirmClick={onConfirmClick} showInput={showInput} />

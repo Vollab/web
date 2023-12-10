@@ -3,6 +3,7 @@ import { IStatusProps } from './types'
 import { useCallback, useEffect, useState } from 'react'
 
 import { useEnroll } from 'src/api/requests/candidate/enroll/useEnroll'
+import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
 
 import { IInfo } from 'src/components/shared/molecules/Toast'
 
@@ -16,6 +17,7 @@ import { transformToArray } from 'src/utils/transformToArray'
 
 export const useStatus = ({ id, status }: IStatusProps) => {
   const { toastRef } = useToastContext()
+  const { data: userData } = useCurrentUser()
   const { isOwner, demand } = useDemandContext()
   const { mutate, data, isSuccess, error, isError } = useEnroll()
 
@@ -69,5 +71,11 @@ export const useStatus = ({ id, status }: IStatusProps) => {
     }
   }, [data?.enrollment.status, isSuccess, toastRef])
 
-  return { status: enrollmentStatus, onEnrollClick, statusColor, statusLabel }
+  return {
+    statusColor,
+    statusLabel,
+    onEnrollClick,
+    status: enrollmentStatus,
+    isCandidate: userData?.user.role === 'candidate'
+  }
 }

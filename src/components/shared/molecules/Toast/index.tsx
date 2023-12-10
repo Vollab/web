@@ -39,7 +39,7 @@ export const Toast = forwardRef<IForwardToast>((_, ref) => {
     <>
       {portalRef.current ? (
         createPortal(
-          <ul className='fixed top-4 right-4 z-50 flex flex-col gap-4'>
+          <ul className='fixed top-4 right-4 z-[100] flex flex-col gap-4'>
             {infos?.map((info, index) => (
               <Content info={info} key={index} index={index} />
             ))}

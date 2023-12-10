@@ -59,14 +59,14 @@ export const Content = ({ info, index }: IContentProps) => {
     <AnimatePresence>
       {showing && (
         <motion.li
+          exit={{ x: '100%', opacity: 0 }}
+          initial={{ x: '100%', opacity: 0 }}
+          transition={{ type: 'spring', duration: 1 }}
           animate={{
             x: 0,
             opacity: 1,
             transition: { delay: (index * 300) / 1000 }
           }}
-          exit={{ x: '100%', opacity: 0 }}
-          initial={{ x: '100%', opacity: 0 }}
-          transition={{ type: 'spring', duration: 1 }}
           className='p-4 rounded-lg flex flex-col items-center justify-center gap-3 max-w-[200px] overflow-hidden'
         >
           <div className='bg-opacity-[.9] bg-white backdrop-blur-[2px] border border-opacity-43 border-solid border-white shadow-md rounded-lg w-full h-full absolute z-10 top-0' />

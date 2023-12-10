@@ -10,36 +10,41 @@ import { TextareaHover } from 'src/components/shared/groups/Form/TextareaHover'
 
 import { useDemandContext } from 'src/contexts/Demand'
 
-export const Description = () => {
+export const Resume = () => {
   const { mutate } = useUpdateDemand()
   const { isOwner, demand } = useDemandContext()
-  const [description, setDescription] = useState<string>()
+  const [resume, setResume] = useState<string>()
 
-  const descriptionTw = 'text-gray-600 w-full min-h-[20px] break-words'
+  const resumeTw = 'text-gray-600 w-full min-h-[20px] break-words'
 
   useEffect(() => {
-    setDescription(demand?.description)
-  }, [demand?.description])
+    setResume(demand?.resume)
+  }, [demand?.resume])
 
   return (
-    <InfoItem title='Descrição'>
+    <InfoItem title='Resumo'>
       {isOwner ? (
         <TextareaHover
-          value={description}
+          value={resume}
+          maxLength={120}
           custom={{
-            tws: { input: descriptionTw + ' p-2', label: descriptionTw }
+            tws: {
+              label: resumeTw,
+              input: resumeTw + ' p-2',
+              pencil: 'absolute right-0 top-0'
+            }
           }}
           onConfirmClick={() => {
-            demand?.id && mutate({ description, id: demand.id })
+            demand?.id && mutate({ resume, id: demand.id })
           }}
           onChange={e => {
-            setDescription(e.currentTarget.value)
+            setResume(e.currentTarget.value)
           }}
         >
-          <p className={descriptionTw}>{description}</p>
+          <p className={resumeTw}>{resume}</p>
         </TextareaHover>
       ) : (
-        <p className={descriptionTw}>{description}</p>
+        <p className={resumeTw}>{resume}</p>
       )}
     </InfoItem>
   )

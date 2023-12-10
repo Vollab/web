@@ -3,6 +3,7 @@ import { ICreateVacancyProps } from './types'
 import { useCreateVacancy } from './useCreateVacancy'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
+import { CloseButton } from 'src/components/shared/groups/Buttons/CloseButton'
 import { Field } from 'src/components/shared/groups/Form/Field'
 import { Select } from 'src/components/shared/groups/Form/Select'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
@@ -15,7 +16,11 @@ export const CreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
   return (
     <form className='ModalContainer' onSubmit={onSubmit}>
       <div className='flex flex-col gap-2'>
-        <h2 className='text-xl text-tertiary-500'>Crie uma vaga!</h2>
+        <div className='flex items-center justify-between'>
+          <h2 className='text-xl text-tertiary-500'>Crie uma vaga!</h2>
+
+          <CloseButton onClick={closeModal} />
+        </div>
 
         <p className='leading-[20px]'>
           Adicione uma vaga para sua demanda, assim você poderá

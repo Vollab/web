@@ -23,7 +23,7 @@ export const Demand = ({ demand }: IDemandProps) => {
     onSeeProfileClick
   } = useDemand({ demand })
 
-  console.log(vacancies)
+  console.log({ vacancies })
 
   return (
     <article className='rounded-2xl shadow-md flex flex-col relative p-4'>
@@ -62,7 +62,7 @@ export const Demand = ({ demand }: IDemandProps) => {
 
       <div className='text-left relative z-10'>
         <Button onClick={onDemandClick} className='text-left'>
-          <h2 className='text-lg font-semibold mt-3 break-words'>{title}</h2>
+          <h2 className='text-lg font-semibold mt-3 break-all'>{title}</h2>
 
           <span
             className='block mt-1 mb-3 font-medium'
@@ -71,7 +71,7 @@ export const Demand = ({ demand }: IDemandProps) => {
             {statusLabel}
           </span>
 
-          <p className='break-words'>{resume}</p>
+          <p className='break-all min-w-0 w-full'>{resume}</p>
         </Button>
       </div>
 
@@ -79,7 +79,10 @@ export const Demand = ({ demand }: IDemandProps) => {
         <ul className='flex mt-3 flex-wrap gap-2 text-left'>
           {vacancies?.map(({ id, activity_area, work_mode }) => (
             <li key={id}>
-              <ActivityLabel work_mode={work_mode} name={activity_area} />
+              <ActivityLabel
+                work_mode={work_mode}
+                name={activity_area as unknown as string}
+              />
             </li>
           ))}
         </ul>

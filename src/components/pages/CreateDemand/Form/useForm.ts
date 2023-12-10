@@ -6,6 +6,7 @@ import { FormEventHandler } from 'react'
 
 import { useCreateDemand } from 'src/api/requests/demands/create/useCreateDemand'
 
+import { queryClient } from 'src/contexts/ReactQuery'
 import { useToastContext } from 'src/contexts/Toast'
 
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -42,23 +43,21 @@ export const useForm = () => {
   const onSubmit = handleSubmit(async data => {
     const { demand } = await mutateAsync(data)
 
-    if (demand) {
-      push(`demands/${demand.id}`)
-
-      toastRef?.current?.triggerToast([
-        {
-          variant: 'success',
-          content: 'Demanda criada com sucesso, experimente adicionar vagas! '
-        }
-      ])
-    } else {
-      toastRef?.current?.triggerToast([
-        {
-          variant: 'error',
-          content: 'Falha ao criar demanda, tente novamente mais tarde'
-        }
-      ])
+    if (!demand) {
+      toastRef?.current?.triggerToast([{}])
+      return
     }
+
+    push(`demands/${demand.id}`)
+
+    queryClient.refetchQueries('demands')
+
+    toastRef?.current?.triggerToast([
+      {
+        variant: 'success',
+        content: 'Demanda criada com sucesso, experimente adicionar vagas! '
+      }
+    ])
   })
 
   const onResumeChange: FormEventHandler<any> = e =>
@@ -75,14 +74,16 @@ export const useForm = () => {
         ...register('title')
       },
       description: {
-        error: formState.errors.description as any,
+        maxLength: 255,
+        onChange: onDescriptionChange,
         ref: register('description').ref,
-        onChange: onDescriptionChange
+        error: formState.errors.description as any
       },
       resume: {
-        error: formState.errors.resume as any,
+        maxLength: 120,
+        onChange: onResumeChange,
         ref: register('resume').ref,
-        onChange: onResumeChange
+        error: formState.errors.resume as any
       }
     }
   }

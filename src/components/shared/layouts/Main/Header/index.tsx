@@ -33,7 +33,7 @@ export const Header = () => {
   }
 
   return (
-    <header className='flex p-4 items-center shadow-md fixed top-0 left-0 right-0 bg-gray-50 z-10'>
+    <header className='flex p-4 items-center shadow-md fixed top-0 left-0 right-0 bg-gray-50 z-50'>
       {user ? (
         <>
           <AvatarButton />

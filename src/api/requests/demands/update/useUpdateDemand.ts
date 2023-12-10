@@ -19,5 +19,6 @@ export const useUpdateDemand = () =>
   useMutation<IUseUpdateDemandMutation>(updateDemand, {
     onSuccess: (_data, { id }) => {
       queryClient.refetchQueries(['demand', id])
+      queryClient.refetchQueries('demands')
     }
   })

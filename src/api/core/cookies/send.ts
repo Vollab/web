@@ -18,12 +18,16 @@ export async function sendCookies({
     'Content-Type': 'application/json'
   }
 
-  console.log(`SEND - ${method} - ${services[service]}${route}`)
-
   const response = await fetch(`${services[service]}${route}`, {
     method,
-    headers: method !== 'GET' ? postHeaders : { Cookie: cookiesStore },
-    body: method !== 'GET' ? JSON.stringify(await request?.json()) : undefined
+    headers:
+      method === 'POST' || method === 'PATCH'
+        ? postHeaders
+        : { Cookie: cookiesStore },
+    body:
+      method === 'POST' || method === 'PATCH'
+        ? JSON.stringify(await request?.json())
+        : undefined
   })
 
   return new Response(response.body, { status: 200 })

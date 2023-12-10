@@ -9,10 +9,11 @@ import { useStatus } from './useStatus'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 export const Status = ({ status: statusProp, id }: IStatusProps) => {
-  const { onEnrollClick, status, statusColor, statusLabel } = useStatus({
-    status: statusProp,
-    id
-  })
+  const { onEnrollClick, status, statusColor, statusLabel, isCandidate } =
+    useStatus({
+      status: statusProp,
+      id
+    })
 
   return status ? (
     <footer>
@@ -30,14 +31,16 @@ export const Status = ({ status: statusProp, id }: IStatusProps) => {
       </div>
     </footer>
   ) : (
-    <footer>
-      <Button
-        color='success'
-        onClick={onEnrollClick}
-        className='mt-3 w-full rounded-t-none'
-      >
-        Candidatar-se
-      </Button>
+    <footer style={{ paddingBottom: isCandidate ? 0 : 8 }}>
+      {isCandidate && (
+        <Button
+          color='success'
+          onClick={onEnrollClick}
+          className='mt-3 w-full rounded-t-none'
+        >
+          Candidatar-se
+        </Button>
+      )}
     </footer>
   )
 }

@@ -72,7 +72,9 @@ export const OpenVacancy = ({
                 />
               )}
 
-              <h4 className='text-xl font-medium text-primary-500'>{name}</h4>
+              <h4 className='text-xl font-medium text-primary-500 break-all'>
+                {name}
+              </h4>
             </div>
 
             <span
@@ -84,12 +86,12 @@ export const OpenVacancy = ({
           </header>
 
           {work_mode !== 'REMOTE' && (
-            <span className='font-medium text-gray-500 px-4'>
+            <span className='font-medium text-gray-500 px-4 break-all'>
               {state}, {city}
             </span>
           )}
 
-          <p className='px-4 text-gray-500 mt-1'>{description}</p>
+          <p className='px-4 text-gray-500 mt-1 break-all'>{description}</p>
 
           <Status id={id} status={status} />
         </article>
