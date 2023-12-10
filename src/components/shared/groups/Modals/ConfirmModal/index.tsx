@@ -15,7 +15,7 @@ interface IConfirmModalProps {
 export const ConfirmModal = forwardRef<IForwardModal, IConfirmModalProps>(
   ({ content, onCancelClick, onConfirmClick }, ref) => (
     <Modal ref={ref}>
-      <article className='ModalContainer'>
+      <article className='ModalContainer gap-y-6'>
         <header>
           <CloseButton
             onClick={onCancelClick}
@@ -34,11 +34,19 @@ export const ConfirmModal = forwardRef<IForwardModal, IConfirmModalProps>(
         </p>
 
         <footer className='flex items-center justify-center gap-x-4'>
-          <Button className='flex-1' color='error' onClick={onCancelClick}>
+          <Button
+            className='flex-1 h-10 rounded-xl'
+            color='error'
+            onClick={onCancelClick}
+          >
             Cancelar
           </Button>
 
-          <Button className='flex-1' color='success' onClick={onConfirmClick}>
+          <Button
+            className='flex-1 h-10 rounded-xl'
+            color='success'
+            onClick={onConfirmClick}
+          >
             Confirmar
           </Button>
         </footer>

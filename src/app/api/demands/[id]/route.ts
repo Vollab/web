@@ -13,13 +13,16 @@ export const GET = async (
 export const PATCH = async (
   request: Request,
   context: { params: { id: string } }
-) =>
-  sendCookies({
+) => {
+  console.log(context.params.id)
+
+  return sendCookies({
     request,
     method: 'PATCH',
     service: 'demand',
     route: `/demands/${context.params.id}`
   })
+}
 
 export async function DELETE(
   request: Request,

@@ -17,7 +17,7 @@ interface IUseUpdateDemandMutation {
 
 export const useUpdateDemand = () =>
   useMutation<IUseUpdateDemandMutation>(updateDemand, {
-    onSuccess: (data, { id }) => {
-      queryClient.setQueryData(['demand', id], data)
+    onSuccess: (_data, { id }) => {
+      queryClient.refetchQueries(['demand', id])
     }
   })
