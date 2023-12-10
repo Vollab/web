@@ -8,4 +8,4 @@ import {
 type TGetUser = ({ id }: Params) => Promise<Response>
 
 export const getUser: TGetUser = async ({ id }) =>
-  interceptor({ route: `/api/users/${id}` })
+  interceptor({ route: `/users/${id}` })

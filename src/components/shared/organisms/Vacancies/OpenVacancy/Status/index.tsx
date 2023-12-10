@@ -8,12 +8,20 @@ import { useStatus } from './useStatus'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-export const Status = ({ status: statusProp, id }: IStatusProps) => {
-  const { onEnrollClick, status, statusColor, statusLabel, isCandidate } =
-    useStatus({
-      status: statusProp,
-      id
-    })
+export const Status = ({
+  id,
+  demand_id,
+  vacancy_id,
+  status: statusProp
+}: IStatusProps) => {
+  const {
+    isOwner,
+    status,
+    statusColor,
+    statusLabel,
+    isCandidate,
+    onEnrollClick
+  } = useStatus({ status: statusProp, id })
 
   return status ? (
     <footer>
@@ -26,13 +34,21 @@ export const Status = ({ status: statusProp, id }: IStatusProps) => {
       </div>
 
       <div className='w-full flex mt-2'>
-        <ConfirmButton status={status} />
-        <CancelButton status={status} />
+        <ConfirmButton
+          status={status}
+          vacancy_id={vacancy_id}
+          demand_id={demand_id}
+        />
+        <CancelButton
+          status={status}
+          vacancy_id={vacancy_id}
+          demand_id={demand_id}
+        />
       </div>
     </footer>
   ) : (
     <footer style={{ paddingBottom: isCandidate ? 0 : 8 }}>
-      {isCandidate && (
+      {(isCandidate || isOwner) && (
         <Button
           color='success'
           onClick={onEnrollClick}

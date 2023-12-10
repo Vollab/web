@@ -71,10 +71,14 @@ export const Content = ({ info, index }: IContentProps) => {
         >
           <div className='bg-opacity-[.9] bg-white backdrop-blur-[2px] border border-opacity-43 border-solid border-white shadow-md rounded-lg w-full h-full absolute z-10 top-0' />
 
-          <div className={titleContainerTv({ variant: info?.variant })}>
-            <span className={titleTv({ variant: info?.variant })}>
+          <div
+            className={titleContainerTv({ variant: info?.variant || 'error' })}
+          >
+            <span className={titleTv({ variant: info?.variant || 'error' })}>
               {info?.title ||
-                (info?.variant ? contentVariants[info.variant] : '')}
+                (info?.variant
+                  ? contentVariants[info.variant]
+                  : contentVariants.error)}
             </span>
           </div>
 
@@ -83,7 +87,7 @@ export const Content = ({ info, index }: IContentProps) => {
           </p>
 
           <Button
-            color={info?.variant}
+            color={info?.variant || 'error'}
             onClick={() => setShowing(false)}
             className='relative z-30 w-full py-2 rounded-lg'
           >

@@ -10,5 +10,6 @@ type TEnroll = (params: Params) => Promise<Response>
 export const enroll: TEnroll = ({ demand_id, vacancy_id }) =>
   interceptor({
     method: 'POST',
+    service: 'vacancy',
     route: `/demands/${demand_id}/vacancies/${vacancy_id}/enroll`
   })

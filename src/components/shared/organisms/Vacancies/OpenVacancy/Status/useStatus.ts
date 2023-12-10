@@ -38,7 +38,7 @@ export const useStatus = ({ id, status }: IStatusProps) => {
         {
           variant: 'info',
           content:
-            'Você não pode candidatar-se a uma vaga de sua própria demanda!'
+            'Você não pode se candidatar a uma vaga da sua própria demanda!'
         }
       ])
     else {
@@ -72,6 +72,7 @@ export const useStatus = ({ id, status }: IStatusProps) => {
   }, [data?.enrollment.status, isSuccess, toastRef])
 
   return {
+    isOwner,
     statusColor,
     statusLabel,
     onEnrollClick,

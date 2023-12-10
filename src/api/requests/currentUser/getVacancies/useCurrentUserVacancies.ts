@@ -12,7 +12,5 @@ export const useCurrentUserVacancies = (enabled = true) =>
   useQuery<IUseCurrentUserVacanciesQuery>(
     'current-vacancies',
     getCurrentUserVacancies,
-    {
-      enabled
-    }
+    { enabled }
   )

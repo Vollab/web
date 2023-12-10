@@ -1,9 +1,13 @@
 import { Status } from './Status'
 
+import { useRouter } from 'next/navigation'
+
 import { useRef } from 'react'
 
 import { useDeleteVacancy } from 'src/api/requests/demands/vacancies/delete/useDeleteVacancy'
+import { useApplicants } from 'src/api/requests/demands/vacancies/getApplicants/useApplicants'
 
+import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { CloseButton } from 'src/components/shared/groups/Buttons/CloseButton'
 import { ConfirmModal } from 'src/components/shared/groups/Modals/ConfirmModal'
 import { IForwardModal } from 'src/components/shared/molecules/Modal/types'
@@ -17,16 +21,21 @@ import { infos } from 'src/static/infos'
 import { TVacancy } from 'src/utils/addStatusInVacancies'
 
 interface IOpenVacancyProps {
-  vacancy: TVacancy
+  vacancy: TVacancy & { demand_id?: string }
 }
 
 export const OpenVacancy = ({
-  vacancy: { id, name, city, state, work_mode, description, status }
+  vacancy: { id, name, city, state, work_mode, description, status, demand_id }
 }: IOpenVacancyProps) => {
+  const { push } = useRouter()
   const { toastRef } = useToastContext()
   const { mutateAsync } = useDeleteVacancy()
   const { isOwner, demand } = useDemandContext()
   const confirmRemoveModalRef = useRef<IForwardModal>(null)
+  const { data } = useApplicants({ vacancy_id: id, demand_id: demand?.id })
+  console.log({ demand_id })
+
+  const applicantsQuantity = data?.enrollments ? data.enrollments.length : 0
 
   const onCancelConfirmDeleteVacancyClick = () => {
     confirmRemoveModalRef.current?.triggerModal({ open: false })
@@ -55,6 +64,10 @@ export const OpenVacancy = ({
     toastRef?.current?.triggerToast([
       { content: 'Vaga removida!', variant: 'success' }
     ])
+  }
+
+  const onApplicantsClick = () => {
+    push(`/demands/${demand?.id}/applicants/${id}`)
   }
 
   return (
@@ -93,7 +106,21 @@ export const OpenVacancy = ({
 
           <p className='px-4 text-gray-500 mt-1 break-all'>{description}</p>
 
-          <Status id={id} status={status} />
+          {isOwner && (
+            <Button
+              onClick={onApplicantsClick}
+              className='pl-4 pt-2 text-warning-600 hover:text-warning-500 text-left'
+            >
+              Candidaturas ({applicantsQuantity})
+            </Button>
+          )}
+
+          <Status
+            id={id}
+            status={status}
+            vacancy_id={id}
+            demand_id={demand?.id || demand_id}
+          />
         </article>
       </li>
 

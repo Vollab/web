@@ -2,13 +2,12 @@
 
 import { InfoItem } from '../InfoItem'
 import { CreateVacancy } from './CreateVacancy'
-import { FilledVacancy } from './FilledVacancy'
-import { OpenVacancy } from './OpenVacancy'
 
 import { useRef } from 'react'
 
 import { Modal } from 'src/components/shared/molecules/Modal'
 import { IForwardModal } from 'src/components/shared/molecules/Modal/types'
+import { Vacancies as VacanciesList } from 'src/components/shared/organisms/Vacancies'
 
 import { useDemandContext } from 'src/contexts/Demand'
 
@@ -31,16 +30,7 @@ export const Vacancies = () => {
         onAddClick={isOwner ? onAddVacancyClick : undefined}
       >
         <ul className='flex flex-col gap-4 pt-4'>
-          {vacancies?.map(({ id, open, name, work_mode, ...vacancy }) =>
-            open ? (
-              <OpenVacancy
-                key={id}
-                vacancy={{ id, open, name, work_mode, ...vacancy }}
-              />
-            ) : (
-              <FilledVacancy key={id} name={name} work_mode={work_mode} />
-            )
-          )}
+          <VacanciesList vacancies={vacancies} />
         </ul>
       </InfoItem>
 
