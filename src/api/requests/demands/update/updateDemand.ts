@@ -1,4 +1,4 @@
-import { demandResponse } from 'src/static/temp/demand'
+import { interceptor } from 'src/api/core/interceptor'
 
 import {
   Params,
@@ -8,12 +8,10 @@ import {
 
 type TUpdateDemand = (request: Request & Params) => Promise<Response>
 
-export const updateDemand: TUpdateDemand = async ({ ...request }) => {
-  const res = demandResponse
-
-  const updatedDemandResponse: Response = {
-    demand: { ...res.demand, ...request }
-  }
-
-  return updatedDemandResponse
-}
+export const updateDemand: TUpdateDemand = ({ id, ...request }) =>
+  interceptor({
+    method: 'PATCH',
+    request: request,
+    service: 'demand',
+    route: `/demands/${id}`
+  })

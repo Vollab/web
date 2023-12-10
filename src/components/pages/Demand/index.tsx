@@ -1,4 +1,5 @@
 import { Description } from './Description'
+import { Footer } from './Footer'
 import { OrdererAvatar } from './OrdererAvatar'
 import { Resume } from './Resume'
 import { Status } from './Status'
@@ -25,11 +26,11 @@ export const Demand = ({ id }: IDemandProps) => (
 
         <ul className='px-4 space-y-4 pb-16'>
           <Resume />
-
           <Description />
-
           <Vacancies />
         </ul>
+
+        <Footer />
       </main>
     </DemandProvider>
   </MainLayout>

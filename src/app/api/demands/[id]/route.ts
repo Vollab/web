@@ -9,3 +9,26 @@ export const GET = async (
     service: 'demand',
     route: `/demands/${context.params.id}`
   })
+
+export const PATCH = async (
+  request: Request,
+  context: { params: { id: string } }
+) =>
+  sendCookies({
+    request,
+    method: 'PATCH',
+    service: 'demand',
+    route: `/demands/${context.params.id}`
+  })
+
+export async function DELETE(
+  request: Request,
+  context: { params: { id: string } }
+) {
+  return sendCookies({
+    request,
+    method: 'DELETE',
+    service: 'demand',
+    route: `/demands/${context.params.id}`
+  })
+}

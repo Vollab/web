@@ -33,9 +33,10 @@ export const OpenVacancy = ({
   }
 
   const onConfirmDeleteVacancyClick = async () => {
+    confirmRemoveModalRef.current?.triggerModal({ open: false })
+
     if (!demand?.id || !id) {
       toastRef?.current?.triggerToast([{ variant: 'error' }])
-      confirmRemoveModalRef.current?.triggerModal({ open: false })
       return
     }
 
@@ -44,15 +45,16 @@ export const OpenVacancy = ({
       demand_id: demand?.id
     })
 
-    if (vacancy) {
-      toastRef?.current?.triggerToast([
-        { content: 'Vaga removida!', variant: 'success' }
-      ])
+    if (!vacancy) {
+      toastRef?.current?.triggerToast([{ variant: 'error' }])
+      return
+    }
 
-      queryClient.refetchQueries(['demand/vacancies', demand.id])
-    } else toastRef?.current?.triggerToast([{ variant: 'error' }])
+    queryClient.refetchQueries(['demand/vacancies', demand.id])
 
-    confirmRemoveModalRef.current?.triggerModal({ open: false })
+    toastRef?.current?.triggerToast([
+      { content: 'Vaga removida!', variant: 'success' }
+    ])
   }
 
   return (
@@ -70,9 +72,7 @@ export const OpenVacancy = ({
                 />
               )}
 
-              <h4 className='text-xl font-medium text-primary-500 border'>
-                {name}
-              </h4>
+              <h4 className='text-xl font-medium text-primary-500'>{name}</h4>
             </div>
 
             <span
@@ -97,9 +97,9 @@ export const OpenVacancy = ({
 
       <ConfirmModal
         ref={confirmRemoveModalRef}
-        content='Você tem certeza que deseja remover essa vaga e todas as candidaturas relacionadas?'
         onConfirmClick={onConfirmDeleteVacancyClick}
         onCancelClick={onCancelConfirmDeleteVacancyClick}
+        content='Você tem certeza que deseja remover essa vaga e todas as candidaturas relacionadas?'
       />
     </>
   )

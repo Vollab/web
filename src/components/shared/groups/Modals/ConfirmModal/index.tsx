@@ -29,7 +29,7 @@ export const ConfirmModal = forwardRef<IForwardModal, IConfirmModalProps>(
           {content}
           <b className='text-gray-600 font-semibold w-full'>
             {' '}
-            Essa ação não poderá ser desfeita.
+            Esta ação não poderá ser desfeita.
           </b>
         </p>
 
