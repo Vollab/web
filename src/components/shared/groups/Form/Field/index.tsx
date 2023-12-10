@@ -39,7 +39,7 @@ export const Field = forwardRef<any, IFieldProps>(
     return (
       <Element
         className={twMerge(
-          'shadow-sm relative flex items-center justify-center bg-gray-50 rounded-3xl px-2 border h-[42px]',
+          'relative flex items-center justify-center bg-gray-50 rounded-3xl px-2 border h-[42px]',
           error ? 'border-error-400' : 'border-gray-200',
           className
         )}

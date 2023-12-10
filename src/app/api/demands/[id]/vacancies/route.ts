@@ -9,3 +9,14 @@ export const GET = async (
     service: 'vacancy',
     route: `/demands/${context.params.id}/vacancies`
   })
+
+export const POST = async (
+  request: Request,
+  context: { params: { id: string } }
+) =>
+  sendCookies({
+    request,
+    method: 'POST',
+    service: 'vacancy',
+    route: `/demands/${context.params.id}/vacancies`
+  })

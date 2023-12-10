@@ -14,18 +14,18 @@ export const Title = () => {
   const { demand, isOwner } = useDemandContext()
 
   const titleTw =
-    'min-h-[26px] font-semibold text-xl text-tertiary-500 font-primary border-none w-full break-words'
+    'font-semibold text-xl text-tertiary-500 font-primary break-words max-w-[180px]'
 
   useEffect(() => {
     setTitle(demand?.title)
   }, [demand])
 
   return (
-    <div className='col-span-3'>
+    <div className='col-span-3 min-h-[25px]'>
       {isOwner ? (
         <LabelHover
           value={title}
-          maxLength={25}
+          maxLength={30}
           custom={{ tws: { input: titleTw, label: titleTw } }}
           onChange={e => {
             setTitle(e.target.value)

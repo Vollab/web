@@ -1,3 +1,4 @@
+import { useCurrentUser } from '../get/useCurrentUser'
 import { ICurrentUserDemandVacanciesResponse } from './getDemandVacancies'
 
 import { useCurrentUserVacancies } from 'src/api/requests/currentUser/getVacancies/useCurrentUserVacancies'
@@ -17,14 +18,20 @@ type TUseCurrentUserDemandVacancies = (params: { id: string }) => {
 export const useCurrentUserDemandVacancies: TUseCurrentUserDemandVacancies = ({
   id
 }) => {
+  const { data: userData } = useCurrentUser()
+
+  const isCandidate = userData?.user.role === 'candidate'
+
   const { data: demandData } = useDemand({ id })
-  const { data: userVacanciesData } = useCurrentUserVacancies()
+  const { data: userVacanciesData } = useCurrentUserVacancies(isCandidate)
   const { data: demandVacanciesData } = useDemandVacancies({ demand_id: id })
 
-  const vacancies = addStatusInVacancies({
-    userVacancies: userVacanciesData?.vacancies,
-    demandVacancies: demandVacanciesData?.vacancies
-  })
+  const vacancies = isCandidate
+    ? addStatusInVacancies({
+        userVacancies: userVacanciesData?.vacancies,
+        demandVacancies: demandVacanciesData?.vacancies
+      })
+    : demandVacanciesData?.vacancies
 
   return {
     data: { demand: demandData?.demand, vacancies }

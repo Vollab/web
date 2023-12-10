@@ -8,9 +8,12 @@ export interface ISelectOption {
   label: string
 }
 
-export interface ISelectProps extends Omit<Props, 'options'>, IChildrenProps {
+export interface ISelectProps
+  extends Omit<Props, 'options' | 'onChange'>,
+    IChildrenProps {
   color?: TColors
   options: ISelectOption[]
+  onChange?: (option: ISelectOption) => void
 }
 
 export interface IUseSelectParams {

@@ -30,7 +30,8 @@ export const DemandProvider = ({ children, id }: IDemandProviderProps) => {
 
   useEffect(() => {
     setIsOwner(userId === ownerId)
-  }, [ownerId, userId])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <DemandContext.Provider value={{ isOwner, ...demandVacanciesData }}>

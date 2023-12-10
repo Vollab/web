@@ -42,7 +42,11 @@ export const TextareaHover = ({
         )}
       >
         {showInput ? (
-          <Textarea className={custom?.tws?.input} value={value} {...props} />
+          <Textarea
+            value={value}
+            custom={{ inputTw: custom?.tws?.input }}
+            {...props}
+          />
         ) : (
           children
         )}

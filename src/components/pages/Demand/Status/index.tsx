@@ -13,7 +13,7 @@ export const Status = () => {
 
   return (
     <span
-      className='font-medium text-lg col-span-3'
+      className='font-medium text-lg col-span-3 h-[21px] flex items-center'
       style={{ color: statusColor }}
     >
       {statusLabel}

@@ -1,5 +1,4 @@
 import { Description } from './Description'
-import { InfoItem } from './InfoItem'
 import { OrdererAvatar } from './OrdererAvatar'
 import { Resume } from './Resume'
 import { Status } from './Status'
@@ -18,7 +17,7 @@ export const Demand = ({ id }: IDemandProps) => (
   <MainLayout hideHeader>
     <DemandProvider id={id}>
       <main className='space-y-4'>
-        <header className='px-4 gap-x-4 gap-y-2 grid grid-cols-4 mt-6'>
+        <header className='px-4 gap-x-4 grid grid-cols-4 mt-6'>
           <Title />
           <OrdererAvatar />
           <Status />
@@ -29,9 +28,7 @@ export const Demand = ({ id }: IDemandProps) => (
 
           <Description />
 
-          <InfoItem title='Vagas'>
-            <Vacancies />
-          </InfoItem>
+          <Vacancies />
         </ul>
       </main>
     </DemandProvider>

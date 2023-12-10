@@ -8,7 +8,6 @@ import { useDemandContext } from 'src/contexts/Demand'
 
 export const OrdererAvatar = () => {
   const { demand } = useDemandContext()
-
   const { data: avatarData } = useAvatar({ id: demand?.orderer.id })
 
   return (

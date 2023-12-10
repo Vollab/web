@@ -29,10 +29,11 @@ export const useSelect = ({ color }: IUseSelectParams) => {
       ...base,
       cursor: 'pointer',
       color: isSelected ? colors.gray[50] : undefined,
-      backgroundColor: isSelected ? colors.secondary[500] : undefined,
+      backgroundColor: isSelected ? colors[color][500] : undefined,
+
       ':hover': {
         color: colors.gray['50'],
-        backgroundColor: colors[color]['500']
+        backgroundColor: colors[color][200]
       }
     }),
 
@@ -53,6 +54,11 @@ export const useSelect = ({ color }: IUseSelectParams) => {
     multiValueLabel: base => ({
       ...base,
       color: colors.gray[50]
+    }),
+
+    menuList: base => ({
+      ...base,
+      maxHeight: 200
     }),
 
     placeholder: base => ({ ...base, color: colors.gray[300] })

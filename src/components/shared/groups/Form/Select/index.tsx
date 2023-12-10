@@ -7,6 +7,7 @@ import { twMerge } from 'tailwind-merge'
 
 export const Select = ({
   className,
+  onChange,
   color = 'primary',
   placeholder = 'Selecionar...',
   ...props
@@ -18,6 +19,7 @@ export const Select = ({
       <OriginalSelect
         styles={styles}
         placeholder={placeholder}
+        onChange={onChange as any}
         noOptionsMessage={() => 'Sem opções'}
         {...props}
       />

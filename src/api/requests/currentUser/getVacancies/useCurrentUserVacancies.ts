@@ -8,8 +8,11 @@ export interface IUseCurrentUserVacanciesQuery {
   response: Response
 }
 
-export const useCurrentUserVacancies = () =>
+export const useCurrentUserVacancies = (enabled = true) =>
   useQuery<IUseCurrentUserVacanciesQuery>(
     'current-vacancies',
-    getCurrentUserVacancies
+    getCurrentUserVacancies,
+    {
+      enabled
+    }
   )

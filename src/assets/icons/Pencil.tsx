@@ -2,8 +2,8 @@ import { SVG } from 'src/components/shared/atoms/SVG'
 
 import { IIconProps } from 'src/types/icons.types'
 
-export const Pencil = ({ className, fill }: IIconProps) => (
-  <SVG viewBox='0 0 17 17' className={className}>
+export const Pencil = ({ className, fill, style }: IIconProps) => (
+  <SVG viewBox='0 0 17 17' className={className} style={style}>
     <path
       opacity='0.3'
       d='M15.1584 5.91665L13.6291 7.44521L9.55195 3.36805L11.0805 1.83872C11.351 1.56833 11.7178 1.4165 12.1002 1.4165C12.4826 1.4165 12.8494 1.56833 13.1198 1.83872L15.1584 3.87734C15.4288 4.14779 15.5807 4.51452 15.5807 4.89695C15.5807 5.27938 15.4288 5.6462 15.1584 5.91665ZM2.6117 15.5351L7.00337 14.071L2.9262 9.9938L1.46207 14.3854C1.40835 14.5459 1.40048 14.7181 1.43933 14.8828C1.47819 15.0474 1.56224 15.198 1.68201 15.3175C1.80179 15.4369 1.95253 15.5206 2.11729 15.559C2.28204 15.5975 2.45424 15.5892 2.61453 15.5351H2.6117Z'

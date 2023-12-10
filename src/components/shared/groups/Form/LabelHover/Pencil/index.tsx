@@ -14,7 +14,10 @@ export const Pencil = ({ showInput, className }: IPencilProps) =>
   !showInput ? (
     <PencilIcon
       fill={colors.gray[500]}
-      className={twMerge('hidden h-5 w-5 group-hover:inline', className)}
+      className={twMerge(
+        'hidden min-w-[20px] min-h-[20px] h-5 w-5 group-hover:inline',
+        className
+      )}
     />
   ) : (
     <></>

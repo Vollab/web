@@ -26,7 +26,9 @@ export const Description = () => {
       {isOwner ? (
         <TextareaHover
           value={description}
-          custom={{ tws: { input: descriptionTw, label: descriptionTw } }}
+          custom={{
+            tws: { input: descriptionTw + ' p-2', label: descriptionTw }
+          }}
           onConfirmClick={() => {
             demand?.id && mutate({ description, id: demand.id })
           }}

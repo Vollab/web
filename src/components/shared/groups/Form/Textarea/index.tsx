@@ -9,10 +9,13 @@ import { twMerge } from 'tailwind-merge'
 export interface ITextareaProps extends TTextareaProps {
   value?: string
   error?: { message: string }
+  custom?: {
+    inputTw?: string
+  }
 }
 
 export const Textarea = forwardRef<any, ITextareaProps>(
-  ({ className, error, value, ...props }, ref) => (
+  ({ className, custom, error, value, ...props }, ref) => (
     <div
       className={twMerge('border w-full rounded-lg h-32 relative', className)}
     >
@@ -24,7 +27,10 @@ export const Textarea = forwardRef<any, ITextareaProps>(
         ref={ref}
         value={value}
         {...props}
-        className='resize-none outline-none h-full w-full px-4 py-3 bg-transparent'
+        className={twMerge(
+          'resize-none outline-none h-full w-full px-4 py-3 bg-transparent',
+          custom?.inputTw
+        )}
       />
     </div>
   )
