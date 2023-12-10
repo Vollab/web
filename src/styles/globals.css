@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .ModalContainer {
+    @apply bg-gray-50 p-4 m-4 rounded-xl flex flex-col gap-y-4 w-full max-w-[500px] relative;
+  }
+}
+
 @layer utilities {
   .ellipsis {
     @apply overflow-ellipsis truncate whitespace-nowrap;

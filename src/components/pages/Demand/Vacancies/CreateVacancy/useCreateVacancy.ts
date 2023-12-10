@@ -11,6 +11,8 @@ import {
   ISelectProps
 } from 'src/components/shared/groups/Form/Select/types'
 
+import { useDemandContext } from 'src/contexts/Demand'
+import { queryClient } from 'src/contexts/ReactQuery'
 import { useToastContext } from 'src/contexts/Toast'
 
 import { states as brStates } from 'src/static/states'
@@ -19,6 +21,7 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm as useFormHook } from 'react-hook-form'
 import { name } from 'src/schemas'
+import { VacancyWorkMode } from 'types-vollab/dist/src/shared/vacancy'
 
 const description = Joi.string().required().max(255).min(20).messages({
   'string.empty': 'Informe uma descrição!',
@@ -38,15 +41,16 @@ const workModes = [
 const states = brStates.map(state => ({ label: state, value: state }))
 
 export const useCreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
+  const { demand } = useDemandContext()
   const { toastRef } = useToastContext()
   const { mutateAsync } = useCreateVacancyApi()
-
-  const [showLocation, setShowLocation] = useState(false)
 
   const [city, setCity] = useState<ISelectOption>()
   const [state, setState] = useState<ISelectOption>()
   const [workMode, setWorkMode] = useState<ISelectOption>()
   const [activityArea, setActivityArea] = useState<ISelectOption>()
+
+  const [showLocation, setShowLocation] = useState(false)
 
   const { data: cities } = useCities(state?.value)
   const { data: activityAreas } = useActivityAreas()
@@ -58,23 +62,29 @@ export const useCreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
     })
 
   const onSubmit = handleSubmit(async data => {
-    const { vacancy } = await mutateAsync(data)
+    if (!demand?.id || !activityArea || !workMode) {
+      toastRef?.current?.triggerToast([{ variant: 'error' }])
+
+      return
+    }
+
+    const { vacancy } = await mutateAsync({
+      name: data.name,
+      city: city?.value,
+      state: state?.value,
+      demand_id: demand?.id,
+      description: data.description,
+      activity_area_id: activityArea.value,
+      work_mode: workMode.value as VacancyWorkMode
+    })
 
     if (vacancy) {
+      queryClient.refetchQueries(['demand/vacancies', demand.id])
+
       toastRef?.current?.triggerToast([
-        {
-          variant: 'success',
-          content: 'Vaga criada com sucesso!'
-        }
+        { variant: 'success', content: 'Vaga criada com sucesso!' }
       ])
-    } else {
-      toastRef?.current?.triggerToast([
-        {
-          variant: 'error',
-          content: 'Falha ao criar vaga, tente novamente mais tarde'
-        }
-      ])
-    }
+    } else toastRef?.current?.triggerToast([{ variant: 'error' }])
 
     closeModal()
   })
@@ -92,8 +102,9 @@ export const useCreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
     setCity(option)
   }
 
-  const onDescriptionChange: FormEventHandler<any> = e =>
+  const onDescriptionChange: FormEventHandler<any> = e => {
     setValue('description', e.currentTarget.value)
+  }
 
   const onActivityAreaChange: ISelectProps['onChange'] = newValue => {
     setActivityArea(newValue)
@@ -102,7 +113,6 @@ export const useCreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
   return {
     onSubmit,
     showLocation,
-    showCities: !!city,
     props: {
       activityAreas: {
         value: activityArea,

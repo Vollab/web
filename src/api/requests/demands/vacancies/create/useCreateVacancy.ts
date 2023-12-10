@@ -1,5 +1,11 @@
-import { createVacancy } from './createVacancy'
+import { ICreateVacancyParams, createVacancy } from './createVacancy'
 
 import { useMutation } from 'src/hooks/ReactQuery/useMutation'
 
-export const useCreateVacancy = () => useMutation(createVacancy)
+interface IUseCreateVacancyMutation {
+  response: any
+  request: ICreateVacancyParams
+}
+
+export const useCreateVacancy = () =>
+  useMutation<IUseCreateVacancyMutation>(createVacancy)

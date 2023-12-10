@@ -41,7 +41,7 @@ export const Vacancies = () => {
         </ul>
       </InfoItem>
 
-      <Modal ref={addVacancyModalRef} className='px-4'>
+      <Modal ref={addVacancyModalRef}>
         <CreateVacancy closeModal={onCloseModal} />
       </Modal>
     </>

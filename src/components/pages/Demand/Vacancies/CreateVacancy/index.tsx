@@ -8,15 +8,12 @@ import { Select } from 'src/components/shared/groups/Form/Select'
 import { Textarea } from 'src/components/shared/groups/Form/Textarea'
 
 export const CreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
-  const { props, showLocation, onSubmit, showCities } = useCreateVacancy({
+  const { props, showLocation, onSubmit } = useCreateVacancy({
     closeModal
   })
 
   return (
-    <form
-      className='bg-gray-50 px-4 py-6 rounded-xl w-full flex-col gap-y-4 flex max-w-[500px]'
-      onSubmit={onSubmit}
-    >
+    <form className='ModalContainer' onSubmit={onSubmit}>
       <div className='flex flex-col gap-2'>
         <h2 className='text-xl text-tertiary-500'>Crie uma vaga!</h2>
 

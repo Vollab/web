@@ -5,7 +5,7 @@ interface IInterceptorParams {
   SSR?: boolean
   route: string
   service?: TService
-  method?: 'POST' | 'PATCH' | 'GET' | 'PUT'
+  method?: 'POST' | 'PATCH' | 'GET' | 'PUT' | 'DELETE'
 }
 
 export const interceptor = async ({

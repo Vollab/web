@@ -4,11 +4,9 @@ import { Response } from 'types-vollab/dist/src/modules/vacancy/api/current-user
 
 type TGetCurrentUserVacancies = () => Promise<Response>
 
-export const getCurrentUserVacancies: TGetCurrentUserVacancies = () => {
-  console.log('called')
-  return interceptor({
+export const getCurrentUserVacancies: TGetCurrentUserVacancies = () =>
+  interceptor({
     method: 'GET',
     service: 'vacancy',
     route: '/current-user/vacancies'
   })
-}

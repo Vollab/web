@@ -79,7 +79,7 @@ export const Content = ({ info, index }: IContentProps) => {
           </div>
 
           <p className='relative z-20 text-gray-600 text-center'>
-            {info?.content}
+            {info?.content || 'Tente novamente mais tarde'}
           </p>
 
           <Button

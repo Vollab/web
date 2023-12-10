@@ -1,5 +1,17 @@
 import { Status } from './Status'
 
+import { useRef } from 'react'
+
+import { useDeleteVacancy } from 'src/api/requests/demands/vacancies/delete/useDeleteVacancy'
+
+import { CloseButton } from 'src/components/shared/groups/Buttons/CloseButton'
+import { ConfirmModal } from 'src/components/shared/groups/Modals/ConfirmModal'
+import { IForwardModal } from 'src/components/shared/molecules/Modal/types'
+
+import { useDemandContext } from 'src/contexts/Demand'
+import { queryClient } from 'src/contexts/ReactQuery'
+import { useToastContext } from 'src/contexts/Toast'
+
 import { infos } from 'src/static/infos'
 
 import { TVacancy } from 'src/utils/addStatusInVacancies'
@@ -10,29 +22,85 @@ interface IOpenVacancyProps {
 
 export const OpenVacancy = ({
   vacancy: { id, name, city, state, work_mode, description, status }
-}: IOpenVacancyProps) => (
-  <li>
-    <article className='flex flex-col gap-1 rounded-2xl shadow-lg  overflow-hidden'>
-      <header className='flex items-center justify-between p-4 pb-0 gap-x-4'>
-        <h4 className='text-xl font-medium text-primary-500'>{name}</h4>
+}: IOpenVacancyProps) => {
+  const { toastRef } = useToastContext()
+  const { mutateAsync } = useDeleteVacancy()
+  const { isOwner, demand } = useDemandContext()
+  const confirmRemoveModalRef = useRef<IForwardModal>(null)
 
-        <span
-          className='font-medium'
-          style={{ color: infos.vacancyWorkMode[work_mode].color }}
-        >
-          {infos.vacancyWorkMode[work_mode].label}
-        </span>
-      </header>
+  const onCancelConfirmDeleteVacancyClick = () => {
+    confirmRemoveModalRef.current?.triggerModal({ open: false })
+  }
 
-      {work_mode !== 'REMOTE' && (
-        <span className='font-medium text-gray-500 px-4'>
-          {state}, {city}
-        </span>
-      )}
+  const onConfirmDeleteVacancyClick = async () => {
+    if (!demand?.id || !id) {
+      toastRef?.current?.triggerToast([{ variant: 'error' }])
+      confirmRemoveModalRef.current?.triggerModal({ open: false })
+      return
+    }
 
-      <p className='px-4 text-gray-500 mt-1'>{description}</p>
+    const { vacancy } = await mutateAsync({
+      vacancy_id: id,
+      demand_id: demand?.id
+    })
 
-      <Status id={id} status={status} />
-    </article>
-  </li>
-)
+    if (vacancy) {
+      toastRef?.current?.triggerToast([
+        { content: 'Vaga removida!', variant: 'success' }
+      ])
+
+      queryClient.refetchQueries(['demand/vacancies', demand.id])
+    } else toastRef?.current?.triggerToast([{ variant: 'error' }])
+
+    confirmRemoveModalRef.current?.triggerModal({ open: false })
+  }
+
+  return (
+    <>
+      <li>
+        <article className='flex flex-col gap-1 rounded-2xl shadow-lg  overflow-hidden group'>
+          <header className='flex items-center justify-between p-4 pb-0 gap-x-4'>
+            <div className='flex items-center justify-center gap-x-2'>
+              {isOwner && (
+                <CloseButton
+                  className='hidden group-hover:flex'
+                  onClick={() =>
+                    confirmRemoveModalRef.current?.triggerModal({ open: true })
+                  }
+                />
+              )}
+
+              <h4 className='text-xl font-medium text-primary-500 border'>
+                {name}
+              </h4>
+            </div>
+
+            <span
+              className='font-medium'
+              style={{ color: infos.vacancyWorkMode[work_mode].color }}
+            >
+              {infos.vacancyWorkMode[work_mode].label}
+            </span>
+          </header>
+
+          {work_mode !== 'REMOTE' && (
+            <span className='font-medium text-gray-500 px-4'>
+              {state}, {city}
+            </span>
+          )}
+
+          <p className='px-4 text-gray-500 mt-1'>{description}</p>
+
+          <Status id={id} status={status} />
+        </article>
+      </li>
+
+      <ConfirmModal
+        ref={confirmRemoveModalRef}
+        content='Você tem certeza que deseja remover essa vaga e todas as candidaturas relacionadas?'
+        onConfirmClick={onConfirmDeleteVacancyClick}
+        onCancelClick={onCancelConfirmDeleteVacancyClick}
+      />
+    </>
+  )
+}
