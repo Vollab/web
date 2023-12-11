@@ -1,39 +1,31 @@
-import { IStatusProps } from './types'
-
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import { useEnroll } from 'src/api/requests/candidate/enroll/useEnroll'
 import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
 
 import { IInfo } from 'src/components/shared/molecules/Toast'
 
-import { useDemandContext } from 'src/contexts/Demand'
 import { useToastContext } from 'src/contexts/Toast'
+import { useVacancyContext } from 'src/contexts/Vacancy'
 
 import { infos } from 'src/static/infos'
 
-import { TVacancy } from 'src/utils/addStatusInVacancies'
 import { transformToArray } from 'src/utils/transformToArray'
 
-export const useStatus = ({ id, status }: IStatusProps) => {
+export const useStatus = () => {
   const { toastRef } = useToastContext()
   const { data: userData } = useCurrentUser()
-  const { isOwner, demand } = useDemandContext()
+  const { vacancy, isOwner, demand } = useVacancyContext()
   const { mutateAsync, data, isSuccess, error, isError } = useEnroll()
 
-  const [enrollmentStatus, setEnrollmentStatus] =
-    useState<TVacancy['status']>(status)
-
-  const statusColor = enrollmentStatus
-    ? infos.enrollmentStatus[enrollmentStatus].color
-    : ''
-
-  const statusLabel = enrollmentStatus
-    ? infos.enrollmentStatus[enrollmentStatus].label
-    : ''
+  const status = vacancy?.status
+  const statusColor = status ? infos.enrollmentStatus[status].color : ''
+  const statusLabel = status ? infos.enrollmentStatus[status].label : ''
+  const showEnrollButton = userData?.user.role === 'candidate' || isOwner
+  const showStatus = status
 
   const onEnrollClick = async () => {
-    if (!demand?.id) {
+    if (!demand?.id || !vacancy?.id) {
       toastRef?.current?.triggerToast([{}])
       return
     }
@@ -49,7 +41,7 @@ export const useStatus = ({ id, status }: IStatusProps) => {
     else {
       const { enrollment } = await mutateAsync({
         demand_id: demand.id,
-        vacancy_id: id
+        vacancy_id: vacancy.id
       })
 
       if (!enrollment) toastRef?.current?.triggerToast([{}])
@@ -73,8 +65,6 @@ export const useStatus = ({ id, status }: IStatusProps) => {
 
   useEffect(() => {
     if (isSuccess) {
-      setEnrollmentStatus(data?.enrollment.status)
-
       toastRef?.current?.triggerToast([
         { content: 'Candidatado com sucesso!', variant: 'success' }
       ])
@@ -82,11 +72,10 @@ export const useStatus = ({ id, status }: IStatusProps) => {
   }, [data?.enrollment.status, isSuccess, toastRef])
 
   return {
-    isOwner,
+    showStatus,
     statusColor,
     statusLabel,
     onEnrollClick,
-    status: enrollmentStatus,
-    isCandidate: userData?.user.role === 'candidate'
+    showEnrollButton
   }
 }

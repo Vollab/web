@@ -24,7 +24,7 @@ export const Demand = ({ demand }: IDemandProps) => {
   } = useDemand({ demand })
 
   return (
-    <article className='rounded-2xl flex flex-col relative p-4 h-full shadow-sm hover:shadow-lg overflow-hidden z-10'>
+    <article className='rounded-2xl flex flex-col relative p-4 h-full shadow-sm hover:scale-105 overflow-hidden z-10 transition-all duration-200'>
       <div className='absolute top-0 left-0 w-full bg-gray-50 opacity-[0.98] h-full -z-10' />
 
       <Button
@@ -33,6 +33,11 @@ export const Demand = ({ demand }: IDemandProps) => {
       />
 
       <header className='flex gap-2 items-center text-left relative z-10'>
+        <Button
+          onClick={onDemandClick}
+          className='absolute left-0 w-full top-0 h-full z-0'
+        />
+
         <Button onClick={onSeeProfileClick} className='text-left relative z-10'>
           <Avatar
             src={orderer.avatar}
@@ -41,41 +46,32 @@ export const Demand = ({ demand }: IDemandProps) => {
           />
         </Button>
 
-        <Button
-          onClick={onDemandClick}
-          className='absolute left-0 w-full top-0 h-full z-0'
-        />
-
-        <div className='flex flex-col gap-1 relative'>
+        <Button onClick={onSeeProfileClick} className='text-left relative z-10'>
           <h3 className='text-md font-medium relative z-10'>{orderer.name}</h3>
 
-          <Button
-            onClick={onSeeProfileClick}
-            className='text-left relative z-10 w-auto inline flex-1'
-          >
-            <span className='text-left text-primary-500 text-sm font-medium'>
-              Ver perfil
-            </span>
-          </Button>
-        </div>
+          <span className='text-left text-primary-500 text-sm font-medium'>
+            Ver perfil
+          </span>
+        </Button>
       </header>
 
-      <div className='text-left relative z-10 flex-1 h-full'>
-        <Button onClick={onDemandClick} className='text-left'>
-          <h2 className='text-lg font-semibold mt-3 break-all capitalize'>
-            {title.toLocaleLowerCase()}
-          </h2>
+      <Button
+        onClick={onDemandClick}
+        className='text-left relative z-10 flex-1 h-full'
+      >
+        <h2 className='text-lg font-semibold mt-3 break-all capitalize'>
+          {title.toLocaleLowerCase()}
+        </h2>
 
-          <span
-            className='block mt-1 mb-3 font-medium'
-            style={{ color: statusColor }}
-          >
-            {statusLabel}
-          </span>
+        <span
+          className='block mt-1 mb-3 font-medium'
+          style={{ color: statusColor }}
+        >
+          {statusLabel}
+        </span>
 
-          <p className='break-all min-w-0 w-full'>{resume}</p>
-        </Button>
-      </div>
+        <p className='break-all min-w-0 w-full'>{resume}</p>
+      </Button>
 
       <footer>
         <ul className='flex mt-3 flex-wrap gap-2 text-left'>

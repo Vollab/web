@@ -9,7 +9,7 @@ export interface IInfoItemProps extends IChildrenProps {
 
 export const InfoItem = ({ title, children, onAddClick }: IInfoItemProps) => (
   <li className='flex flex-col gap-2 relative'>
-    <div className='flex items-center justify-between'>
+    <div className='flex items-center justify-between h-8'>
       <h2 className='text-lg font-medium'>{title}</h2>
 
       {onAddClick && <AddButton onClick={onAddClick} />}

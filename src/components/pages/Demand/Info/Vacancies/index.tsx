@@ -12,7 +12,7 @@ import { Vacancies as VacanciesList } from 'src/components/shared/organisms/Vaca
 import { useDemandContext } from 'src/contexts/Demand'
 
 export const Vacancies = () => {
-  const { vacancies, isOwner } = useDemandContext()
+  const { vacancies, isOwner, demand } = useDemandContext()
   const addVacancyModalRef = useRef<IForwardModal>(null)
 
   const onAddVacancyClick = () => {
@@ -29,7 +29,11 @@ export const Vacancies = () => {
         title='Vagas'
         onAddClick={isOwner ? onAddVacancyClick : undefined}
       >
-        <VacanciesList vacancies={vacancies} />
+        <VacanciesList
+          isOwner={isOwner}
+          vacancies={vacancies}
+          demand_id={demand?.id}
+        />
       </InfoItem>
 
       <Modal ref={addVacancyModalRef}>

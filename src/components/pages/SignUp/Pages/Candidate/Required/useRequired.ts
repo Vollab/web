@@ -5,6 +5,8 @@ import { useSignUp } from 'src/api/requests/auth/signUpCandidate/useSignUpCandid
 import { useStepsContext } from 'src/contexts/SignUp/Steps'
 import { useToastContext } from 'src/contexts/Toast'
 
+import { errorToToast } from 'src/utils/errorToToast'
+
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm } from 'react-hook-form'
@@ -27,10 +29,17 @@ export const useRequired = () => {
 
   const onSubmit = handleSubmit(async data => {
     const res = await mutateAsync(data)
-    console.log(res)
 
-    if (!res.candidate) {
-      toastRef?.current?.triggerToast([{}])
+    const toastErrors = errorToToast(
+      [
+        ['e-mail already in use', 'E-mail já está em uso!'],
+        ['phone already in use', 'Celular já está em uso!']
+      ],
+      res.errors
+    )
+
+    if (toastErrors) {
+      toastRef?.current?.triggerToast(toastErrors)
       return
     }
 

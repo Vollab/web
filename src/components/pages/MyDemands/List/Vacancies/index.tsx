@@ -13,6 +13,7 @@ export const Vacancies = () => {
 
   return (
     <VacanciesList
+      filledByMe
       vacancies={data?.vacancies
         .map((vacancy: any) => ({
           demand_id: vacancy.demand_id,

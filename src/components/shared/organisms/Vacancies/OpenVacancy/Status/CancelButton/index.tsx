@@ -5,32 +5,23 @@ import { useEnrollment } from 'src/api/requests/enrollment/useEnrollment'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { useToastContext } from 'src/contexts/Toast'
+import { useVacancyContext } from 'src/contexts/Vacancy'
 
-import { EnrollmentStatus } from 'types-vollab/dist/src/shared/enrollment'
-
-export interface ICancelButtonProps {
-  status: EnrollmentStatus
-  vacancy_id?: string
-  demand_id?: string
-}
-
-export const CancelButton = ({
-  status,
-  demand_id,
-  vacancy_id
-}: ICancelButtonProps) => {
+export const CancelButton = () => {
   const { toastRef } = useToastContext()
   const { mutateUnenroll } = useEnrollment()
+  const { vacancy, demand } = useVacancyContext()
 
   const onCancelClick = async () => {
-    console.log({ demand_id, vacancy_id })
-
-    if (!demand_id || !vacancy_id) {
+    if (!demand?.id || !vacancy?.id) {
       toastRef?.current?.triggerToast([{}])
       return
     }
 
-    const { enrollment } = await mutateUnenroll({ demand_id, vacancy_id })
+    const { enrollment } = await mutateUnenroll({
+      demand_id: demand.id,
+      vacancy_id: vacancy.id
+    })
 
     if (!enrollment) {
       toastRef?.current?.triggerToast([{}])
@@ -42,7 +33,7 @@ export const CancelButton = ({
     ])
   }
 
-  return status === 'APPROVED' ? (
+  return vacancy?.status === 'APPROVED' ? (
     <Button
       color='error'
       onClick={onCancelClick}

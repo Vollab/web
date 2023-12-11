@@ -1,8 +1,11 @@
 import { useRouter } from 'next/navigation'
 
+import { useEffect } from 'react'
+
 import { useSignIn } from 'src/api/requests/auth/signIn/useSignIn'
 import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
 
+import { queryClient } from 'src/contexts/ReactQuery'
 import { useToastContext } from 'src/contexts/Toast'
 
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -41,6 +44,12 @@ export const useForm = () => {
   const onSignUpClick = () => {
     push('/sign-up')
   }
+
+  useEffect(() => {
+    queryClient.invalidateQueries('demands')
+    queryClient.invalidateQueries('current-user')
+    queryClient.invalidateQueries('current-vacancies')
+  }, [])
 
   return {
     onSignUpClick,

@@ -26,6 +26,10 @@ export const useHeader = () => {
     avatar: avatarData?.avatar,
     name: user?.name?.split(' ')[0],
     roleLabel: user ? infos.roles[user.role].label : '',
-    roleColor: user ? infos.roles[user.role].color : ''
+    roleColor: user ? infos.roles[user.role].color : '',
+    myDemandsLabel:
+      data?.user.role === 'candidate'
+        ? 'Minhas Candidaturas'
+        : 'Minhas Demandas'
   }
 }

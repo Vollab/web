@@ -11,11 +11,11 @@ import { Demand } from 'src/components/shared/organisms/Demand'
 import { motion } from 'framer-motion'
 
 export const List = () => {
-  const { data, isLoading } = useDemands()
+  const { data, isFetching } = useDemands()
 
   return (
     <motion.ul {...slideAnimation()} layout='position' className='DefaultGrid'>
-      {isLoading ? (
+      {isFetching ? (
         <Loading fill={colors.primary[500]} />
       ) : (
         data?.demands.map(

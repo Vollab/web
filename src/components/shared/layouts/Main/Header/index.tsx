@@ -7,7 +7,8 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 import { Logout } from 'src/assets/icons'
 
 export const Header = () => {
-  const { name, avatar, roleColor, roleLabel, onLogoutClick } = useHeader()
+  const { name, avatar, roleColor, roleLabel, onLogoutClick, myDemandsLabel } =
+    useHeader()
 
   return (
     <header className='flex py-4 items-center shadow-md fixed top-0 left-0 right-0 z-50'>
@@ -36,7 +37,7 @@ export const Header = () => {
           '
         >
           <ul className='items-center justify-end flex-1 gap-x-4 flex'>
-            <Item route='/my-demands' label='Minhas demandas' />
+            <Item route='/my-demands' label={myDemandsLabel} />
 
             <Item label='Demandas' route='/demands' />
           </ul>

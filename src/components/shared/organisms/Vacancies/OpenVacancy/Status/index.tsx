@@ -1,29 +1,21 @@
 'use client'
 
-import { IStatusProps } from './types'
-
 import { CancelButton } from './CancelButton'
 import { ConfirmButton } from './ConfirmButton'
 import { useStatus } from './useStatus'
 
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-export const Status = ({
-  id,
-  demand_id,
-  vacancy_id,
-  status: statusProp
-}: IStatusProps) => {
+export const Status = () => {
   const {
-    isOwner,
-    status,
+    showStatus,
     statusColor,
     statusLabel,
-    isCandidate,
-    onEnrollClick
-  } = useStatus({ status: statusProp, id })
+    onEnrollClick,
+    showEnrollButton
+  } = useStatus()
 
-  return status ? (
+  return showStatus ? (
     <footer>
       <div className='mt-2 py-3 px-4 flex flex-col gap-1'>
         <span className='font-medium text-lg'>Candidatado</span>
@@ -33,23 +25,14 @@ export const Status = ({
         </span>
       </div>
 
-      <div className='w-full flex mt-2'>
-        <ConfirmButton
-          status={status}
-          vacancy_id={vacancy_id}
-          demand_id={demand_id}
-        />
-
-        <CancelButton
-          status={status}
-          vacancy_id={vacancy_id}
-          demand_id={demand_id}
-        />
+      <div className='w-full flex'>
+        <ConfirmButton />
+        <CancelButton />
       </div>
     </footer>
   ) : (
     <footer>
-      {(isCandidate || isOwner) && (
+      {showEnrollButton && (
         <Button
           color='success'
           onClick={onEnrollClick}
