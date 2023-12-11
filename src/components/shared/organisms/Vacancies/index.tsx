@@ -11,7 +11,7 @@ export const Vacancies = ({
   demand_id,
   filledByMe
 }: IVacanciesProps) => (
-  <ul className='DefaultGrid lg:grid-cols-2'>
+  <>
     {vacancies?.map(vacancy => (
       <VacancyProvider
         vacancy={vacancy}
@@ -26,5 +26,5 @@ export const Vacancies = ({
         )}
       </VacancyProvider>
     ))}
-  </ul>
+  </>
 )

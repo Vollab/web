@@ -45,7 +45,12 @@ export const FilledVacancy = ({ filledByMe }: { filledByMe?: boolean }) => {
             </span>
           </header>
 
-          <div className='text-gray-500 my-auto'>{vacancy?.description}</div>
+          <div
+            className='text-gray-500 my-auto py-2'
+            style={{ color: filledByMe ? colors.gray[50] : colors.gray[500] }}
+          >
+            {vacancy?.description}
+          </div>
 
           <span
             className='mt-2 font-bold'

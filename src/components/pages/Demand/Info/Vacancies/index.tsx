@@ -29,11 +29,13 @@ export const Vacancies = () => {
         title='Vagas'
         onAddClick={isOwner ? onAddVacancyClick : undefined}
       >
-        <VacanciesList
-          isOwner={isOwner}
-          vacancies={vacancies}
-          demand_id={demand?.id}
-        />
+        <ul className='DefaultGrid lg:grid-cols-2'>
+          <VacanciesList
+            isOwner={isOwner}
+            vacancies={vacancies}
+            demand_id={demand?.id}
+          />
+        </ul>
       </InfoItem>
 
       <Modal ref={addVacancyModalRef}>
