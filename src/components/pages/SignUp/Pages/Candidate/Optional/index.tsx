@@ -13,10 +13,12 @@ import { LinksForm } from 'src/components/shared/molecules/LinksForm'
 export const Optional = () => {
   const {
     links,
+    avatar,
     setLinks,
     activityAreas,
     onCreateClick,
     onAvatarChange,
+    activityOptions,
     onActivityAreasChange
   } = useOptional()
 
@@ -24,30 +26,29 @@ export const Optional = () => {
     <FormLayout
       role='Candidato'
       title='Informações opcionais'
-      content='É sempre bom ter uma foto de perfil e alguns links para melhorar o seu perfil!'
+      content='Ter uma foto de perfil e incluir alguns links é altamente recomendado para aprimorar a sua presença online!'
     >
       <div className='space-y-4 pt-6 flex flex-col items-center justify-center'>
-        <File
-          name='avatar'
-          label='Avatar'
-          className='relative'
-          onDataUpdates={onAvatarChange}
-        >
-          <AvatarUpload fill={colors.secondary[500]} />
+        <File name='avatar' className='relative' onDataUpdates={onAvatarChange}>
+          <AvatarUpload fill={colors.secondary[500]} avatar={avatar} />
         </File>
 
-        <div className='absolute -left-8 top-2'>
-          <Select
-            isMulti
-            color='secondary'
-            value={activityAreas}
-            options={activityAreas}
-            placeholder='Área de atuação'
-            onChange={onActivityAreasChange}
-          />
-        </div>
+        <Select
+          isMulti
+          color='secondary'
+          value={activityAreas}
+          placeholder='Área de atuação'
+          options={activityOptions || []}
+          onChange={onActivityAreasChange}
+          className='w-full'
+        />
 
-        <LinksForm color='secondary' setLinks={setLinks} links={links} />
+        <LinksForm
+          color='secondary'
+          setLinks={setLinks}
+          links={links}
+          className='hidden md:block '
+        />
 
         <Button onClick={onCreateClick} color='secondary' className='w-full'>
           Conectar!

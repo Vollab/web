@@ -7,6 +7,24 @@
     @apply bg-gray-50 p-4 m-4 rounded-xl flex flex-col gap-y-4 w-full relative;
     max-width: min(500px, 100% - 24px);
   }
+
+  .FileCropper .cropper-face {
+    @apply rounded-full opacity-20;
+  }
+
+  .FileCropper .cropper-view-box {
+    @apply rounded-full;
+  }
+
+  .FileCropper .cropper-view-box {
+    @apply outline-none;
+  }
+
+  .FileCropper .cropper-line,
+  .FileCropper .cropper-point,
+  .FileCropper .cropper-center {
+    @apply hidden;
+  }
 }
 
 @layer utilities {

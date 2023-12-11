@@ -1,5 +1,7 @@
 import { enroll } from './enroll'
 
+import { queryClient } from 'src/contexts/ReactQuery'
+
 import { useMutation } from 'src/hooks/ReactQuery/useMutation'
 
 import {
@@ -12,4 +14,9 @@ interface IUseEnrollMutation {
   response: Response
 }
 
-export const useEnroll = () => useMutation<IUseEnrollMutation>(enroll)
+export const useEnroll = () =>
+  useMutation<IUseEnrollMutation>(enroll, {
+    onSuccess: () => {
+      queryClient.refetchQueries('current-vacancies')
+    }
+  })

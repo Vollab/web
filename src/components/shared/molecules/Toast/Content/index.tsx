@@ -67,7 +67,7 @@ export const Content = ({ info, index }: IContentProps) => {
             opacity: 1,
             transition: { delay: (index * 300) / 1000 }
           }}
-          className='p-4 rounded-lg flex flex-col items-center justify-center gap-3 max-w-[200px] overflow-hidden'
+          className='p-4 rounded-lg flex flex-col items-center justify-center gap-3 max-w-[200px] overflow-hidden shadow-sm'
         >
           <div className='bg-opacity-[.9] bg-white backdrop-blur-[2px] border border-opacity-43 border-solid border-white shadow-md rounded-lg w-full h-full absolute z-10 top-0' />
 

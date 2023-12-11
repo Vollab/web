@@ -2,6 +2,9 @@ import { FormEventHandler } from 'react'
 
 import { useSignUp } from 'src/api/requests/auth/signUpCandidate/useSignUpCandidate'
 
+import { useStepsContext } from 'src/contexts/SignUp/Steps'
+import { useToastContext } from 'src/contexts/Toast'
+
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm } from 'react-hook-form'
@@ -14,6 +17,8 @@ const resolver = joiResolver(
 
 export const useRequired = () => {
   const { mutateAsync } = useSignUp()
+  const { toastRef } = useToastContext()
+  const { setStep } = useStepsContext()
 
   const { register, handleSubmit, formState, setValue } = useForm<Request>({
     resolver,
@@ -21,7 +26,23 @@ export const useRequired = () => {
   })
 
   const onSubmit = handleSubmit(async data => {
-    await mutateAsync(data)
+    const res = await mutateAsync(data)
+    console.log(res)
+
+    if (!res.candidate) {
+      toastRef?.current?.triggerToast([{}])
+      return
+    }
+
+    toastRef?.current?.triggerToast([
+      {
+        variant: 'success',
+        title: 'Cadastrado com sucesso',
+        content: 'Adicione algumas informações opcionais!'
+      }
+    ])
+
+    setStep(2)
   })
 
   const onTextAreaChange: FormEventHandler<any> = e =>

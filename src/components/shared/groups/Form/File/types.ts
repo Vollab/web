@@ -1,16 +1,23 @@
-import { IChildrenProps } from 'src/types/react.types'
+import { ReactNode } from 'react'
 
-import { ReactCropperProps } from 'react-cropper'
+import { IClassNameProps } from 'src/types/react.types'
 
-export interface IFileProps extends ReactCropperProps, IChildrenProps {
+type TOnDataUpdates = (params: {
+  url: string
+  file?: any
+  sizes: { width: number; height: number }
+}) => void
+
+export interface IFileProps extends IClassNameProps {
   name: string
-  label: string
-  maxSize?: string
+  maxMb?: number
   noCropper?: boolean
+  children?: ReactNode
   onClick?: () => void
-  onDataUpdates?: (params: { url: string; formData: FormData }) => void
+  onDataUpdates: TOnDataUpdates
 }
 
 export interface IUseFileParams {
   onDataUpdates: IFileProps['onDataUpdates']
+  maxMb: IFileProps['maxMb']
 }

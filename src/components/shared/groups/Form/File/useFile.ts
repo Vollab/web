@@ -4,41 +4,91 @@ import { useRef, useState } from 'react'
 
 import { IForwardModal } from 'src/components/shared/molecules/Modal/types'
 
-import Cropper from 'cropperjs'
+import { TInputProps } from 'src/types/react.types'
 
-export const useFile = ({ onDataUpdates }: IUseFileParams) => {
-  const [cropper, setCropper] = useState<Cropper>()
-  const fileRef = useRef<HTMLInputElement>(null)
+import { setAsBase64 } from 'src/utils/files/setAsBase64'
+
+export const useFile = ({ onDataUpdates, maxMb }: IUseFileParams) => {
+  const [file, setFile] = useState<string>()
   const modalRef = useRef<IForwardModal>(null)
-  const [error, setError] = useState<string>()
-  const [file, setFile] = useState<any>()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [cropper, setCropper] = useState<Cropper>()
+  const [isReloading, setIsReloading] = useState(false)
 
-  const getCropData = () => {
-    const canvas = cropper?.getCroppedCanvas()
-    const url = canvas?.toDataURL()
+  const onLabelClick = () => {
+    modalRef.current?.triggerModal({ open: true })
 
-    const formData = new FormData()
-
-    canvas?.toBlob(blob => {
-      blob && formData.append('avatar', blob)
+    addEventListener('focus', () => {
+      setTimeout(() => {
+        if (!inputRef.current?.files?.[0])
+          modalRef.current?.triggerModal({ open: false })
+      }, 300)
     })
-
-    onDataUpdates && onDataUpdates({ url: url || '', formData })
   }
 
-  const onChange = (e: any) => {
-    e.preventDefault()
-    setError(undefined)
-
-    const file = e.target.files[0]
-
-    if (file.size < 5242880) {
-      const reader = new FileReader()
-
-      reader.readAsDataURL(file)
-      reader.onload = () => setFile(reader.result)
-    } else setError('O arquivo é muito grande!')
+  const closeModal = () => {
+    modalRef.current?.triggerModal({ open: false })
   }
 
-  return { file, error, fileRef, modalRef, onChange, setCropper, getCropData }
+  const onInputChange: TInputProps['onChange'] = event => {
+    const file = inputRef.current?.files?.[0]
+
+    if (!file) {
+      modalRef.current?.triggerModal({ open: false })
+      return
+    }
+
+    setAsBase64({
+      event,
+      maxMB: maxMb,
+      onSuccess: blob => {
+        setFile(blob)
+        isReloading && cropper?.replace(blob)
+      }
+    })
+  }
+
+  const onConfirmClick = () => {
+    closeModal()
+
+    if (!cropper || !file) {
+      modalRef.current?.triggerModal({ open: false })
+      return
+    }
+
+    const croppedCanvas = cropper.getCroppedCanvas()
+
+    croppedCanvas.toBlob(
+      blob => {
+        blob &&
+          onDataUpdates({
+            url: URL.createObjectURL(blob),
+            sizes: {
+              width: croppedCanvas.width,
+              height: croppedCanvas.height
+            }
+          })
+      },
+      'image/webp',
+      0.8
+    )
+  }
+
+  const onReloadClick = () => {
+    setIsReloading(true)
+    inputRef.current?.click()
+  }
+
+  return {
+    file,
+    cropper,
+    inputRef,
+    modalRef,
+    setCropper,
+    closeModal,
+    onLabelClick,
+    onReloadClick,
+    onInputChange,
+    onConfirmClick
+  }
 }

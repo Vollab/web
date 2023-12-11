@@ -8,14 +8,16 @@ export async function sendCookies({
   route,
   request,
   method = 'GET',
+  multipart = false,
+  contentType = 'application/json',
   service = 'auth'
 }: ICookiesParams) {
   const cookiesStore = cookies().toString()
 
   const postHeaders = {
     Cookie: cookiesStore,
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    Accept: contentType,
+    'Content-Type': contentType
   }
 
   const response = await fetch(`${services[service]}${route}`, {
@@ -26,7 +28,9 @@ export async function sendCookies({
         : { Cookie: cookiesStore },
     body:
       method === 'POST' || method === 'PATCH'
-        ? JSON.stringify(await request?.json())
+        ? multipart
+          ? (request as any)
+          : JSON.stringify(await request?.json())
         : undefined
   })
 

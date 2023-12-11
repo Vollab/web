@@ -8,4 +8,4 @@ import {
 type TSignUpOrderer = (request: Request) => Promise<Response>
 
 export const signUpOrderer: TSignUpOrderer = request =>
-  interceptor({ route: '/candidates/sign-up', request, method: 'POST' })
+  interceptor({ route: '/orderers/sign-up', request, method: 'POST' })

@@ -18,13 +18,13 @@ export const LinksForm = ({
 
   return (
     <div className={className}>
-      <div className='w-full mb-3'>
-        <span>
+      <div className='mb-3'>
+        <span className=''>
           Meus Links
           <span className={errorTw.limit}> (máximo 10)</span>:
         </span>
 
-        <ul className='flex pt-2 flex-wrap'>
+        <ul className='flex pt-2 flex-wrap overflow-auto w-[100%] max-h-[116px] overflow-y-auto'>
           {links?.map(({ text }, index) => (
             <LinkLabel
               key={index}
@@ -36,7 +36,7 @@ export const LinksForm = ({
         </ul>
       </div>
 
-      <form onSubmit={onSubmit} className='grid grid-cols-2 gap-2 w-full'>
+      <form onSubmit={onSubmit} className='grid grid-cols-2 gap-2 w-full '>
         <Field
           color={color}
           {...linkProps}

@@ -1,5 +1,7 @@
 'use client'
 
+import { queryClient } from '../ReactQuery'
+
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
@@ -23,7 +25,9 @@ const DemandContext = createContext<IDemandContext>({})
 export const DemandProvider = ({ children, id }: IDemandProviderProps) => {
   const { data: userData } = useCurrentUser()
   const [isOwner, setIsOwner] = useState(false)
-  const { data: demandVacanciesData } = useCurrentUserDemandVacancies({ id })
+  const { data: demandVacanciesData } = useCurrentUserDemandVacancies({
+    id
+  })
 
   const userId = userData?.user.id
   const ownerId = demandVacanciesData?.demand?.orderer.id
@@ -31,6 +35,10 @@ export const DemandProvider = ({ children, id }: IDemandProviderProps) => {
   useEffect(() => {
     setIsOwner(userId === ownerId)
   }, [ownerId, userId])
+
+  useEffect(() => {
+    queryClient.refetchQueries('demand/vacancies')
+  }, [])
 
   return (
     <DemandContext.Provider value={{ isOwner, ...demandVacanciesData }}>

@@ -39,6 +39,7 @@ export const Status = ({
           vacancy_id={vacancy_id}
           demand_id={demand_id}
         />
+
         <CancelButton
           status={status}
           vacancy_id={vacancy_id}

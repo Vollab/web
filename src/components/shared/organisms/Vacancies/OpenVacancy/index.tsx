@@ -2,7 +2,7 @@ import { Status } from './Status'
 
 import { useRouter } from 'next/navigation'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { useDeleteVacancy } from 'src/api/requests/demands/vacancies/delete/useDeleteVacancy'
 import { useApplicants } from 'src/api/requests/demands/vacancies/getApplicants/useApplicants'
@@ -32,10 +32,16 @@ export const OpenVacancy = ({
   const { mutateAsync } = useDeleteVacancy()
   const { isOwner, demand } = useDemandContext()
   const confirmRemoveModalRef = useRef<IForwardModal>(null)
-  const { data } = useApplicants({ vacancy_id: id, demand_id: demand?.id })
-  console.log({ demand_id })
+  const { data, refetch } = useApplicants({
+    vacancy_id: id,
+    demand_id: demand?.id
+  })
 
   const applicantsQuantity = data?.enrollments ? data.enrollments.length : 0
+
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   const onCancelConfirmDeleteVacancyClick = () => {
     confirmRemoveModalRef.current?.triggerModal({ open: false })
@@ -85,9 +91,11 @@ export const OpenVacancy = ({
                 />
               )}
 
-              <h4 className='text-xl font-medium text-primary-500 break-all'>
-                {name}
-              </h4>
+              <Button onClick={() => push(`/demands/${demand_id}`)}>
+                <h4 className='text-xl font-medium text-primary-500 break-all'>
+                  {name}
+                </h4>
+              </Button>
             </div>
 
             <span

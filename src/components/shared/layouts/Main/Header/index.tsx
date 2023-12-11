@@ -9,8 +9,6 @@ import { colors } from 'src/styles/custom/colors'
 import { Loading } from 'src/components/shared/atoms/Loading'
 import { Button } from 'src/components/shared/groups/Buttons/Button'
 
-import { queryClient } from 'src/contexts/ReactQuery'
-
 import { infos } from 'src/static/infos'
 
 import { Logout } from 'src/assets/icons'
@@ -26,8 +24,6 @@ export const Header = () => {
       'session_access=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
     document.cookie =
       'session_refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
-
-    queryClient.invalidateQueries('current-user')
 
     push('/sign-in')
   }

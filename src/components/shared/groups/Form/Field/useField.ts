@@ -12,7 +12,7 @@ export const useField = ({
   icon: iconProp,
   color: colorProp
 }: IUseFieldParams) => {
-  const [color, setColor] = useState(colors[colorProp][300])
+  const [color, setColor] = useState(colors[colorProp][500])
   const [showPassword, setShowPassword] = useState(false)
 
   const styles = { input: { color } }
@@ -31,7 +31,7 @@ export const useField = ({
 
     input: {
       onBlur: e => {
-        setColor(error ? colors.error[500] : colors[colorProp][300])
+        setColor(error ? colors.error[500] : colors[colorProp][500])
         onBlurProp && onBlurProp(e)
       },
       onFocus: e => {

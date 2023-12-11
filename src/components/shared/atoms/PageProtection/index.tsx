@@ -6,9 +6,11 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
 
+import { queryClient } from 'src/contexts/ReactQuery'
+
 import { IChildrenProps } from 'src/types/react.types'
 
-const unProtectedRoutes = ['/sign-in', '/sign-up']
+const unProtectedRoutes = ['/sign-in']
 
 export const PageProtection = ({ children }: IChildrenProps) => {
   const router = useRouter()
@@ -24,6 +26,8 @@ export const PageProtection = ({ children }: IChildrenProps) => {
       unProtectedRoutes.find(route => route.startsWith(pathname)) &&
         router.push('/demands')
     }
+
+    queryClient.invalidateQueries('current-user')
 
     setIsAllowed(true)
   }, [pathname, router])

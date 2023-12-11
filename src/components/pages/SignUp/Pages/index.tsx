@@ -2,6 +2,7 @@
 
 import { Candidate } from './Candidate'
 import { Initial } from './Initial'
+import { Orderer } from './Orderer'
 
 import { useSignUpContext } from 'src/contexts/SignUp'
 import { StepsProvider } from 'src/contexts/SignUp/Steps'
@@ -19,11 +20,11 @@ export const Pages = () => {
         </StepsProvider>
       )}
 
-      {/* {page === 'orderer' && (
+      {page === 'orderer' && (
         <StepsProvider>
           <Orderer />
         </StepsProvider>
-      )} */}
+      )}
     </>
   )
 }

@@ -54,7 +54,7 @@ export const useLinksForm = ({ setLinks, links }: IUseLinksFormsParams) => {
       return
     }
 
-    links ? setLinks([{ text, url }]) : setLinks([{ text, url }])
+    links ? setLinks([...links, { text, url }]) : setLinks([{ text, url }])
   }
 
   const onRemoveLinkClick = (removedTitle: string) => {

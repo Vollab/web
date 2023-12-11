@@ -16,7 +16,11 @@ export const Form = () => {
 
   return (
     <form className='grid grid-cols-3 py-6 px-4 gap-4' onSubmit={onSubmit}>
-      <File label='avatar' name='avatar' className='mb-2 mx-auto col-span-3'>
+      <File
+        name='avatar'
+        onDataUpdates={() => {}}
+        className='mb-2 mx-auto col-span-3'
+      >
         <AvatarUpload />
       </File>
 

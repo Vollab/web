@@ -3,6 +3,8 @@ import { IApproveParams, approve } from './approve'
 import { IRefuseParams, refuse } from './refuse'
 import { IUnenrollParams, unenroll } from './unenroll'
 
+import { queryClient } from 'src/contexts/ReactQuery'
+
 import { useMutation } from 'src/hooks/ReactQuery/useMutation'
 
 export interface IResponse {
@@ -23,12 +25,20 @@ export const useEnrollment = () => {
   const { mutateAsync: mutateAccept } = useMutation<{
     request: IAcceptParams
     response: IResponse
-  }>(accept)
+  }>(accept, {
+    onSuccess: () => {
+      queryClient.refetchQueries('current-vacancies')
+    }
+  })
 
   const { mutateAsync: mutateUnenroll } = useMutation<{
     request: IUnenrollParams
     response: IResponse
-  }>(unenroll)
+  }>(unenroll, {
+    onSuccess: () => {
+      queryClient.refetchQueries('current-vacancies')
+    }
+  })
 
   return { mutateAccept, mutateRefuse, mutateApprove, mutateUnenroll }
 }

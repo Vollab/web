@@ -1,3 +1,4 @@
+import { Optional } from './Optional'
 import { Required } from './Required'
 
 import { colors } from 'src/styles/custom/colors'
@@ -11,11 +12,11 @@ export const Candidate = () => {
   const { onBackClick, step } = useBackClick()
 
   return (
-    <AuthLayout onBackClick={onBackClick}>
+    <AuthLayout onBackClick={step === 1 ? onBackClick : undefined}>
       <Steps color={colors.secondary[500]} filledQuantity={step} quantity={2} />
 
       {step === 1 && <Required />}
-      {/* {step === 3 && <Optional />} */}
+      {step === 2 && <Optional />}
     </AuthLayout>
   )
 }

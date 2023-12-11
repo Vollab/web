@@ -1,12 +1,6 @@
-import { api } from 'src/api/core'
+import { interceptor } from 'src/api/core/interceptor'
 
-export type TUpdateAvatar = (data?: FormData) => Promise<void>
+type TUpdateAvatar = (request: any) => Promise<{ avatar: any }>
 
-export const updateAvatar: TUpdateAvatar = async data => {
-  if (data)
-    api.put({
-      data,
-      url: '/avatar',
-      customHeader: { 'Content-Type': 'multipart/form-data' }
-    })
-}
+export const updateAvatar: TUpdateAvatar = request =>
+  interceptor({ request, method: 'PUT', route: '/current-user/avatar' })

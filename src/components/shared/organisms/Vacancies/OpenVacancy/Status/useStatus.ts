@@ -19,7 +19,7 @@ export const useStatus = ({ id, status }: IStatusProps) => {
   const { toastRef } = useToastContext()
   const { data: userData } = useCurrentUser()
   const { isOwner, demand } = useDemandContext()
-  const { mutate, data, isSuccess, error, isError } = useEnroll()
+  const { mutateAsync, data, isSuccess, error, isError } = useEnroll()
 
   const [enrollmentStatus, setEnrollmentStatus] =
     useState<TVacancy['status']>(status)
@@ -32,7 +32,12 @@ export const useStatus = ({ id, status }: IStatusProps) => {
     ? infos.enrollmentStatus[enrollmentStatus].label
     : ''
 
-  const onEnrollClick = () => {
+  const onEnrollClick = async () => {
+    if (!demand?.id) {
+      toastRef?.current?.triggerToast([{}])
+      return
+    }
+
     if (isOwner)
       toastRef?.current?.triggerToast([
         {
@@ -42,7 +47,12 @@ export const useStatus = ({ id, status }: IStatusProps) => {
         }
       ])
     else {
-      demand?.id && mutate({ demand_id: demand.id, vacancy_id: id })
+      const { enrollment } = await mutateAsync({
+        demand_id: demand.id,
+        vacancy_id: id
+      })
+
+      if (!enrollment) toastRef?.current?.triggerToast([{}])
     }
   }
 

@@ -17,6 +17,8 @@ export const useApplicants = ({
         return getApplicants({ demand_id, vacancy_id })
     },
     {
-      enabled: !!(demand_id && vacancy_id)
+      enabled: !!(demand_id && vacancy_id),
+      refetchOnMount: true,
+      refetchOnWindowFocus: true
     }
   )

@@ -17,11 +17,14 @@ export const Form = () => {
       </Label>
 
       <Label title='Resumo' className='col-span-3'>
-        <Textarea {...props.resume} />
+        <Textarea {...props.resume} custom={{ inputTw: 'text-primary-500' }} />
       </Label>
 
       <Label title='Descrição' className='col-span-3'>
-        <Textarea {...props.description} />
+        <Textarea
+          {...props.description}
+          custom={{ inputTw: 'text-primary-500' }}
+        />
       </Label>
 
       <Button
