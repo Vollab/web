@@ -14,6 +14,8 @@ import { useDemandContext } from 'src/contexts/Demand'
 import { queryClient } from 'src/contexts/ReactQuery'
 import { useToastContext } from 'src/contexts/Toast'
 
+import { Trash } from 'src/assets/icons/Trash'
+
 export const Footer = () => {
   const { push } = useRouter()
   const { demand, isOwner } = useDemandContext()
@@ -47,15 +49,19 @@ export const Footer = () => {
 
   return (
     <>
-      <footer className='pb-20'>
+      <footer className='pb-10 pt-4 content'>
         {isOwner && (
           <Button
-            className='text-error-600 font-semibold text-lg w-full text-center hover:text-error-400'
+            className='group border border-error-500 flex items-center gap-3 font-semibold text-lg text-center mx-auto bg-gray-50 px-4 py-2 rounded-full hover:bg-error-500 hover:border-transparent transition-all duration-200'
             onClick={() => {
               confirmModalRef.current?.triggerModal({ open: true })
             }}
           >
-            Excluir Demanda
+            <Trash className='h-5 w-5 fill-error-500  group-hover:fill-gray-50 transition-all duration-200' />
+
+            <span className='text-error-500 group-hover:text-gray-50 transition-all duration-200'>
+              Excluir Demanda
+            </span>
           </Button>
         )}
       </footer>

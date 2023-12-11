@@ -1,5 +1,6 @@
 'use client'
 
+import { Background } from './Background'
 import { Header } from './Header'
 import { Nav } from './Nav'
 
@@ -22,6 +23,8 @@ export const MainLayout = ({
       {!hideHeader && <Header />}
 
       {children}
+
+      <Background />
 
       <Nav />
     </>

@@ -53,6 +53,7 @@ export const Required = () => {
         />
 
         <Textarea
+          maxLength={255}
           placeholder='Biografia'
           error={formState.errors.biography as any}
           ref={register('biography').ref}

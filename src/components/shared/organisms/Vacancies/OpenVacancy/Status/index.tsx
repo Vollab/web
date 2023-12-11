@@ -48,12 +48,12 @@ export const Status = ({
       </div>
     </footer>
   ) : (
-    <footer style={{ paddingBottom: isCandidate ? 0 : 8 }}>
+    <footer>
       {(isCandidate || isOwner) && (
         <Button
           color='success'
           onClick={onEnrollClick}
-          className='mt-3 w-full rounded-t-none'
+          className='mt-3 w-full rounded-t-none rounded-b-none'
         >
           Candidatar-se
         </Button>

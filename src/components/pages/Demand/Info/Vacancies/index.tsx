@@ -29,9 +29,7 @@ export const Vacancies = () => {
         title='Vagas'
         onAddClick={isOwner ? onAddVacancyClick : undefined}
       >
-        <ul className='flex flex-col gap-4 pt-4'>
-          <VacanciesList vacancies={vacancies} />
-        </ul>
+        <VacanciesList vacancies={vacancies} />
       </InfoItem>
 
       <Modal ref={addVacancyModalRef}>

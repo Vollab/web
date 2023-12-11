@@ -1,3 +1,4 @@
+import { IFormProps } from '.'
 import { IFormData } from './types'
 
 import { useRouter } from 'next/navigation'
@@ -12,7 +13,16 @@ import { useToastContext } from 'src/contexts/Toast'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm as useFormHook } from 'react-hook-form'
-import { name } from 'src/schemas'
+
+const titleRegex = /^[a-záàâãéèêíïóôõöúçñ0-9 ]+$/i
+
+export const title = Joi.string().min(5).max(30).regex(titleRegex).messages({
+  'string.empty': 'Informe um título!',
+  'any.required': 'Informe um título!',
+  'string.pattern.base': 'Nome inválido!',
+  'string.max': 'Título deve possuir menos que 30 caracteres!',
+  'string.min': 'Título deve possuir mais que 5 caracteres!'
+})
 
 const resume = Joi.string().required().max(120).min(20).messages({
   'string.empty': 'Informe um resumo!',
@@ -28,9 +38,9 @@ const description = Joi.string().required().max(255).min(20).messages({
   'string.max': 'Limite máximo de 255 caracteres atingido!'
 })
 
-const resolver = joiResolver(Joi.object({ title: name, resume, description }))
+const resolver = joiResolver(Joi.object({ title, resume, description }))
 
-export const useForm = () => {
+export const useForm = ({ closeModal }: IFormProps) => {
   const { push } = useRouter()
   const { toastRef } = useToastContext()
   const { mutateAsync } = useCreateDemand()
@@ -41,6 +51,8 @@ export const useForm = () => {
     })
 
   const onSubmit = handleSubmit(async data => {
+    closeModal()
+
     const { demand } = await mutateAsync(data)
 
     if (!demand) {

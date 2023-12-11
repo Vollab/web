@@ -20,7 +20,7 @@ const Tooltip = ({ trigger, content, color, arrowTw }: ITooltipProps) => {
           <RTooltip.Content
             side='top'
             align='center'
-            className='p-2 text-white-500 rounded-md z-50'
+            className='p-2 text-white-500 rounded-md z-[200]'
             style={{ backgroundColor: color }}
           >
             <RTooltip.Arrow

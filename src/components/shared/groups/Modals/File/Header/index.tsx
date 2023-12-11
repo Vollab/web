@@ -2,7 +2,7 @@ import { IHeaderProps } from './types'
 
 import { Button } from '../../../Buttons/Button'
 
-import { LineMotion } from 'src/components/shared/animations/LineMotion'
+import { LineMotion } from 'src/components/shared/animations/components/LineMotion'
 
 import { Close } from 'src/assets/icons'
 import { Reload } from 'src/assets/icons/Reload'

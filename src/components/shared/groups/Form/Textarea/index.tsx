@@ -19,7 +19,7 @@ export const Textarea = forwardRef<any, ITextareaProps>(
     <div
       className={twMerge('border w-full rounded-lg h-32 relative', className)}
     >
-      <div className='absolute -left-8 top-2'>
+      <div className='absolute left-4 top-2'>
         {error && <LeftIcon error={error} />}
       </div>
 
@@ -29,7 +29,8 @@ export const Textarea = forwardRef<any, ITextareaProps>(
         {...props}
         className={twMerge(
           'resize-none outline-none h-full w-full px-4 py-3 bg-transparent',
-          custom?.inputTw
+          custom?.inputTw,
+          error ? 'pt-10' : undefined
         )}
       />
     </div>

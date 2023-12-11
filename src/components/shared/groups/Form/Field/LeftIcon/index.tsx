@@ -11,7 +11,7 @@ import Tooltip from 'src/components/shared/molecules/Tooltip'
 import { Danger } from 'src/assets/icons'
 
 const Trigger = () => (
-  <div>
+  <div className=''>
     <Danger className='h-6' fill={colors.error[500]} />
   </div>
 )

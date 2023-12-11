@@ -59,6 +59,7 @@ export const Required = () => {
           ref={register('biography').ref}
           onChange={onTextAreaChange}
           className='text-tertiary-500'
+          maxLength={255}
         />
 
         <Button color='tertiary' className='w-full' type='submit'>

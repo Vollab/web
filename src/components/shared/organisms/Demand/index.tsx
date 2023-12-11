@@ -23,10 +23,10 @@ export const Demand = ({ demand }: IDemandProps) => {
     onSeeProfileClick
   } = useDemand({ demand })
 
-  console.log({ vacancies })
-
   return (
-    <article className='rounded-2xl shadow-md flex flex-col relative p-4'>
+    <article className='rounded-2xl flex flex-col relative p-4 h-full shadow-sm hover:shadow-lg overflow-hidden z-10'>
+      <div className='absolute top-0 left-0 w-full bg-gray-50 opacity-[0.98] h-full -z-10' />
+
       <Button
         onClick={onDemandClick}
         className='absolute left-0 w-full top-0 h-full z-0 cursor-pointer'
@@ -60,9 +60,11 @@ export const Demand = ({ demand }: IDemandProps) => {
         </div>
       </header>
 
-      <div className='text-left relative z-10'>
+      <div className='text-left relative z-10 flex-1 h-full'>
         <Button onClick={onDemandClick} className='text-left'>
-          <h2 className='text-lg font-semibold mt-3 break-all'>{title}</h2>
+          <h2 className='text-lg font-semibold mt-3 break-all capitalize'>
+            {title.toLocaleLowerCase()}
+          </h2>
 
           <span
             className='block mt-1 mb-3 font-medium'

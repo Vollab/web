@@ -6,8 +6,8 @@ import { MainLayout } from 'src/components/shared/layouts/Main'
 
 export const MyDemands = () => (
   <MainLayout>
-    <main className='content'>
-      <header className='py-4 flex items-center justify-between'>
+    <main className='content mainLayoutPadding'>
+      <header className='flex items-center justify-between h-16'>
         <Title />
 
         <AddDemand />

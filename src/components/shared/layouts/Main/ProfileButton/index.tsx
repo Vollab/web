@@ -6,7 +6,11 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { Profile } from 'src/assets/icons'
 
-export const ProfileButton = () => {
+export const ProfileButton = ({
+  fill = colors.gray[50]
+}: {
+  fill?: string
+}) => {
   const { push } = useRouter()
 
   const onProfileClick = () => {
@@ -18,7 +22,7 @@ export const ProfileButton = () => {
       onClick={onProfileClick}
       className='py-4 w-full flex items-center justify-center'
     >
-      <Profile fill={colors.gray[50]} className='h-6 w-6' />
+      <Profile fill={fill} className='h-6 w-6' />
     </Button>
   )
 }

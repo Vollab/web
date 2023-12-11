@@ -79,20 +79,23 @@ export const OpenVacancy = ({
   return (
     <>
       <li>
-        <article className='flex flex-col gap-1 rounded-2xl shadow-lg  overflow-hidden group'>
+        <article className='flex flex-col gap-1 rounded-2xl shadow-md overflow-hidden group h-full bg-gray-50'>
           <header className='flex items-center justify-between p-4 pb-0 gap-x-4'>
-            <div className='flex items-center justify-center gap-x-2'>
+            <div className='flex items-center justify-center relative'>
               {isOwner && (
                 <CloseButton
-                  className='hidden group-hover:flex'
+                  className='absolute left-0 hidden group-hover:flex'
                   onClick={() =>
                     confirmRemoveModalRef.current?.triggerModal({ open: true })
                   }
                 />
               )}
 
-              <Button onClick={() => push(`/demands/${demand_id}`)}>
-                <h4 className='text-xl font-medium text-primary-500 break-all'>
+              <Button
+                onClick={() => push(`/demands/${demand_id}`)}
+                className='group-hover group-hover:ml-8 transition-all duration-200'
+              >
+                <h4 className='text-xl font-medium text-primary-500 break-all capitalize'>
                   {name}
                 </h4>
               </Button>
@@ -112,7 +115,10 @@ export const OpenVacancy = ({
             </span>
           )}
 
-          <p className='px-4 text-gray-500 mt-1 break-all'>{description}</p>
+          <p className='px-4 text-gray-500 mt-1 break-all md:h-full'>
+            {description[0].toUpperCase()}
+            {description.substring(1)}
+          </p>
 
           {isOwner && (
             <Button

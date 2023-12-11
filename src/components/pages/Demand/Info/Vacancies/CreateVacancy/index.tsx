@@ -17,7 +17,7 @@ export const CreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
     <form className='ModalContainer' onSubmit={onSubmit}>
       <div className='flex flex-col gap-2'>
         <div className='flex items-center justify-between'>
-          <h2 className='text-xl text-tertiary-500'>Crie uma vaga!</h2>
+          <h2 className='text-xl text-primary-500'>Crie uma vaga!</h2>
 
           <CloseButton onClick={closeModal} />
         </div>

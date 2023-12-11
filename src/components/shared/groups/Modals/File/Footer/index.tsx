@@ -2,7 +2,7 @@ import { IFooterProps } from './types'
 
 import { Button } from '../../../Buttons/Button'
 
-import { LinesMotion } from 'src/components/shared/animations/LinesMotion'
+import { LinesMotion } from 'src/components/shared/animations/components/LinesMotion'
 
 import { CheckMark } from 'src/assets/icons'
 

@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 @layer components {
+  .DefaultGrid {
+    @apply flex flex-col gap-6
+    sm:grid xs:grid-cols-2
+    lg:grid-cols-3;
+  }
+
   .ModalContainer {
-    @apply bg-gray-50 p-4 m-4 rounded-xl flex flex-col gap-y-4 w-full relative;
+    @apply bg-gray-50 p-6 m-4 rounded-xl flex flex-col gap-y-4 w-full relative;
     max-width: min(500px, 100% - 24px);
   }
 
@@ -33,11 +39,21 @@
   }
 
   .content {
-    @apply px-4 pt-20 pb-14;
+    @apply px-4 w-full mx-auto max-w-screen-xl
+    sm:px-6
+    md:px-8;
   }
 
-  .contentWithoutHeader {
-    @apply px-4 pb-14;
+  .paddingHeader {
+    @apply mt-[80px];
+  }
+
+  .paddingNav {
+    @apply pb-[56px];
+  }
+
+  .mainLayoutPadding {
+    @apply paddingHeader paddingNav;
   }
 }
 

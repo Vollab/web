@@ -6,6 +6,7 @@ import { useActivityAreas } from 'src/api/requests/activityAreas/useActivityArea
 import { useCreateVacancy as useCreateVacancyApi } from 'src/api/requests/demands/vacancies/create/useCreateVacancy'
 import { useCities } from 'src/api/requests/useCities'
 
+import { title } from 'src/components/pages/MyDemands/AddDemand/Form/useForm'
 import {
   ISelectOption,
   ISelectProps
@@ -20,7 +21,6 @@ import { states as brStates } from 'src/static/states'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import { useForm as useFormHook } from 'react-hook-form'
-import { name } from 'src/schemas'
 import { VacancyWorkMode } from 'types-vollab/dist/src/shared/vacancy'
 
 const description = Joi.string().required().max(255).min(20).messages({
@@ -30,7 +30,7 @@ const description = Joi.string().required().max(255).min(20).messages({
   'string.max': 'Limite máximo de 255 caracteres atingido!'
 })
 
-const resolver = joiResolver(Joi.object({ name, description }))
+const resolver = joiResolver(Joi.object({ name: title, description }))
 
 const workModes = [
   { value: 'IN_PERSON', label: 'Presencial' },
@@ -62,6 +62,8 @@ export const useCreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
     })
 
   const onSubmit = handleSubmit(async data => {
+    closeModal()
+
     if (!demand?.id || !activityArea || !workMode) {
       toastRef?.current?.triggerToast([{ variant: 'error' }])
 
@@ -85,8 +87,6 @@ export const useCreateVacancy = ({ closeModal }: ICreateVacancyProps) => {
         { variant: 'success', content: 'Vaga criada com sucesso!' }
       ])
     } else toastRef?.current?.triggerToast([{ variant: 'error' }])
-
-    closeModal()
   })
 
   const onWorkModeChange: ISelectProps['onChange'] = option => {

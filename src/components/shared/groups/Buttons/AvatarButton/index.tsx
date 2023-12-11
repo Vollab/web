@@ -13,6 +13,7 @@ import { IClassNameProps } from 'src/types/react.types'
 import { twMerge } from 'tailwind-merge'
 
 interface IAvatarButtonProps extends IClassNameProps {
+  fill?: string
   route: string
   avatar?: string
 }
@@ -20,7 +21,8 @@ interface IAvatarButtonProps extends IClassNameProps {
 export const AvatarButton = ({
   route,
   avatar,
-  className
+  className,
+  fill = colors.primary[500]
 }: IAvatarButtonProps) => {
   const { push } = useRouter()
 
@@ -36,13 +38,7 @@ export const AvatarButton = ({
         className
       )}
     >
-      <div className='h-full w-full bg-gray-50 rounded-full border border-gray-50 p-[1px]'>
-        <Avatar
-          src={avatar}
-          className='h-full w-full'
-          fill={colors.tertiary[500]}
-        />
-      </div>
+      <Avatar src={avatar} fill={fill} className='h-full w-full rounded-full' />
     </Button>
   )
 }

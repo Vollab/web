@@ -16,13 +16,10 @@ export const ConfirmModal = forwardRef<IForwardModal, IConfirmModalProps>(
   ({ content, onCancelClick, onConfirmClick }, ref) => (
     <Modal ref={ref}>
       <article className='ModalContainer gap-y-6'>
-        <header>
-          <CloseButton
-            onClick={onCancelClick}
-            className='absolute top-5 right-6'
-          />
-
+        <header className='flex items-center justify-between'>
           <h3 className='text-xl text-error-500'>Você tem certeza?</h3>
+
+          <CloseButton onClick={onCancelClick} />
         </header>
 
         <p className='text-gray-500'>
