@@ -4,7 +4,7 @@ import { MainLayout } from 'src/components/shared/layouts/Main'
 
 export const Profile = () => (
   <MainLayout>
-    <main className='px-4 pt-20 pb-14'>
+    <main className='content paddingHeader'>
       <Form />
     </main>
   </MainLayout>

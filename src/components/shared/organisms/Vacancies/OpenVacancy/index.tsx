@@ -1,3 +1,4 @@
+import { ActivityLabel } from '../../Demand/ActivityLabel'
 import { Applications } from './Applications'
 import { Description } from './Description'
 import { Header } from './Header'
@@ -9,6 +10,8 @@ import { ConfirmModal } from 'src/components/shared/groups/Modals/ConfirmModal'
 
 export const OpenVacancy = () => {
   const {
+    workMode,
+    activityArea,
     onDeleteClick,
     confirmRemoveModalRef,
     onConfirmDeleteVacancyClick,
@@ -22,7 +25,13 @@ export const OpenVacancy = () => {
           <Header onDeleteClick={onDeleteClick} />
           <Location />
           <Description />
-          <Applications />
+
+          <div className='flex items-center justify-between px-4 py-2'>
+            <ActivityLabel name={activityArea as any} work_mode={workMode} />
+
+            <Applications />
+          </div>
+
           <Status />
         </article>
       </li>

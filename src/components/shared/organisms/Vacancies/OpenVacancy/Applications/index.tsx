@@ -29,7 +29,7 @@ export const Applications = () => {
   return isOwner ? (
     <Button
       onClick={onApplicantsClick}
-      className='pl-4 pt-2 text-warning-600 hover:text-warning-500 text-left'
+      className='text-warning-600 hover:text-warning-500 text-left'
     >
       Candidaturas ({applicantsQuantity})
     </Button>

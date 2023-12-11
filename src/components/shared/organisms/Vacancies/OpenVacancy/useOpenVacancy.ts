@@ -53,6 +53,8 @@ export const useOpenVacancy = () => {
     onDeleteClick,
     confirmRemoveModalRef,
     onConfirmDeleteVacancyClick,
-    onCancelConfirmDeleteVacancyClick
+    workMode: vacancy?.work_mode,
+    onCancelConfirmDeleteVacancyClick,
+    activityArea: vacancy?.activity_area
   }
 }

@@ -8,11 +8,11 @@ import { Button } from 'src/components/shared/groups/Buttons/Button'
 
 import { Arrow, ISimpleArrowProps } from 'src/assets/icons'
 
-import { IClassNameProps } from 'src/types/react.types'
+import { IComponentProps } from 'src/types/react.types'
 
 import { twMerge } from 'tailwind-merge'
 
-export interface IBackButtonProps extends IClassNameProps {
+export interface IBackButtonProps extends IComponentProps {
   fill?: string
   arrowTw?: string
   dir?: ISimpleArrowProps['dir']
@@ -22,6 +22,7 @@ export const BackButton = ({
   dir,
   fill,
   arrowTw,
+  children,
   className
 }: IBackButtonProps) => {
   const { back } = useRouter()
@@ -37,6 +38,8 @@ export const BackButton = ({
         fill={fill || colors.primary[500]}
         className={twMerge('h-5 w-5', arrowTw)}
       />
+
+      {children}
     </Button>
   )
 }

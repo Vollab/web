@@ -1,3 +1,5 @@
+import { useRouter } from 'next/navigation'
+
 import { useEnrollment } from 'src/api/requests/enrollment/useEnrollment'
 import { useUser } from 'src/api/requests/users/useUser'
 
@@ -30,9 +32,10 @@ export const Applicant = ({
   vacancy_id,
   candidate_id
 }: IApplicantProps) => {
+  const { push } = useRouter()
   const { toastRef } = useToastContext()
-  const { mutateApprove, mutateRefuse } = useEnrollment()
   const { data } = useUser({ id: candidate_id })
+  const { mutateApprove, mutateRefuse } = useEnrollment()
 
   const onApproveClick = async () => {
     const { enrollment } = await mutateApprove({
@@ -67,8 +70,11 @@ export const Applicant = ({
   }
 
   return (
-    <article className='p-4 flex flex-col gap-y-4 shadow-sm rounded-xl'>
-      <Button className='flex flex-col text-left gap-y-2'>
+    <article className='p-4 flex flex-col gap-y-4 shadow-sm rounded-xl bg-gray-50'>
+      <Button
+        className='flex flex-col text-left gap-y-2'
+        onClick={() => push(`/users/${candidate_id}`)}
+      >
         <div className='flex gap-x-4'>
           <Avatar
             fill={colors.secondary[500]}
@@ -96,7 +102,7 @@ export const Applicant = ({
           )}
         </span>
 
-        <p className='break-all max-h-[100px] overflow-hidden text-ellipsis text-gray-500'>
+        <p className='break-all max-h-[100px] text-gray-500'>
           {limit(data?.user.biography || '', 144)}
         </p>
       </Button>

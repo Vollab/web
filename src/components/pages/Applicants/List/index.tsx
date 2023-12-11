@@ -31,7 +31,7 @@ export const List = ({ demand_id, vacancy_id }: IApplicantsProps) => {
   }, [demandsData, isDemandFetched, isUserFetched, push, userData])
 
   return (
-    <ul className='flex flex-col gap-4 pb-6 relative'>
+    <ul className='DefaultGrid pb-6 relative'>
       {isLoading ? (
         <Loading
           fill={colors.primary[500]}

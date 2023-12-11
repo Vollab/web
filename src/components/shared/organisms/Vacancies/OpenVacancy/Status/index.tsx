@@ -36,7 +36,7 @@ export const Status = () => {
         <Button
           color='success'
           onClick={onEnrollClick}
-          className='mt-3 w-full rounded-t-none rounded-b-none'
+          className='w-full rounded-t-none rounded-b-none'
         >
           Candidatar-se
         </Button>

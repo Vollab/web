@@ -9,12 +9,12 @@ export interface IApplicantsProps {
 }
 
 export const Applicants = (props: IApplicantsProps) => (
-  <MainLayout hideHeader>
-    <main className='p-4'>
-      <header className='py-4 flex gap-x-2'>
-        <BackButton fill='#000' />
-
-        <h1 className='text-lg font-semibold'>Candidatados</h1>
+  <MainLayout>
+    <main className='content paddingHeader'>
+      <header className='py-6 flex gap-x-2'>
+        <BackButton fill='#000'>
+          <h1 className='text-lg font-semibold'>Candidatados</h1>
+        </BackButton>
       </header>
 
       <List {...props} />
