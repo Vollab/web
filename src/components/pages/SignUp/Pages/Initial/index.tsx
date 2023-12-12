@@ -29,18 +29,26 @@ export const Initial = () => {
       <section className='p-4 space-y-10'>
         <header>
           <h1 className='text-xl text-primary-500 font-semibold text-center'>
-            Você precisa de ajuda ou quer ajudar alguém?
+            Você precisa de ajuda ou deseja ajudar alguém?
           </h1>
         </header>
 
         <div className='space-y-2 px-4'>
           <h2 className='text-lg font-medium text-secondary-500'>Candidato</h2>
-          <p>Criar seu próprio portfólio resolvendo problemas do mundo real!</p>
+
+          <p>
+            Desenvolva suas habilidades ao enfrentar desafios do mundo real,
+            construindo um portfólio valioso que destaque suas aptidões únicas!
+          </p>
         </div>
 
         <div className='space-y-2 px-4'>
           <h2 className='text-lg font-medium text-tertiary-500'>Solicitante</h2>
-          <p>Criar seu próprio portfólio resolvendo problemas do mundo real!</p>
+
+          <p>
+            Apresente desafios do mundo real, evidenciando suas habilidades e
+            conquistas de maneira prática e impactante!
+          </p>
         </div>
 
         <footer className='flex justify-between items-center px-4'>

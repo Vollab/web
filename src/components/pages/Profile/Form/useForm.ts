@@ -2,6 +2,8 @@ import { IFormData } from './types'
 
 import { FormEventHandler, useState } from 'react'
 
+import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
+
 import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm/types'
 
 import { biography } from 'src/schemas/biography'
@@ -18,11 +20,18 @@ import { email, name, phone } from 'src/schemas'
 const resolver = joiResolver(Joi.object({ phone, name, biography, email }))
 
 export const useForm = () => {
+  const { data } = useCurrentUser()
   const [links, setLinks] = useState<ILinksFormProps['links']>([])
+
   const { handleSubmit, register, formState, setValue } =
     useFormHook<IFormData>({
       resolver,
-      defaultValues: { name: '', phone: '', biography: '', email: '' }
+      defaultValues: {
+        name: data?.user.name,
+        phone: data?.user.phone,
+        biography: data?.user.biography,
+        email: data?.user.email
+      }
     })
 
   const onSubmit = handleSubmit(() => {})
@@ -35,9 +44,10 @@ export const useForm = () => {
     setValue('biography', e.currentTarget.value)
 
   return {
-    onSubmit,
     links,
+    onSubmit,
     setLinks,
+    isCandidate: data?.user.role === 'candidate',
     props: {
       email: {
         error: formState.errors.email,
