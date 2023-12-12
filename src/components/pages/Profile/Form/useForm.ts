@@ -2,9 +2,12 @@ import { IFormData } from './types'
 
 import { FormEventHandler, useState } from 'react'
 
+import { useUpdateCandidate } from 'src/api/requests/candidate/update/useUpdateCandidate'
 import { useCurrentUser } from 'src/api/requests/currentUser/get/useCurrentUser'
 
 import { ILinksFormProps } from 'src/components/shared/molecules/LinksForm/types'
+
+import { useToastContext } from 'src/contexts/Toast'
 
 import { biography } from 'src/schemas/biography'
 
@@ -21,6 +24,8 @@ const resolver = joiResolver(Joi.object({ phone, name, biography, email }))
 
 export const useForm = () => {
   const { data } = useCurrentUser()
+  const { mutateAsync } = useUpdateCandidate()
+  const { toastRef } = useToastContext()
   const [links, setLinks] = useState<ILinksFormProps['links']>([])
 
   const { handleSubmit, register, formState, setValue } =
@@ -34,7 +39,15 @@ export const useForm = () => {
       }
     })
 
-  const onSubmit = handleSubmit(() => {})
+  const onSubmit = handleSubmit(async formData => {
+    const { candidate } = await mutateAsync({ id: data?.user.id, ...formData })
+
+    if (candidate)
+      toastRef?.current?.triggerToast([
+        { content: 'Informações atualizadas!', variant: 'success' }
+      ])
+    else toastRef?.current?.triggerToast([{}])
+  })
 
   const onPhoneChange: TInputProps['onChange'] = e => {
     setValue('phone', formatPhone(e.target.value))

@@ -65,7 +65,12 @@ export const Form = () => {
 
       <LinksForm links={links} setLinks={setLinks} className='col-span-4' />
 
-      <Button className='col-span-4' variant='primary' color='primary'>
+      <Button
+        className='col-span-4'
+        variant='primary'
+        color='primary'
+        type='submit'
+      >
         Salvar Alterações
       </Button>
     </form>

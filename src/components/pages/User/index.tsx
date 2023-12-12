@@ -4,11 +4,13 @@ import { Demands } from './Demands'
 import { Links } from './Links'
 
 import { useAvatar } from 'src/api/requests/avatar/useAvatar'
+import { useUserCandidate } from 'src/api/requests/candidate/get/useUser'
 import { useUser } from 'src/api/requests/users/useUser'
 
 import { colors } from 'src/styles/custom/colors'
 
 import { MainLayout } from 'src/components/shared/layouts/Main'
+import { ActivityLabel } from 'src/components/shared/organisms/Demand/ActivityLabel'
 
 import { infos } from 'src/static/infos'
 
@@ -21,6 +23,9 @@ interface IUserProps {
 export const User = ({ id }: IUserProps) => {
   const { data } = useUser({ id })
   const { data: avatarData } = useAvatar({ id })
+  const { data: candidateData } = useUserCandidate({
+    id: data?.user.role === 'candidate' ? id : undefined
+  })
 
   const user = data?.user
   const roleColor = user ? infos.roles[user.role].color : ''
@@ -75,6 +80,18 @@ export const User = ({ id }: IUserProps) => {
 
               <Links links={[]} />
             </li>
+
+            {candidateData?.candidate.activity_areas && (
+              <li className='flex flex-col gap-2'>
+                <span className='font-medium text-lg'>Áreas de atuação:</span>
+
+                <ul className='flex flex-col gap-2 py-2'>
+                  {candidateData.candidate.activity_areas.map((area: any) => (
+                    <ActivityLabel name={area} key={area} />
+                  ))}
+                </ul>
+              </li>
+            )}
           </ul>
         </article>
 
